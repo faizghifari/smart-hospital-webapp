@@ -7,7 +7,7 @@ class Role(db.Model):
     scope = db.Column(db.String(60), nullable=False)
     state_id = db.Column(db.Integer, db.ForeignKey('states.id'))
     hospital_id = db.Column(db.Integer, db.ForeignKey('hospitals.id'))
-    users = db.relationship('User', backref='role', lazy='dynamic')
+    users = db.relationship('User', backref='user_role', lazy='dynamic')
 
     def __repr__(self):
         return '<Role: {}>'.format(self.scope)

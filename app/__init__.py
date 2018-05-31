@@ -15,7 +15,7 @@ def create_app(config_name):
 
     Bootstrap(app)
 
-    from .models import *
+    from .models import db, user, hospital, state, role
 
     Migrate(app, db)
     db.init_app(app)

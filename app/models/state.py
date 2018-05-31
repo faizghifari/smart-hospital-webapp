@@ -9,8 +9,8 @@ class State(db.Model):
     current_safety = db.Column(db.Integer)
     current_security = db.Column(db.Integer)
     current_productivity = db.Column(db.Integer)
-    roles = db.relationship('Role', backref='state', lazy='dynamic')
-    hospitals = db.relationship('Hospital', backref='hospital', lazy='dynamic')
+    roles = db.relationship('Role', backref='state_role', lazy='dynamic')
+    hospitals = db.relationship('Hospital', backref='state_hospital', lazy='dynamic')
     states_history = db.relationship('StateHistory', backref='state_history', lazy='dynamic')
 
     def __repr__(self):

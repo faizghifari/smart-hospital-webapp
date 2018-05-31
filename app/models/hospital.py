@@ -8,7 +8,7 @@ class Hospital(db.Model):
     count_buildings = db.Column(db.Integer)
     count_rooms = db.Column(db.Integer)
     state_id = db.Column(db.Integer, db.ForeignKey('states.id'))
-    roles = db.relationship('Role', backref='state', lazy='dynamic')
+    roles = db.relationship('Role', backref='hospital_role', lazy='dynamic')
     hospitals_history = db.relationship('HospitalHistory',
                                         backref='hospital_history',
                                         lazy='dynamic')
