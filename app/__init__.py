@@ -17,7 +17,7 @@ def create_app(config_name):
 
     from .models import *
 
-    migrate = Migrate(app, db)
+    Migrate(app, db)
     db.init_app(app)
 
     login_manager.init_app(app)
@@ -26,5 +26,8 @@ def create_app(config_name):
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
+
+    from .index import index as index_blueprint
+    app.register_blueprint(index_blueprint)
 
     return app
