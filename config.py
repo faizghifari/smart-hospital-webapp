@@ -12,7 +12,7 @@ class DevelopmentConfig(Config):
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'mysql://administrator:admin@localhost/smart_hospital'
 
-config_type = {
+app_config = {
     'development': DevelopmentConfig,
     'production': ProductionConfig
 }
