@@ -15,7 +15,7 @@ def create_app(config_name):
 
     Bootstrap(app)
 
-    from .models import db, hospital, state, user, role
+    from .models import *
 
     migrate = Migrate(app, db)
     db.init_app(app)
@@ -23,5 +23,8 @@ def create_app(config_name):
     login_manager.init_app(app)
     login_manager.login_message = "You must be logged in to access this page"
     login_manager.login_view = "auth.login"
+
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint)
 
     return app
