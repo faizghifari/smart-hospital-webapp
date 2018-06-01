@@ -11,6 +11,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(60), index=True, unique=True)
     username = db.Column(db.String(60), index=True, unique=True)
     password_hash = db.Column(db.Text)
+    is_ministry = db.Column(db.Boolean, default=False)
+    is_state = db.Column(db.Boolean, default=False)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     @property
