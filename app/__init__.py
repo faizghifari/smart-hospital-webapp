@@ -30,4 +30,7 @@ def create_app(config_name):
     from .index import index as index_blueprint
     app.register_blueprint(index_blueprint)
 
+    from .ministry import ministry as ministry_blueprint
+    app.register_blueprint(ministry_blueprint)
+
     return app

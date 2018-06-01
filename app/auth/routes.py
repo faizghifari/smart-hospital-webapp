@@ -30,7 +30,10 @@ def login():
         if user is not None and user.verify_password(login_form.password.data):
             login_user(user)
 
-            return redirect(url_for('index.dashboard'))
+            if user.is_ministry:
+                return redirect(url_for('ministry.dashboard'))
+            else:
+                return redirect(url_for('index.dashboard'))
 
         else:
             flash('Invalid credentials')
