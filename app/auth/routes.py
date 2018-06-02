@@ -1,5 +1,5 @@
 from flask import flash, render_template, redirect, url_for
-from flask_login import login_required, login_user, logout_user
+from flask_login import login_required, login_user, logout_user, current_user
 
 from . import auth
 from controllers import RegistrationControl, LoginControl
@@ -24,21 +24,27 @@ def register():
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    login_form = LoginControl()
-    if login_form.validate_on_submit():
-        user = User.query.filter_by(email=login_form.email.data).first()
-        if user is not None and user.verify_password(login_form.password.data):
-            login_user(user)
-
-            if user.is_ministry:
-                return redirect(url_for('ministry.dashboard'))
-            else:
-                return redirect(url_for('index.dashboard'))
-
+    if current_user.is_authenticated:
+        if current_user.is_ministry:
+            return redirect(url_for('ministry.dashboard'))
         else:
-            flash('Invalid credentials')
+            return redirect(url_for('index.dashboard'))
+    else:    
+        login_form = LoginControl()
+        if login_form.validate_on_submit():
+            user = User.query.filter_by(email=login_form.email.data).first()
+            if user is not None and user.verify_password(login_form.password.data):
+                login_user(user)
 
-    return render_template('auth/login.html', form=login_form, title='Login')
+                if user.is_ministry:
+                    return redirect(url_for('ministry.dashboard'))
+                else:
+                    return redirect(url_for('index.dashboard'))
+
+            else:
+                flash('Invalid credentials')
+
+        return render_template('auth/login.html', form=login_form, title='Login')
 
 @auth.route('/logout')
 @login_required
