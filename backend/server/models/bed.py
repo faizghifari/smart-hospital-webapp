@@ -62,7 +62,7 @@ class BedSecurity(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     bed_id = db.Column(db.Integer, db.ForeignKey('beds.id'))
     current_loc = db.Column(db.String(60)) # refer to a place
-    current_pic = db.Column(db.String(60) # refer to a staff
+    current_pic = db.Column(db.String(60)) # refer to a staff
 
     def __repr__(self):
         return '<BedSecurity {}>'.format(self.security_bed.current_security)

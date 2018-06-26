@@ -73,7 +73,7 @@ class MedicalDeviceSecurity(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     device_id = db.Column(db.Integer, db.ForeignKey('medical_devices.id'))
     current_loc = db.Column(db.String(60)) # refer to a place
-    current_pic = db.Column(db.String(60) # refer to a staff
+    current_pic = db.Column(db.String(60)) # refer to a staff
 
     def __repr__(self):
         return '<DeviceSecurity {}>'.format(self.security_device.

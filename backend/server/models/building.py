@@ -5,7 +5,7 @@ class Building(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     building_name = db.Column(db.String(60), nullable=False)
-    building_pic = db.Column()
+    building_pic = db.Column(db.String(60)) # refer to a staff
     count_levels = db.Column(db.Integer)
     count_rooms = db.Column(db.Integer)
     current_safety = db.Column(db.Integer)

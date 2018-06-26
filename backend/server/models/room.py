@@ -5,7 +5,7 @@ class Room(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     room_name = db.Column(db.String(60), nullable=False)
-    room_pic = db.Column() # refer to staff/person/etc.
+    room_pic = db.Column(db.String(60)) # refer to staff/person/etc.
     current_safety = db.Column(db.Integer)
     current_security = db.Column(db.Integer)
     current_productivity = db.Column(db.Integer)

@@ -5,12 +5,13 @@ class Level(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     level_name = db.Column(db.String(60), nullable=False)
-    level_pic = db.Column(db.String(60)) # refer to staff/person/etc.
+    level_pic = db.Column(db.String(60), nullable=True) # refer to staff/person/etc.
     count_rooms = db.Column(db.Integer)
     current_safety = db.Column(db.Integer)
     current_security = db.Column(db.Integer)
     current_productivity = db.Column(db.Integer)
     building_id = db.Column(db.Integer, db.ForeignKey('buildings.id'))
+    rooms = db.relationship('Room', backref='room_level', lazy='dynamic')
     levels_history = db.relationship('LevelHistory',
                                      backref='history_level',
                                      lazy='dynamic')

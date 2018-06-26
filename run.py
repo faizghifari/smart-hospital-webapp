@@ -19,7 +19,7 @@ COV = coverage.coverage(
 COV.start()
 
 from backend.server import app, db
-from backend.server.models import user, hospital, state, role
+from backend.server.models import bed, building, hospital, level, medical_device, role, room, state, token, user
 
 
 migrate = Migrate(app, db)
