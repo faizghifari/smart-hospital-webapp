@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "smarthospital",
+    "password": "admin",
+    "database": "smart-hospital-dev",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "smarthospital",
+    "password": "admin",
+    "database": "smart-hospital-test",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "smarthospital",
+    "password": "admin",
+    "database": "smart-hospital",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  }
+}
