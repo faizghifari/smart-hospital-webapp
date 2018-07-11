@@ -1,6 +1,5 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var medical_devices = sequelize.define('medical_devices', {
+  const medical_devices = sequelize.define('medical_devices', {
     device_name: DataTypes.STRING,
     device_desc: DataTypes.STRING,
     device_loc: DataTypes.STRING,
@@ -13,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     current_productivity: DataTypes.INTEGER,
     device_type_id: DataTypes.INTEGER
   }, {});
-  medical_devices.associate = function(models) {
+  medical_devices.associate = (models) => {
     medical_devices.belongsTo(models.medical_devices_types);
   };
   return medical_devices;

@@ -1,6 +1,5 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var rooms_safety = sequelize.define('rooms_safety', {
+  const rooms_safety = sequelize.define('rooms_safety', {
     room_id: DataTypes.INTEGER,
     current_temperature: DataTypes.INTEGER,
     current_humidity: DataTypes.INTEGER,
@@ -12,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     current_led: DataTypes.INTEGER,
     current_freq: DataTypes.INTEGER
   }, {});
-  rooms_safety.associate = function(models) {
+  rooms_safety.associate = (models) => {
     rooms_safety.belongsTo(models.rooms);
   };
   return rooms_safety;
