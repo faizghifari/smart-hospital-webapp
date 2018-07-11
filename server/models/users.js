@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   
   users.associate = (models) => {
-    users.belongsTo(models.roles, {foreignKey: 'role_id'});
+    users.hasMany(models.roles, {foreignKey: 'role_id'});
   };
   return users;
 };

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     current_productivity: DataTypes.INTEGER
   }, {});
   buildings.associate = (models) => {
-    buildings.belongsTo(models.hospitals, {foreignKey: 'hospital_id'});
+    buildings.hasMany(models.hospitals, {foreignKey: 'hospital_id'});
   };
   return buildings;
 };
