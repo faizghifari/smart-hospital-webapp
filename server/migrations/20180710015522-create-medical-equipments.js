@@ -20,6 +20,12 @@ module.exports = {
       equipments_pic: {
         type: Sequelize.STRING
       },
+      equipments_pic_mt: {
+        type: Sequelize.STRING
+      },
+      equipments_pic_usage: {
+        type: Sequelize.STRING
+      },
       equipments_sn: {
         type: Sequelize.STRING
       },
@@ -31,6 +37,12 @@ module.exports = {
       },
       equipments_status: {
         type: Sequelize.BOOLEAN
+      },
+      equipments_lifetime: {
+        type: Sequelize.INTEGER
+      },
+      equipments_value: {
+        type: Sequelize.INTEGER
       },
       production_date: {
         type: Sequelize.DATE
