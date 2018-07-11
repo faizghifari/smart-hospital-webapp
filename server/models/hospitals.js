@@ -5,11 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     count_roomos: DataTypes.INTEGER,
     current_safety: DataTypes.INTEGER,
     current_security: DataTypes.INTEGER,
-    current_productivity: DataTypes.INTEGER,
-    state_id: DataTypes.INTEGER
+    current_productivity: DataTypes.INTEGER
   }, {});
   hospitals.associate = (models) => {
-    hospitals.belongsTo(models.states);
+    hospitals.belongsTo(models.states, {foreignKey: 'state_id'});
   };
   return hospitals;
 };

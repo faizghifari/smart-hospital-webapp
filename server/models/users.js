@@ -4,12 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     password_hash: DataTypes.TEXT,
     is_ministry: DataTypes.BOOLEAN,
-    is_admin: DataTypes.BOOLEAN,
-    role_id: DataTypes.INTEGER
+    is_admin: DataTypes.BOOLEAN
   }, {});
   
   users.associate = (models) => {
-    users.belongsTo(models.roles);
+    users.belongsTo(models.roles, {foreignKey: 'role_id'});
   };
   return users;
 };

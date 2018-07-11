@@ -4,11 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     room_pic: DataTypes.STRING,
     current_safety: DataTypes.INTEGER,
     current_security: DataTypes.INTEGER,
-    current_productivity: DataTypes.INTEGER,
-    level_id: DataTypes.INTEGER
+    current_productivity: DataTypes.INTEGER
   }, {});
   rooms.associate = (models) => {
-    rooms.belongsTo(models.levels);
+    rooms.belongsTo(models.levels, {foreignKey: 'level_id'});
   };
   return rooms;
 };

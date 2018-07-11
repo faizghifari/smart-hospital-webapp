@@ -6,11 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     count_rooms: DataTypes.INTEGER,
     current_safety: DataTypes.INTEGER,
     current_security: DataTypes.INTEGER,
-    current_productivity: DataTypes.INTEGER,
-    hospital_id: DataTypes.INTEGER
+    current_productivity: DataTypes.INTEGER
   }, {});
   buildings.associate = (models) => {
-    buildings.belongsTo(models.hospitals);
+    buildings.belongsTo(models.hospitals, {foreignKey: 'hospital_id'});
   };
   return buildings;
 };
