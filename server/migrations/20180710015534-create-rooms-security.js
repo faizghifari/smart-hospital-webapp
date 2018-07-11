@@ -1,7 +1,6 @@
-'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('rooms_securities', {
+  up: (queryInterface, Sequelize) => 
+    queryInterface.createTable('rooms_securities', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -33,9 +32,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
+    }),
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('rooms_securities');
+    queryInterface.dropTable('rooms_securities');
   }
 };

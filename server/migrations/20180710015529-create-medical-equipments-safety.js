@@ -1,26 +1,31 @@
-'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('medical_devices_productivities', {
+  up: (queryInterface, Sequelize) => 
+    queryInterface.createTable('medical_equipments_safeties', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      device_id: {
+      equipments_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'medical_devices',
+          model: 'medical_equipments',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
       },
-      count_usage: {
+      equipments_age: {
         type: Sequelize.INTEGER
       },
-      standard_usage: {
+      last_maintenance_date: {
+        type: Sequelize.DATE
+      },
+      standard_maintenance: {
         type: Sequelize.INTEGER
+      },
+      is_reported: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -30,9 +35,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
+    }),
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('medical_devices_productivities');
+    queryInterface.dropTable('medical_equipments_safeties');
   }
 };

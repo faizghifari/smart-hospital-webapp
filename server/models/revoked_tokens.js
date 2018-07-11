@@ -1,9 +1,8 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var revoked_tokens = sequelize.define('revoked_tokens', {
+  const revoked_tokens = sequelize.define('revoked_tokens', {
     jti: DataTypes.STRING
   }, {});
-  revoked_tokens.associate = function(models) {
+  revoked_tokens.associate = (models) => {
     // associations can be defined here
   };
   return revoked_tokens;

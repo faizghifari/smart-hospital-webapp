@@ -1,28 +1,48 @@
-'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('medical_devices', {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.createTable('medical_equipments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      device_name: {
+      equipments_name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      device_desc: {
+      equipments_desc: {
         type: Sequelize.STRING
       },
-      device_loc: {
+      equipments_loc: {
         type: Sequelize.STRING
       },
-      device_pic: {
+      equipments_pic: {
         type: Sequelize.STRING
       },
-      device_status: {
+      equipments_pic_mt: {
+        type: Sequelize.STRING
+      },
+      equipments_pic_usage: {
+        type: Sequelize.STRING
+      },
+      equipments_sn: {
+        type: Sequelize.STRING
+      },
+      is_active: {
         type: Sequelize.BOOLEAN
+      },
+      equipmentss_qrcode: {
+        type: Sequelize.STRING
+      },
+      equipments_status: {
+        type: Sequelize.BOOLEAN
+      },
+      equipments_lifetime: {
+        type: Sequelize.INTEGER
+      },
+      equipments_value: {
+        type: Sequelize.INTEGER
       },
       production_date: {
         type: Sequelize.DATE
@@ -39,10 +59,10 @@ module.exports = {
       current_productivity: {
         type: Sequelize.INTEGER
       },
-      device_type_id: {
+      equipments_type_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'medical_devices_types',
+          model: 'medical_equipments_types',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
@@ -55,9 +75,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
+    }),
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('medical_devices');
+    queryInterface.dropTable('medical_equipments');
   }
 };

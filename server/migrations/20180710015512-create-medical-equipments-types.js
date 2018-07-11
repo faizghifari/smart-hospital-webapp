@@ -1,24 +1,17 @@
 module.exports = {
   up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('states', {
+    queryInterface.createTable('medical_equipments_types', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      state_name: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type_name: {
+        type: Sequelize.STRING
       },
-      count_hospitals: {
-        type: Sequelize.INTEGER
-      },
-      current_safety: {
-        type: Sequelize.INTEGER
-      },
-      current_productivity: {
-        type: Sequelize.INTEGER
+      type_desc: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -30,6 +23,6 @@ module.exports = {
       }
     }),
   down: (queryInterface, Sequelize) => {
-    queryInterface.dropTable('states');
+    queryInterface.dropTable('medical_equipments_types');
   }
 };

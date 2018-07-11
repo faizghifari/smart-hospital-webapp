@@ -1,13 +1,10 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var roles = sequelize.define('roles', {
-    scope: DataTypes.STRING,
-    state_id: DataTypes.INTEGER,
-    hospital_id: DataTypes.INTEGER
+  const roles = sequelize.define('roles', {
+    scope: DataTypes.STRING
   }, {});
-  roles.associate = function(models) {
-    roles.belongsTo(models.states);
-    roles.belongsTo(models.hospitals);
+  roles.associate = (models) => {
+    roles.belongsTo(models.states, {foreignKey: 'state_id'});
+    roles.belongsTo(models.hospitals, {foreignKey: 'hospital_id'});
   };
   return roles;
 };

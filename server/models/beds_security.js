@@ -1,12 +1,10 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var beds_security = sequelize.define('beds_security', {
-    bed_id: DataTypes.INTEGER,
+  const beds_security = sequelize.define('beds_security', {
     current_loc: DataTypes.STRING,
     current_pic: DataTypes.STRING
   }, {});
-  beds_security.associate = function(models) {
-    beds_security.belongsTo(models.beds);
+  beds_security.associate = (models) => {
+    beds_security.belongsTo(models.beds, {foreignKey: 'bed_id'});
   };
   return beds_security;
 };
