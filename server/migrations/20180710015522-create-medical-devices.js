@@ -20,6 +20,15 @@ module.exports = {
       device_pic: {
         type: Sequelize.STRING
       },
+      device_sn: {
+        type: Sequelize.STRING
+      },
+      is_active: {
+        type: Sequelize.BOOLEAN
+      },
+      devices_qrcode: {
+        type: Sequelize.STRING
+      },
       device_status: {
         type: Sequelize.BOOLEAN
       },
