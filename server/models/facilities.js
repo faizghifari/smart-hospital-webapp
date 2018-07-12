@@ -1,6 +1,5 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var facilities = sequelize.define('facilities', {
+  const facilities = sequelize.define('facilities', {
     facilities_name: DataTypes.STRING,
     facilities_desc: DataTypes.STRING,
     facilities_sn: DataTypes.STRING,
@@ -8,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     facilities_status: DataTypes.BOOLEAN,
     facilities_loc: DataTypes.STRING
   }, {});
-  facilities.associate = function(models) {
+  facilities.associate = (models) => {
     // associations can be defined here
   };
   return facilities;
