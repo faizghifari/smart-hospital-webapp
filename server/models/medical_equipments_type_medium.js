@@ -5,13 +5,13 @@ module.exports = (sequelize, DataTypes) => {
     type_hr_req: DataTypes.STRING
   }, {});
   medical_equipments_type_medium.associate = (models) => {
-    medical_equipments_type_medium.belongsTo(models.medical_equipments_types, {
+    medical_equipments_type_medium.belongsTo(models.medical_equipments_type, {
         foreignKey: 'equipments_type_id'
       });
     medical_equipments_type_medium.hasMany(models.facilities, {
         foreignKey: 'equipments_type_medium_id'
       });
-    medical_equipments_type_medium.hasMany(models.medical_equipments_type_procs, {
+    medical_equipments_type_medium.hasMany(models.medical_equipments_type_proc, {
         foreignKey: 'equipments_type_medium_id'
       });
   };
