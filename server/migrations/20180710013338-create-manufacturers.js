@@ -8,14 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      equipments_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'medical_equipments',
-          key: 'id',
-          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-        }
-      },
       manufacturers_name: {
         type: Sequelize.STRING
       },
