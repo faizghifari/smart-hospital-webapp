@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     type_desc: DataTypes.STRING
   }, {});
   medical_equipments_type.associate = (models) => {
-    // associations can be defined here
+    medical_equipments_type.hasMany(models.medical_equipments, {foreignKey: 'equipments_type_id'});
   };
   return medical_equipments_type;
 };

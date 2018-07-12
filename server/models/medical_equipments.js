@@ -19,7 +19,11 @@ module.exports = (sequelize, DataTypes) => {
     current_productivity: DataTypes.INTEGER
   }, {});
   medical_equipments.associate = (models) => {
-    medical_equipments.belongsTo(models.medical_equipments_types, {foreignKey: 'equipments_type_id'});
+    medical_equipments.belongsTo(models.medical_equipments_type, {foreignKey: 'equipments_type_id'});
+    medical_equipments.hasMany(models.medical_equipments_history, {foreignKey: 'equipments_id'});
+    medical_equipments.hasMany(models.medical_equipments_productivity, {foreignKey: 'equipments_id'});
+    medical_equipments.hasMany(models.medical_equipments_safety, {foreignKey: 'equipments_id'});
+    medical_equipments.hasMany(models.medical_equipments_security, {foreignKey: 'equipments_id'});
   };
   return medical_equipments;
 };

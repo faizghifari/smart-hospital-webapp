@@ -12,7 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     current_productivity: DataTypes.INTEGER
   }, {});
   beds.associate = (models) => {
-    // associations can be defined here
+    beds.hasMany(models.beds_security, {foreignKey: 'bed_id'});
+    beds.hasMany(models.beds_productivity, {foreignKey: 'bed_id'});
+    beds.hasMany(models.beds_safety, {foreignKey: 'bed_id'});
+    beds.hasMany(models.beds_history, {foreignKey: 'bed_id'});
   };
   return beds;
 };

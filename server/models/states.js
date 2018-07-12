@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     current_productivity: DataTypes.INTEGER
   }, {});
   states.associate = (models) => {
-    // associations can be defined here
+    states.hasMany(models.roles, {foreignKey: 'state_id'});
+    states.hasMany(models.hospitals, {foreignKey: 'hospital_id'});
+    states.hasMany(models.states_history, {foreignKey: 'state_id'});
   };
   return states;
 };

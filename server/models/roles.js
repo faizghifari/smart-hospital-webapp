@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     scope: DataTypes.STRING
   }, {});
   roles.associate = (models) => {
+    roles.hasMany(models.users, {foreignKey: 'role_id'});
     roles.belongsTo(models.states, {foreignKey: 'state_id'});
     roles.belongsTo(models.hospitals, {foreignKey: 'hospital_id'});
   };

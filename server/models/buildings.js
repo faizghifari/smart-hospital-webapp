@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     current_productivity: DataTypes.INTEGER
   }, {});
   buildings.associate = (models) => {
-    buildings.hasMany(models.hospitals, {foreignKey: 'hospital_id'});
+    buildings.belongsTo(models.hospitals, {foreignKey: 'hospital_id'});
+    buildings.hasMany(models.buildings_history, {foreignKey: 'building_id'});
+    buildings.hasMany(models.levels, {foreignKey: 'building_id'});
   };
   return buildings;
 };
