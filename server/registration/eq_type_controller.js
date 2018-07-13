@@ -1,13 +1,22 @@
-const medical_equipments_type = require('../models').medical_equipments_type
+const medical_equipments_type = require('../models').medical_equipments_type;
+const type_basic = require('./eq_type_basic_controller');
+const type_medium = require('./eq_type_medium_controller');
+const type_high = require('./eq_type_high_controller');
 
 module.exports = {
     create(req,res) {
         return medical_equipments_type
         .create({
-            type_name: req.body.eq_name,
-            type_desc: req.body.eq_desc
+            type_name: req.body.type_name,
+            type_desc: req.body.type_desc,
         })
-        .then(eq_type=> res.status(201).send(eq_type))
+        .then(eq_type => {
+            type_basic.create(eq_type.id, req.body.basic);
+            type_medium.create(eq_type.id, req.body.medium);
+            type_high.create(eq_type.id, req.body.high);
+
+            return res.status(201).send(eq_type);
+        })
         .catch(error => res.status(400).send(error));
     },
 

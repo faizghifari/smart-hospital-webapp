@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('medical_equipments_type_mediums', {
+    return queryInterface.createTable('medical_equipments_type_media', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -36,6 +36,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('medical_equipments_type_mediums');
+    return queryInterface.dropTable('medical_equipments_type_media');
   }
 };
