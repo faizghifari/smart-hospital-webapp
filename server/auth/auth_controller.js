@@ -7,6 +7,15 @@ module.exports = {
         return res.status(200).send('hello world');
     },
 
+    seedRole(req, res) {
+        return roles
+        .create({
+            scope: req.body.scope
+        })
+        .then(role=> res.status(200).send(role))
+        .catch(error=> res.status(400).send(error));
+    },
+
     async seedUser(req,res) {
         const hash = await bcrypt.hash(req.body.password, 10);
 
@@ -40,8 +49,9 @@ module.exports = {
                 return res.status(400).send('Auth failed. Wrong password.');
                } else {
                 const payload = { id: users.id };
-                const token = jwt.sign(payload, 'secretKey', { expiresIn: 86400 });
-                res.send(token);
+                const tokennya = jwt.sign(payload, 'secretKey', { expiresIn: 86400 });
+                const rolenya = result.role_id;
+                res.send(JSON.stringify({token: tokennya, role: rolenya}));
                }
            }
        });
