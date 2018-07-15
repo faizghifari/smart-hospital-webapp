@@ -28,7 +28,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 require ('./server/auth/routes')(app);
-require('./server/registration/routes')(app);
 
 app.get('/', (req, res) => res.status(200).send({
     message: 'Welcome to Smart Hospital Server',
