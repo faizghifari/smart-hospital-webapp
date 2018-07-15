@@ -19,7 +19,7 @@ module.exports = {
       equipments_type_medium_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'medical_equipments_type_mediums',
+          model: 'medical_equipments_type_media',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }

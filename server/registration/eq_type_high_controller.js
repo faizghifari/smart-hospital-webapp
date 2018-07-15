@@ -3,7 +3,7 @@ const type_proc = require('./eq_type_procedure_controller');
 const facilities = require('./facilities_controller');
 
 module.exports = {
-    create(type_id,data) {
+    create(type_id, data) {
         medical_equipments_type_high
         .create({
             equipments_type_id: type_id,
