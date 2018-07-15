@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   levels.associate = (models) => {
     levels.belongsTo(models.buildings, {foreignKey: 'building_id'});
     levels.hasMany(models.levels_history, {foreignKey: 'level_id'});
+    levels.hasMany(models.rooms, {foreignKey: 'room_id'});
   };
   return levels;
 };

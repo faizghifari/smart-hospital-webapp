@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     is_reported: DataTypes.BOOLEAN
   }, {});
   medical_equipments_safety.associate = (models) => {
-    medical_equipments_safety.belongsTo(models.medical_equipments, {foreignKey: 'equipments_id'});
+    medical_equipments_safety.belongsTo(models.medical_equipments, {foreignKey: 'equipment_id'});
   };
   return medical_equipments_safety;
 };
