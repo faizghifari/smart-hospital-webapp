@@ -36,6 +36,14 @@ module.exports = {
           key: 'id'
         },
       },
+      hospital_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'hospitals',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
