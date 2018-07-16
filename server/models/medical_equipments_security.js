@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     current_pic: DataTypes.STRING
   }, {});
   medical_equipments_security.associate = (models) => {
-    medical_equipments_security.belongsTo(models.medical_equipments, {foreignKey: 'equipments_id'});
+    medical_equipments_security.belongsTo(models.medical_equipments, {foreignKey: 'equipment_id'});
   };
   return medical_equipments_security;
 };

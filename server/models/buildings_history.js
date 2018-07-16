@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     record_productivity: DataTypes.INTEGER
   }, {});
   buildings_history.associate = (models) => {
-    buildings_history.hasMany(models.buildings, {foreignKey: 'building_id'});
+    buildings_history.belongsTo(models.buildings, {foreignKey: 'building_id'});
   };
   return buildings_history;
 };

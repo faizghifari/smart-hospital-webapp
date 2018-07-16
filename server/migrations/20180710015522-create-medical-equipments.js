@@ -47,7 +47,7 @@ module.exports = {
       current_productivity: {
         type: Sequelize.INTEGER
       },
-      equipments_type_id: {
+      equipment_type_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'medical_equipments_types',

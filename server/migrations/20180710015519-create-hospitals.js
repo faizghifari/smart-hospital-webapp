@@ -14,7 +14,7 @@ module.exports = {
       count_buildings: {
         type: Sequelize.INTEGER
       },
-      count_roomos: {
+      count_rooms: {
         type: Sequelize.INTEGER
       },
       current_safety: {
