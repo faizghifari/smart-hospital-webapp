@@ -1,7 +1,6 @@
-'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('users', {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -37,6 +36,14 @@ module.exports = {
           key: 'id'
         },
       },
+      hospital_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'hospitals',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -45,9 +52,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
+    }),
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('users');
+    queryInterface.dropTable('users');
   }
 };

@@ -1,7 +1,6 @@
-'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('revoked_tokens', {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.createTable('revoked_tokens', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -20,9 +19,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
+    }),
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('revoked_tokens');
+    queryInterface.dropTable('revoked_tokens');
   }
 };

@@ -1,6 +1,5 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var beds = sequelize.define('beds', {
+  const beds = sequelize.define('beds', {
     bed_name: DataTypes.STRING,
     bed_desc: DataTypes.STRING,
     bed_loc: DataTypes.STRING,
@@ -12,8 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     current_security: DataTypes.INTEGER,
     current_productivity: DataTypes.INTEGER
   }, {});
-  beds.associate = function(models) {
-    // associations can be defined here
+  beds.associate = (models) => {
+    beds.hasMany(models.beds_security, {foreignKey: 'bed_id'});
+    beds.hasMany(models.beds_productivity, {foreignKey: 'bed_id'});
+    beds.hasMany(models.beds_safety, {foreignKey: 'bed_id'});
+    beds.hasMany(models.beds_history, {foreignKey: 'bed_id'});
   };
   return beds;
 };

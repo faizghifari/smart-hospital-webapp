@@ -1,13 +1,14 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var states = sequelize.define('states', {
+  const states = sequelize.define('states', {
     state_name: DataTypes.STRING,
     count_hospitals: DataTypes.INTEGER,
     current_safety: DataTypes.INTEGER,
     current_productivity: DataTypes.INTEGER
   }, {});
-  states.associate = function(models) {
-    // associations can be defined here
+  states.associate = (models) => {
+    states.hasMany(models.roles, {foreignKey: 'state_id'});
+    states.hasMany(models.hospitals, {foreignKey: 'hospital_id'});
+    states.hasMany(models.states_history, {foreignKey: 'state_id'});
   };
   return states;
 };
