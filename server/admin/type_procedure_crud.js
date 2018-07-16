@@ -1,8 +1,8 @@
-const medical_equipments_type_proc = require('../models').medical_equipments_type_proc;
+const medical_equipments_type_proc_model = require('../models').medical_equipments_type_proc;
 
 module.exports = {
     create_basic(basic_id, data) {
-        medical_equipments_type_proc
+        medical_equipments_type_proc_model
         .create({
             equipments_type_basic_id: basic_id,
             proc_sequence_num: data.proc_sequence_num,
@@ -13,7 +13,7 @@ module.exports = {
     },
 
     create_medium(medium_id, data) {
-        medical_equipments_type_proc
+        medical_equipments_type_proc_model
         .create({
             equipments_type_medium_id: medium_id,
             proc_sequence_num: data.proc_sequence_num,
@@ -24,7 +24,7 @@ module.exports = {
     },
 
     create_high(high_id, data) {
-        medical_equipments_type_proc
+        medical_equipments_type_proc_model
         .create({
             equipments_type_high_id: high_id,
             proc_sequence_num: data.proc_sequence_num,

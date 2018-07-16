@@ -1,10 +1,10 @@
-const eq_type_controller = require('./eq_type_controller');
+const equipment = require('./equipment');
 
 module.exports = (app) => {
-    
-    app.post('/api/reg/eq_type', eq_type_controller.create);
-    app.get('/api/reg/eq_type', eq_type_controller.list);
-    app.get('/api/reg/eq_type/:type_id', eq_type_controller.retrieve)
-    app.put('/api/reg/eq_type/:type_id', eq_type_controller.update)
-    app.delete('/api/reg/eq_type/:type_id', eq_type_controller.destroy)
+    app.post('/api/equipment/registration', equipment.create);
+    app.get('/api/equipment', equipment.list);
+    app.get('/api/equipment/:equipment_id', equipment.retrieve);
+    app.get('/api/equipment/:equipment_id/details', equipment.retrieve_details);
+    app.put('/api/equipment/:equipment_id', equipment.update);
+    app.delete('/api/equipment/:equipment_id', equipment.destroy);
 };

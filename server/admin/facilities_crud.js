@@ -1,8 +1,8 @@
-const facilities = require('../models').facilities;
+const facilities_model = require('../models').facilities;
 
 module.exports = {
     create_basic(basic_id, data) {
-        facilities
+        facilities_model
         .create({
             equipments_type_basic_id: basic_id,
             facilities_name: data.facilities_name,
@@ -16,7 +16,7 @@ module.exports = {
     },
     
     create_medium(medium_id, data) {
-        facilities
+        facilities_model
         .create({
             equipments_type_medium_id: medium_id,
             facilities_name: data.facilities_name,
@@ -30,7 +30,7 @@ module.exports = {
     }, 
 
     create_high(high_id, data) {
-        facilities
+        facilities_model
         .create({
             equipments_type_high_id: high_id,
             facilities_name: data.facilities_name,

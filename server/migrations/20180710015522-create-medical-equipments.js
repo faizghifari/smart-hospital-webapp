@@ -14,18 +14,6 @@ module.exports = {
       equipments_desc: {
         type: Sequelize.STRING
       },
-      equipments_loc: {
-        type: Sequelize.STRING
-      },
-      equipments_pic: {
-        type: Sequelize.STRING
-      },
-      equipments_pic_mt: {
-        type: Sequelize.STRING
-      },
-      equipments_pic_usage: {
-        type: Sequelize.STRING
-      },
       equipments_sn: {
         type: Sequelize.STRING
       },
@@ -73,6 +61,38 @@ module.exports = {
           model: 'manufacturers',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        }
+      },
+      room_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'rooms',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+        }
+      },
+      pic_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+        }
+      },
+      pic_mt_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+        }
+      },
+      pic_usage_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
         }
       },
       createdAt: {

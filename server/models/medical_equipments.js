@@ -2,10 +2,6 @@ module.exports = (sequelize, DataTypes) => {
   const medical_equipments = sequelize.define('medical_equipments', {
     equipments_name: DataTypes.STRING,
     equipments_desc: DataTypes.STRING,
-    equipments_loc: DataTypes.STRING,
-    equipments_pic: DataTypes.STRING,
-    equipments_pic_mt: DataTypes.STRING,
-    equipments_pic_usage: DataTypes.STRING,
     equipments_sn: DataTypes.STRING,
     is_active: DataTypes.BOOLEAN,
     equipments_qrcode: DataTypes.STRING,
@@ -19,7 +15,28 @@ module.exports = (sequelize, DataTypes) => {
     current_productivity: DataTypes.INTEGER
   }, {});
   medical_equipments.associate = (models) => {
-    // associations can be defined here
+    medical_equipments.belongsTo(models.manufacturers, {
+      foreignKey: 'manufacturers_id',
+    });
+    medical_equipments.belongsTo(models.medical_equipments_type, {
+      foreignKey: 'equipments_type_id',
+    })
+
+    medical_equipments.belongsTo(models.rooms, {
+      foreignKey: 'room_id',
+    });
+
+    medical_equipments.belongsTo(models.users, {
+      foreignKey: 'pic_id',
+    });
+
+    medical_equipments.belongsTo(models.users, {
+      foreignKey: 'pic_mt_id',
+    });
+
+    medical_equipments.belongsTo(models.users, {
+      foreignKey: 'pic_usage_id',
+    });
   };
   return medical_equipments;
 };
