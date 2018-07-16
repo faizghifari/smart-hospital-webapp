@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     hospitals.belongsTo(models.states, {foreignKey: 'state_id'});
     hospitals.hasMany(models.hospitals_history, {foreignKey: 'hospital_id'});
     hospitals.hasMany(models.buildings, {foreignKey: 'building_id'});
-    hospitals.hasMany(models.roles, {foreignKey: 'role_id'});
+    hospitals.hasMany(models.users, {foreignKey: 'role_id'});
   };
   return hospitals;
 };
