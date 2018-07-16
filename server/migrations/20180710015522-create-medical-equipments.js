@@ -9,7 +9,7 @@ module.exports = {
       },
       equipments_name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       equipments_desc: {
         type: Sequelize.STRING

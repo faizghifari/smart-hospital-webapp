@@ -4,7 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     standard_usage: DataTypes.INTEGER
   }, {});
   rooms_productivity.associate = (models) => {
-    rooms_productivity.belongsTo(models.rooms, {foreignKey: 'room_id'});
+    rooms_productivity.belongsTo(models.rooms, {
+      foreignKey: 'room_id'
+    });
   };
   return rooms_productivity;
 };

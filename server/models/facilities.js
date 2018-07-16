@@ -8,7 +8,17 @@ module.exports = (sequelize, DataTypes) => {
     facilities_loc: DataTypes.STRING
   }, {});
   facilities.associate = (models) => {
-    // associations can be defined here
+    facilities.belongsTo(models.medical_equipments_type_basic, {
+      foreignKey: 'equipments_type_basic_id',
+    });
+
+    facilities.belongsTo(models.medical_equipments_type_medium, {
+      foreignKey: 'equipments_type_medium_id',
+    });
+
+    facilities.belongsTo(models.medical_equipments_type_high, {
+      foreignKey: 'equipments_type_high_id',
+    });
   };
   return facilities;
 };

@@ -5,7 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     turnover_usage: DataTypes.INTEGER
   }, {});
   beds_productivity.associate = (models) => {
-    beds_productivity.belongsTo(models.beds, {foreignKey: 'bed_id'});
+    beds_productivity.belongsTo(models.beds, {
+      foreignKey: 'bed_id'
+    });
   };
   return beds_productivity;
 };

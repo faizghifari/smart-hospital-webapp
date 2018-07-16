@@ -5,35 +5,35 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
       },
       username: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
       },
       password_hash: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
       },
       is_ministry: {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        allowNull: false,
       },
       is_admin: {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        allowNull: false,
       },
       role_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'roles',
-          key: 'id'
+          key: 'id',
         },
       },
       hospital_id: {
@@ -46,11 +46,11 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       }
     }),
   down: (queryInterface, Sequelize) => {

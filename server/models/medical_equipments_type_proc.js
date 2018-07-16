@@ -5,7 +5,17 @@ module.exports = (sequelize, DataTypes) => {
     proc_action: DataTypes.STRING
   }, {});
   medical_equipments_type_proc.associate = (models) => {
-    // associations can be defined here
+    medical_equipments_type_proc.belongsTo(models.medical_equipments_type_basic, {
+      foreignKey: 'equipments_type_basic_id',
+    });
+
+    medical_equipments_type_proc.belongsTo(models.medical_equipments_type_medium, {
+      foreignKey: 'equipments_type_medium_id',
+    });
+
+    medical_equipments_type_proc.belongsTo(models.medical_equipments_type_high, {
+      foreignKey: 'equipments_type_high_id',
+    });
   };
   return medical_equipments_type_proc;
 };

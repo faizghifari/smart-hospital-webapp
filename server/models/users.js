@@ -8,8 +8,25 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   
   users.associate = (models) => {
-    users.belongsTo(models.roles, {foreignKey: 'role_id'});
-    users.belongsTo(models.hospitals, {foreignKey: 'hospital_id'});
+    users.belongsTo(models.roles, {
+      foreignKey: 'role_id',
+    });
+
+    users.belongsTo(models.hospitals, {
+      foreignKey: 'hospital_id',
+    });
+
+    users.hasMany(model.medical_equipments, {
+      foreignKey: 'pic_id',
+    });
+
+    users.hasMany(models.medical_equipments, {
+      foreignKey: 'pic_mt_id',
+    });
+
+    users.hasMany(models.medical_equipments, {
+      foreignKey: 'pic_usage_id',
+    })
   };
   return users;
 };

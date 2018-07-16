@@ -11,14 +11,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      state_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'states',
-          key: 'id',
-          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
