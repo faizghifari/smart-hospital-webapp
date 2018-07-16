@@ -20,7 +20,7 @@ module.exports = {
       is_active: {
         type: Sequelize.BOOLEAN
       },
-      equipmentss_qrcode: {
+      equipments_qrcode: {
         type: Sequelize.STRING
       },
       equipments_status: {
@@ -47,7 +47,7 @@ module.exports = {
       current_productivity: {
         type: Sequelize.INTEGER
       },
-      equipment_type_id: {
+      equipments_type_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'medical_equipments_types',
