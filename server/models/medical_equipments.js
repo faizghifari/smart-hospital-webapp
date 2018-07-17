@@ -44,15 +44,15 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'equipment_id',
     });
 
-    medical_equipments.hasMany(models.medical_equipments_productivity, {
+    medical_equipments.hasOne(models.medical_equipments_productivity, {
       foreignKey: 'equipment_id',
     });
 
-    medical_equipments.hasMany(models.medical_equipments_safety, {
+    medical_equipments.hasOne(models.medical_equipments_safety, {
       foreignKey: 'equipment_id',
     });
 
-    medical_equipments.hasMany(models.medical_equipments_security, {
+    medical_equipments.hasOne(models.medical_equipments_security, {
       foreignKey: 'equipment_id',
     });
   };

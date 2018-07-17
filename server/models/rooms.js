@@ -26,15 +26,15 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'room_id'
     });
 
-    rooms.hasMany(models.rooms_productivity, {
+    rooms.hasOne(models.rooms_productivity, {
       foreignKey: 'room_id'
     });
 
-    rooms.hasMany(models.rooms_security, {
+    rooms.hasOne(models.rooms_security, {
       foreignKey: 'room_id'
     });
 
-    rooms.hasMany(models.rooms_safety, {
+    rooms.hasOne(models.rooms_safety, {
       foreignKey: 'room_id'
     });
 
