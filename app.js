@@ -6,6 +6,8 @@ const passportJWT = require('passport-jwt');
 const JwtStrategy = passportJWT.Strategy;
 const ExtractJwt = passportJWT.ExtractJwt;
 
+const http = require('http');
+
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: 'secretKey'
@@ -34,5 +36,11 @@ require('./server/auth/routes')(app);
 app.get('/', (req, res) => res.status(200).send({
     message: 'Welcome to Smart Hospital Server',
 }));
+
+const port = parseInt(process.env.PORT, 10) || 3001;
+app.set('port', port);
+
+const server = http.createServer(app);
+server.listen(port);
 
 module.exports = app;
