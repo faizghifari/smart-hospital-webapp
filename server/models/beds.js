@@ -2,8 +2,6 @@ module.exports = (sequelize, DataTypes) => {
   const beds = sequelize.define('beds', {
     bed_name: DataTypes.STRING,
     bed_desc: DataTypes.STRING,
-    bed_loc: DataTypes.STRING,
-    bed_pic: DataTypes.STRING,
     bed_status: DataTypes.BOOLEAN,
     production_date: DataTypes.DATE,
     is_used: DataTypes.BOOLEAN,
@@ -12,15 +10,23 @@ module.exports = (sequelize, DataTypes) => {
     current_productivity: DataTypes.INTEGER
   }, {});
   beds.associate = (models) => {
-    beds.hasMany(models.beds_security, {
+    beds.belongsTo(models.rooms, {
+      foreignKey: 'room_id'
+    });
+
+    beds.belongsTo(models.users, {
+      foreignKey: 'pic_id'
+    });
+
+    beds.hasOne(models.beds_security, {
       foreignKey: 'bed_id'
     });
     
-    beds.hasMany(models.beds_productivity, {
+    beds.hasOne(models.beds_productivity, {
       foreignKey: 'bed_id'
     });
 
-    beds.hasMany(models.beds_safety, {
+    beds.hasOne(models.beds_safety, {
       foreignKey: 'bed_id'
     });
 

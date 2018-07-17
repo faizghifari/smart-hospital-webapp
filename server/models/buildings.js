@@ -1,7 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const buildings = sequelize.define('buildings', {
     building_name: DataTypes.STRING,
-    building_pic: DataTypes.STRING,
     count_levels: DataTypes.INTEGER,
     count_rooms: DataTypes.INTEGER,
     current_safety: DataTypes.INTEGER,
@@ -9,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     current_productivity: DataTypes.INTEGER
   }, {});
   buildings.associate = (models) => {
+    buildings.belongsTo(models.users, {
+      foreignKey: 'pic_id'
+    });
+
     buildings.belongsTo(models.hospitals, {
       foreignKey: 'hospital_id'
     });

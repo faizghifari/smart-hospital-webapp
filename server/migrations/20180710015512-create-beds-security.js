@@ -1,54 +1,38 @@
-'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('facilities', {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.createTable('beds_securities', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      equipments_type_basic_id: {
+      bed_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'medical_equipments_type_basics',
+          model: 'beds',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
       },
-      equipments_type_medium_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'medical_equipments_type_media',
-          key: 'id',
-          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-        }
-      },
-      equipments_type_high_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'medical_equipments_type_highs',
-          key: 'id',
-          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-        }
-      },
-      facilities_name: {
-        type: Sequelize.STRING
-      },
-      facilities_desc: {
-        type: Sequelize.STRING
-      },
-      facilities_sn: {
-        type: Sequelize.STRING
-      },
-      facilities_qrcode: {
-        type: Sequelize.STRING
-      },
-      facilities_status: {
+      is_room_locked: {
         type: Sequelize.BOOLEAN
       },
-      facilities_loc: {
-        type: Sequelize.STRING
+      room_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'rooms',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        }
+      },
+      pic_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        }
       },
       createdAt: {
         allowNull: false,
@@ -58,9 +42,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
+    }),
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('facilities');
+    queryInterface.dropTable('beds_securities');
   }
 };

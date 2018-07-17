@@ -14,12 +14,6 @@ module.exports = {
       bed_desc: {
         type: Sequelize.STRING
       },
-      bed_loc: {
-        type: Sequelize.STRING
-      },
-      bed_pic: {
-        type: Sequelize.STRING
-      },
       bed_status: {
         type: Sequelize.BOOLEAN
       },
@@ -37,6 +31,22 @@ module.exports = {
       },
       current_productivity: {
         type: Sequelize.INTEGER
+      },
+      room_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'rooms',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        }
+      },
+      pic_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        }
       },
       createdAt: {
         allowNull: false,

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('medical_equipments_type_basics', {
+    return queryInterface.createTable('medical_equipments_type_media', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -15,9 +15,6 @@ module.exports = {
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
-      },
-      type_cost_params: {
-        type: Sequelize.INTEGER
       },
       type_time_params: {
         type: Sequelize.INTEGER
@@ -36,6 +33,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('medical_equipments_type_basics');
+    return queryInterface.dropTable('medical_equipments_type_media');
   }
 };

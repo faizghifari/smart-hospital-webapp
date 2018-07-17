@@ -1,19 +1,35 @@
 const medical_equipments_model = require('../models').medical_equipments;
 
 module.exports = {
+    calculate_mt_options(equipment_value) {
+        let res;
+        if (equipment_value < 1000) {
+            res = 1;
+        } else
+        if (equipment_value > 50000) {
+            res = 3;
+        } else {
+            res = 2;
+        }
+        return res;
+    },
+
     create(req,res) {
+        let mt_options = this.calculate_mt_options(req.body.equipments_value);
+
         return medical_equipments_model
         .create({
             equipments_name: req.body.equipments_name,
             equipments_desc: req.body.equipments_desc,
             equipments_sn: req.body.equipments_sn,
-            is_active: req.body.is_active,
             equipments_qrcode: req.body.equipments_qrcode,
             equipments_status: req.body.equipments_status || false,
             equipments_lifetime: req.body.equipments_lifetime,
             equipments_value: req.body.equipments_value,
             production_date: req.body.production_date,
+            is_active: req.body.is_active,
             is_on: req.body.is_on || false,
+            maintenance_options: mt_options,
             current_safety: req.body.current_safety || 0,
             current_security: req.body.current_security || 0,
             current_productivity: req.body.current_productivity || 0,
@@ -76,18 +92,25 @@ module.exports = {
                     msg: 'Medical Equipment Not Found',
                 });
             }
+            
+            let mt_options = medical_equipment.maintenance_options;
+            if (req.body.equipments_value) {
+                mt_options = this.calculate_mt_options(req.body.equipments_value);
+            }
+
             return medical_equipment
             .update({
                 equipments_name: req.body.equipments_name || medical_equipment.equipments_name,
                 equipments_desc: req.body.equipments_desc || medical_equipment.equipments_desc,
                 equipments_sn: req.body.equipments_sn || medical_equipment.equipments_sn,
-                is_active: req.body.is_active || medical_equipment.is_active,
                 equipments_qrcode: req.body.equipments_qrcode || medical_equipment.equipments_qrcode,
                 equipments_status: req.body.equipments_status || medical_equipment.equipments_status,
                 equipments_lifetime: req.body.equipments_lifetime || medical_equipment.equipments_lifetime,
                 equipments_value: req.body.equipments_value || medical_equipment.equipments_value,
                 production_date: req.body.production_date || medical_equipment.production_date,
+                is_active: req.body.is_active || medical_equipment.is_active,
                 is_on: req.body.is_on || medical_equipment.is_on,
+                maintenance_options: mt_options,
                 current_safety: req.body.current_safety || medical_equipment.current_safety,
                 current_security: req.body.current_security || medical_equipment.current_security,
                 current_productivity: req.body.current_productivity || medical_equipment.current_productivity,
