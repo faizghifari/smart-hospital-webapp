@@ -1,24 +1,25 @@
+'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('beds_securities', {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('medical_equipments_type_basics', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      bed_id: {
+      equipments_type_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'beds',
+          model: 'medical_equipments_types',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
       },
-      current_loc: {
-        type: Sequelize.STRING
+      type_time_params: {
+        type: Sequelize.INTEGER
       },
-      current_pic: {
+      type_hr_req: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -29,8 +30,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    }),
+    });
+  },
   down: (queryInterface, Sequelize) => {
-    queryInterface.dropTable('beds_securities');
+    return queryInterface.dropTable('medical_equipments_type_basics');
   }
 };

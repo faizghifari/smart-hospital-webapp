@@ -1,38 +1,42 @@
+'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('medical_equipments_securities', {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('facilities', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      equipment_id: {
+      equipments_type_basic_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'medical_equipments',
+          model: 'medical_equipments_type_basics',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
       },
-      is_room_locked: {
-        type: Sequelize.BOOLEAN
-      },
-      room_id: {
+      equipments_type_medium_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'rooms',
+          model: 'medical_equipments_type_media',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
       },
-      pic_id: {
+      equipments_type_high_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'users',
+          model: 'medical_equipments_type_highs',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
+      },
+      facilities_name: {
+        type: Sequelize.STRING
+      },
+      facilities_desc: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -42,8 +46,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    }),
+    });
+  },
   down: (queryInterface, Sequelize) => {
-    queryInterface.dropTable('medical_equipments_securities');
+    return queryInterface.dropTable('facilities');
   }
 };

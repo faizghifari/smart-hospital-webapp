@@ -1,6 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   const medical_equipments_type_basic = sequelize.define('medical_equipments_type_basic', {
-    type_cost_params: DataTypes.INTEGER,
     type_time_params: DataTypes.INTEGER,
     type_hr_req: DataTypes.STRING
   }, {});
