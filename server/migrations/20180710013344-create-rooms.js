@@ -1,22 +1,15 @@
 module.exports = {
-  up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('levels', {
+  up: (queryInterface, Sequelize) => 
+    queryInterface.createTable('rooms', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      level_name: {
+      room_name: {
         type: Sequelize.STRING,
         allowNull: false
-      },
-      level_pic: {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
-      count_rooms: {
-        type: Sequelize.INTEGER
       },
       current_safety: {
         type: Sequelize.INTEGER
@@ -27,10 +20,18 @@ module.exports = {
       current_productivity: {
         type: Sequelize.INTEGER
       },
-      building_id: {
+      pic_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'buildings',
+          model: 'users',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        }
+      },
+      level_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'levels',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
@@ -45,6 +46,6 @@ module.exports = {
       }
     }),
   down: (queryInterface, Sequelize) => {
-    queryInterface.dropTable('levels');
+    queryInterface.dropTable('rooms');
   }
 };
