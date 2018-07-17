@@ -5,7 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     is_pic_exist: DataTypes.BOOLEAN
   }, {});
   rooms_security.associate = (models) => {
-    rooms_security.belongsTo(models.rooms, {foreignKey: 'room_id'});
+    rooms_security.belongsTo(models.rooms, {
+      foreignKey: 'room_id'
+    });
   };
   return rooms_security;
 };

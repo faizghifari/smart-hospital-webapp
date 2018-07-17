@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     current_freq: DataTypes.INTEGER
   }, {});
   rooms_safety.associate = (models) => {
-    rooms_safety.belongsTo(models.rooms, {foreignKey: 'room_id'});
+    rooms_safety.belongsTo(models.rooms, {
+      foreignKey: 'room_id'
+    });
   };
   return rooms_safety;
 };

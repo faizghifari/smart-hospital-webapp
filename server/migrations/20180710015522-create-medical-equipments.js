@@ -9,21 +9,9 @@ module.exports = {
       },
       equipments_name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       equipments_desc: {
-        type: Sequelize.STRING
-      },
-      equipments_loc: {
-        type: Sequelize.STRING
-      },
-      equipments_pic: {
-        type: Sequelize.STRING
-      },
-      equipments_pic_mt: {
-        type: Sequelize.STRING
-      },
-      equipments_pic_usage: {
         type: Sequelize.STRING
       },
       equipments_sn: {
@@ -32,7 +20,7 @@ module.exports = {
       is_active: {
         type: Sequelize.BOOLEAN
       },
-      equipmentss_qrcode: {
+      equipments_qrcode: {
         type: Sequelize.STRING
       },
       equipments_status: {
@@ -59,12 +47,52 @@ module.exports = {
       current_productivity: {
         type: Sequelize.INTEGER
       },
-      equipment_type_id: {
+      equipments_type_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'medical_equipments_types',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        }
+      },
+      manufacturers_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'manufacturers',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        }
+      },
+      room_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'rooms',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+        }
+      },
+      pic_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+        }
+      },
+      pic_mt_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+        }
+      },
+      pic_usage_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
         }
       },
       createdAt: {

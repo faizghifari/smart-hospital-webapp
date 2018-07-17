@@ -7,11 +7,29 @@ module.exports = (sequelize, DataTypes) => {
     current_productivity: DataTypes.INTEGER
   }, {});
   rooms.associate = (models) => {
-    rooms.belongsTo(models.levels, {foreignKey: 'level_id'});
-    rooms.hasMany(models.rooms_history, {foreignKey: 'room_id'});
-    rooms.hasMany(models.rooms_productivity, {foreignKey: 'room_id'});
-    rooms.hasMany(models.rooms_security, {foreignKey: 'room_id'});
-    rooms.hasMany(models.rooms_safety, {foreignKey: 'room_id'});
+    rooms.belongsTo(models.levels, {
+      foreignKey: 'level_id'
+    });
+
+    rooms.hasMany(models.rooms_history, {
+      foreignKey: 'room_id'
+    });
+
+    rooms.hasMany(models.rooms_productivity, {
+      foreignKey: 'room_id'
+    });
+
+    rooms.hasMany(models.rooms_security, {
+      foreignKey: 'room_id'
+    });
+
+    rooms.hasMany(models.rooms_safety, {
+      foreignKey: 'room_id'
+    });
+
+    rooms.hasMany(models.medical_equipments, {
+      foreignKey: 'room_id',
+    })
   };
   return rooms;
 };
