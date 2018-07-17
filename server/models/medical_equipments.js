@@ -19,9 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     medical_equipments.belongsTo(models.manufacturers, {
       foreignKey: 'manufacturers_id',
     });
+
     medical_equipments.belongsTo(models.medical_equipments_type, {
       foreignKey: 'equipments_type_id',
-    })
+    });
 
     medical_equipments.belongsTo(models.rooms, {
       foreignKey: 'room_id',
