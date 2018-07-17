@@ -17,9 +17,6 @@ module.exports = {
       equipments_sn: {
         type: Sequelize.STRING
       },
-      is_active: {
-        type: Sequelize.BOOLEAN
-      },
       equipments_qrcode: {
         type: Sequelize.STRING
       },
@@ -35,8 +32,14 @@ module.exports = {
       production_date: {
         type: Sequelize.DATE
       },
+      is_active: {
+        type: Sequelize.BOOLEAN
+      },
       is_on: {
         type: Sequelize.BOOLEAN
+      },
+      maintenance_options: {
+        type: Sequelize.INTEGER
       },
       current_safety: {
         type: Sequelize.INTEGER
