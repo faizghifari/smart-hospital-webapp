@@ -29,8 +29,9 @@ module.exports = {
       equipments_value: {
         type: Sequelize.INTEGER
       },
-      production_date: {
-        type: Sequelize.DATE
+      purchase_date: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       },
       is_active: {
         type: Sequelize.BOOLEAN
