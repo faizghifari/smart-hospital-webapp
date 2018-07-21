@@ -2,7 +2,7 @@ const users = require('../models').users
 const roles = require('../models').roles
 const hospitals = require('../models').hospitals
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
 
@@ -10,8 +10,8 @@ module.exports = {
     // seedRole(req, res) {
     //     return roles
     //     .create({
-    //         scope: 'eng',
-    //         hospital_id: '1'
+    //         scope: req.body.scope,
+    //         hospital_id: req.body.hospital_id,
     //     })
     //     .then(role=> res.status(200).send(role))
     //     .catch(error=> res.status(400).send(error));
