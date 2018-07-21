@@ -37,7 +37,7 @@ app.get('/', (req, res) => res.status(200).send({
     message: 'Welcome to Smart Hospital Server',
 }));
 
-const port = parseInt(process.env.PORT, 10) || 3002;
+const port = parseInt(process.env.PORT, 10) || 3001;
 app.set('port', port);
 
 const server = http.createServer(app);
