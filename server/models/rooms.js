@@ -1,6 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const rooms = sequelize.define('rooms', {
     room_name: DataTypes.STRING,
+    latitude_low: DataTypes.FLOAT,
+    latitude_high: DataTypes.FLOAT,
+    longitude_low: DataTypes.FLOAT,
+    longitude_high: DataTypes.FLOAT,
     current_safety: DataTypes.INTEGER,
     current_security: DataTypes.INTEGER,
     current_productivity: DataTypes.INTEGER

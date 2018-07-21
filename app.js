@@ -42,4 +42,4 @@ app.set('port', port);
 
 server.listen(port);
 
-module.exports = app;
+module.exports = app, io;

@@ -3,6 +3,18 @@ const cron = require('node-cron');
 const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_safety_model = require('../models').medical_equipments_safety;
 
+const io = require('../../app').io;
+
+const safety_io = io.of('/equipment/safety/');
+
+safety_io.on('connection', (client) => {
+    console.log('Client Connected');
+
+    client.on('disconnect', () => {
+        console.log('Client Disconnected');
+    });
+});
+
 let update_age = cron.schedule('* 0 * * *', () => {
     medical_equipments_safety_model
     .findAll()
@@ -23,9 +35,13 @@ let update_age = cron.schedule('* 0 * * *', () => {
 })
 
 module.exports = {
+    send_safety(equipment_id, safety_level) {
+        safety_io.emit('safety/' + equipment_id, safety_level);
+    },
+
     calculate_safety(data) {
         let day_factor = 24*60*60*1000;
-        let safety_level = 0;
+        let safety_level = -1;
         if ((Date.now - data.last_maintenance_date) / 
             day_factor < data.standard_maintenance) {
             safety_level = 1;
@@ -67,10 +83,13 @@ module.exports = {
                 standard_maintenance: data.standard_maintenance || equipment_safety.standard_maintenance,
                 is_reported: data.is_reported || equipment_safety.is_reported
             })
-            .then(() => {
-                let safety_level = this.calculate_safety(equipment_safety);
+            .then(equipment_safety_new => {
+                let safety_level = this.calculate_safety(equipment_safety_new);
 
-                this.update_safety(equipment_id, safety_level);
+                if (safety_level != -1) {
+                    this.update_safety(equipment_id, safety_level);
+                    this.send_safety(equipment_id, safety_level);
+                }
             })
             .catch((error) => console.log(error));
         })
@@ -84,7 +103,6 @@ module.exports = {
             if (!medical_equipment) {
                 console.log("Medical Equipment Not Found");
             }
-
             medical_equipment
             .update({
                 current_safety: safety_level
