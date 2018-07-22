@@ -20,6 +20,8 @@ const strategy = new JwtStrategy(opts, (payload, next) => {
 });
 
 const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 app.use(logger('dev'));
 
@@ -37,10 +39,9 @@ app.get('/', (req, res) => res.status(200).send({
     message: 'Welcome to Smart Hospital Server',
 }));
 
-const port = parseInt(process.env.PORT, 10) || 3002;
+const port = parseInt(process.env.PORT, 10) || 3001;
 app.set('port', port);
 
-const server = http.createServer(app);
 server.listen(port);
 
-module.exports = app;
+module.exports = app, io;

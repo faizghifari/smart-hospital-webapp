@@ -11,6 +11,18 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      latitude_low: {
+        type: Sequelize.FLOAT
+      },
+      latitude_high: {
+        type: Sequelize.FLOAT
+      },
+      longitude_low: {
+        type: Sequelize.FLOAT
+      },
+      longitude_high: {
+        type: Sequelize.FLOAT
+      },
       current_safety: {
         type: Sequelize.INTEGER
       },

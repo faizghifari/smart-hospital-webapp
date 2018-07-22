@@ -1,4 +1,7 @@
 const medical_equipments_model = require('../models').medical_equipments;
+const productivity = require('../monitoring/productivity');
+const safety = require('../monitoring/safety');
+const security = require('../monitoring/security');
 
 module.exports = {
     calculate_mt_options(equipment_value) {
@@ -40,7 +43,13 @@ module.exports = {
             pic_mt_id: req.body.pic_mt_id || 0,
             pic_usage_id: req.body.pic_usage_id || 0,
         })
-        .then(medical_equipment => res.status(201).send(medical_equipment))
+        .then(medical_equipment => {
+            productivity.create(medical_equipment.id, req.body.productivity);
+            safety.create(medical_equipment.id, req.body.safety);
+            security.create(medical_equipment.id, req.body.security);
+
+            return res.status(201).send(medical_equipment);
+        })
         .catch(error => res.status(400).send(error));
     },
 

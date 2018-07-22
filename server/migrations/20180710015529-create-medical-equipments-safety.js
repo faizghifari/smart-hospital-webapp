@@ -16,16 +16,19 @@ module.exports = {
         }
       },
       equipments_age: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       last_maintenance_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       },
       standard_maintenance: {
         type: Sequelize.INTEGER
       },
       is_reported: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
