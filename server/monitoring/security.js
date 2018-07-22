@@ -35,7 +35,7 @@ module.exports = {
     receive_raw_pos(req,res) {
         if (req.body.latitude && req.body.longitude) {
             let object = {
-                "equipment_id": req.body.equipment_id,
+                "equipment_id": req.params.equipment_id,
                 "latitude": req.body.latitude,
                 "longitude": req.body.longitude
             };
@@ -60,7 +60,7 @@ module.exports = {
     receive_pic(req,res) {
         if (req.body.user_id) {
             let object = {
-                "equipment_id": req.body.equipment_id,
+                "equipment_id": req.params.equipment_id,
                 "pic_id": req.body.user_id
             }
             let data = JSON.stringify(object);
@@ -125,7 +125,7 @@ module.exports = {
         .catch(error => console.log(error));
     },
 
-    update(equipment_id, data) { // belum ditambah security history saat onRoomChange || onPicChange
+    update(equipment_id, data) { // need to add security history when onRoomChange || onPicChange
         medical_equipments_security_model
         .findOne({
             where: {

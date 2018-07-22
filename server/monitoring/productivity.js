@@ -22,18 +22,20 @@ module.exports = {
         medical_equipments_productivity_model
         .findOne({
             where: {
-                equipment_id: req.body.equipment_id
+                equipment_id: req.params.equipment_id
             }
         })
         .then(equipment_productivity => {
             let usage = equipment_productivity.count_usage + 1;
             let object = {
-                "equipment_id": req.body.equipment_id,
+                "equipment_id": req.params.equipment_id,
                 "count_usage": usage
             }
             let data = JSON.stringify(object);
 
             this.update(data.equipment_id, data);
+
+            return res.status(200).send(data);
         })
         .catch(error => res.status(400).send(error));
     },

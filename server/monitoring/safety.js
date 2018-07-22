@@ -39,6 +39,42 @@ module.exports = {
         safety_io.emit('safety/' + equipment_id, safety_level);
     },
 
+    receive_mt(req,res) {
+        if (req.body.last_maintenance_date) {
+            let object = {
+                "equipment_id": req.params.equipment_id,
+                "last_maintenance_date": req.body.last_maintenance_date
+            }
+            let data = JSON.stringify(object);
+
+            this.update(data.equipment_id, data);
+
+            return res.status(200).send(data);
+        } else {
+            return res.status(400).send({
+                msg: 'Maintenance date is not received'
+            })
+        }
+    },
+
+    receive_report(req,res) {
+        if (req.body.is_reported) {
+            let object = {
+                "equipment_id": req.params.equipment_id,
+                "is_reported": req.body.is_reported
+            }
+            let data = JSON.stringify(object);
+
+            this.update(data.equipment_id, data);
+
+            return res.status(200).send(data);
+        } else {
+            return res.status(400).send({
+                msg: 'Maintenance date is not received'
+            })
+        }
+    },
+
     calculate_safety(data) {
         let day_factor = 24*60*60*1000;
         let safety_level = -1;
