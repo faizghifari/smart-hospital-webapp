@@ -6,6 +6,8 @@ const passportJWT = require('passport-jwt');
 const JwtStrategy = passportJWT.Strategy;
 const ExtractJwt = passportJWT.ExtractJwt;
 
+const http = require('http');
+
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: 'secretKey'
