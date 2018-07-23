@@ -2,28 +2,49 @@ const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_security_model = require('../models').medical_equipments_security;
 const rooms_model = require('../models').rooms;
 
-const io = require('../../app').io;
+// const io = require('../../app').io;
 
-const pos_io = io.of('/equipment/position/');
-const security_io = io.of('/equipment/security/');
+// const pos_io = io.of('/equipment/position/');
+// const security_io = io.of('/equipment/security/');
 
-pos_io.on('connection', (client) => {
-    console.log('Client Connected');
+// pos_io.on('connection', (client) => {
+//     console.log('Client Connected');
 
-    client.on('disconnect', () => {
-        console.log('Client Disconnected');
-    });
-});
+//     client.on('disconnect', () => {
+//         console.log('Client Disconnected');
+//     });
+// });
 
-security_io.on('connection', (client) => {
-    console.log('Client Connected');
+// security_io.on('connection', (client) => {
+//     console.log('Client Connected');
 
-    client.on('disconnect', () => {
-        console.log('Client Disconnected');
-    })
-});
+//     client.on('disconnect', () => {
+//         console.log('Client Disconnected');
+//     })
+// });
 
 module.exports = {
+    start: (io) => {
+        const pos_io = io.of('/equipment/position/');
+        const security_io = io.of('/equipment/security/');
+
+        pos_io.on('connection', (client) => {
+            console.log('Client Connected');
+
+            client.on('disconnect', () => {
+                console.log('Client Disconnected');
+            });
+        });
+
+        security_io.on('connection', (client) => {
+            console.log('Client Connected');
+
+            client.on('disconnect', () => {
+                console.log('Client Disconnected');
+            })
+        });
+    },
+
     send_raw_pos(data) {
         pos_io.emit('position/' + data.equipment_id, data);
     },

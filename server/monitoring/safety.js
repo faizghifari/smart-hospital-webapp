@@ -3,17 +3,17 @@ const cron = require('node-cron');
 const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_safety_model = require('../models').medical_equipments_safety;
 
-const io = require('../../app').io;
+// const io = require('../../app').io;
 
-const safety_io = io.of('/equipment/safety/');
+// const safety_io = io.of('/equipment/safety/');
 
-safety_io.on('connection', (client) => {
-    console.log('Client Connected');
+// safety_io.on('connection', (client) => {
+//     console.log('Client Connected');
 
-    client.on('disconnect', () => {
-        console.log('Client Disconnected');
-    });
-});
+//     client.on('disconnect', () => {
+//         console.log('Client Disconnected');
+//     });
+// });
 
 let update_age = cron.schedule('* 0 * * *', () => {
     medical_equipments_safety_model
@@ -35,6 +35,18 @@ let update_age = cron.schedule('* 0 * * *', () => {
 })
 
 module.exports = {
+    start: (io) => {
+        const safety_io = io.of('/equipment/safety/');
+
+        safety_io.on('connection', (client) => {
+            console.log('Client Connected');
+
+            client.on('disconnect', () => {
+                console.log('Client Disconnected');
+            });
+        });
+    },
+
     send_safety(equipment_id, safety_level) {
         safety_io.emit('safety/' + equipment_id, safety_level);
     },
