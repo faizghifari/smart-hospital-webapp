@@ -10,4 +10,6 @@ module.exports = (app) => {
 
     app.put('/api/equipment/:equipment_id/safety/maintenance', safety.receive_mt);
     app.put('/api/equipment/:equipment_id/safety/report', safety.receive_report);
+
+    app.get('/api/equipment/tes', security.list);
 };

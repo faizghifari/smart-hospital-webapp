@@ -48,9 +48,18 @@ app.get('/', (req, res) => res.status(200).send({
     message: 'Welcome to Smart Hospital Server',
 }));
 
-const port = parseInt(process.env.PORT, 10) || 3001;
+const port = parseInt(process.env.PORT, 10) || 3002;
 app.set('port', port);
 
 server.listen(port);
+
+// var pos_io = io.of('/equipment/position/');
+// pos_io.on('connection', (client) => {
+//     console.log('Client Connected');
+
+//     client.on('disconnect', () => {
+//         console.log('Client Disconnected');
+//     });
+// });
 
 module.exports = app, io;
