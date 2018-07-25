@@ -3,17 +3,7 @@ const cron = require('node-cron');
 const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_safety_model = require('../models').medical_equipments_safety;
 
-// const io = require('../../app').io;
-
-// const safety_io = io.of('/equipment/safety/');
-
-// safety_io.on('connection', (client) => {
-//     console.log('Client Connected');
-
-//     client.on('disconnect', () => {
-//         console.log('Client Disconnected');
-//     });
-// });
+let safety_io;
 
 let update_age = cron.schedule('* 0 * * *', () => {
     medical_equipments_safety_model
@@ -21,12 +11,11 @@ let update_age = cron.schedule('* 0 * * *', () => {
     .then(equipments_safety => {
         equipments_safety.forEach(equipment_safety => {
             let age = equipment_safety.equipment_age + 1;
-            let object = {
+            let data = {
                 "equipment_age": age,
                 "last_maintenance_date": equipment_safety.last_maintenance_date,
                 "standard_maintenance": equipment_safety.standard_maintenance
             };
-            let data = JSON.stringify(object);
 
             this.update(equipment_safety.equipment_id, data);
         });
@@ -36,7 +25,7 @@ let update_age = cron.schedule('* 0 * * *', () => {
 
 module.exports = {
     start: (io) => {
-        const safety_io = io.of('/equipment/safety/');
+        safety_io = io.of('/equipment/safety/');
 
         safety_io.on('connection', (client) => {
             console.log('Client Connected');
@@ -53,15 +42,15 @@ module.exports = {
 
     receive_mt(req,res) {
         if (req.body.last_maintenance_date) {
-            let object = {
+            let data = {
                 "equipment_id": req.params.equipment_id,
                 "last_maintenance_date": req.body.last_maintenance_date
             }
-            let data = JSON.stringify(object);
 
             this.update(data.equipment_id, data);
 
-            return res.status(200).send(data);
+            let data_stringified = JSON.stringify(data);
+            return res.status(200).send(data_stringified);
         } else {
             return res.status(400).send({
                 msg: 'Maintenance date is not received'
@@ -71,15 +60,15 @@ module.exports = {
 
     receive_report(req,res) {
         if (req.body.is_reported) {
-            let object = {
+            let data = {
                 "equipment_id": req.params.equipment_id,
                 "is_reported": req.body.is_reported
             }
-            let data = JSON.stringify(object);
 
             this.update(data.equipment_id, data);
 
-            return res.status(200).send(data);
+            let data_stringified = JSON.stringify(data);
+            return res.status(200).send(data_stringified);
         } else {
             return res.status(400).send({
                 msg: 'Maintenance date is not received'
@@ -144,7 +133,7 @@ module.exports = {
         .catch(error => console.log(error));
     },
 
-    update_safety(equipment_id, safety_level) {
+    update_safety(equipment_id, safety_level) { // dipindah ke equipment
         medical_equipments_model
         .findById(equipment_id)
         .then(medical_equipment => {

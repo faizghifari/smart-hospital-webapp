@@ -1,21 +1,11 @@
 const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_productivity_model = require('../models').medical_equipments_productivity;
 
-// const io = require('../../app').io;
-
-// const productivity_io = io.of('/equipment/productivity/');
-
-// productivity_io.on('connection', (client) => {
-//     console.log('Client Connected');
-
-//     client.on('disconnect', () => {
-//         console.log('Client Disconnected');
-//     });
-// });
+let productivity_io;
 
 module.exports = {
     start: (io) => {
-        const productivity_io = io.of('/equipment/productivity/');
+        productivity_io = io.of('/equipment/productivity/');
 
         productivity_io.on('connection', (client) => {
             console.log('Client Connected');
@@ -39,15 +29,15 @@ module.exports = {
         })
         .then(equipment_productivity => {
             let usage = equipment_productivity.count_usage + 1;
-            let object = {
+            let data = {
                 "equipment_id": req.params.equipment_id,
                 "count_usage": usage
             }
-            let data = JSON.stringify(object);
 
             this.update(data.equipment_id, data);
 
-            return res.status(200).send(data);
+            let data_stringified = JSON.stringify(data);
+            return res.status(200).send(data_stringified);
         })
         .catch(error => res.status(400).send(error));
     },
@@ -103,7 +93,7 @@ module.exports = {
         .catch(error => console.log(error));
     },
 
-    update_productivity(equipment_id, productivity_level) {
+    update_productivity(equipment_id, productivity_level) { // dipindah ke equipment
         medical_equipments_model
         .findById(equipment_id)
         .then(medical_equipment => {
