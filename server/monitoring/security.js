@@ -1,3 +1,5 @@
+const request = require('request');
+
 const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_security_model = require('../models').medical_equipments_security;
 const rooms_model = require('../models').rooms;
@@ -163,19 +165,32 @@ module.exports = {
         .catch(error => console.log(error));
     },
 
-    update_security(equipment_id, security_level) { // dipindah ke equipment
-        medical_equipments_model
-        .findById(equipment_id)
-        .then(medical_equipment => {
-            if (!medical_equipment) {
-                console.log("Medical Equipment Not Found");
-            }
-            medical_equipment
-            .update({
-                current_security: security_level
-            })
-            .catch((error) => console.log(error));
-        })
-        .catch(error => console.log(error));
+    update_security(equipment_id, security_level) {
+        let data = {
+            "current_security": security_level
+        }
+        const url = "http://localhost:3002/api/equipment/" + equipment_id;
+        
+        request.put({
+            url: url,
+            json: data
+        }, (error, response, body) => {
+            console.log('error:', error);
+            console.log('status_code:', response && response.statusCode);
+            console.log('body:', body);
+        });
+        // medical_equipments_model
+        // .findById(equipment_id)
+        // .then(medical_equipment => {
+        //     if (!medical_equipment) {
+        //         console.log("Medical Equipment Not Found");
+        //     }
+        //     medical_equipment
+        //     .update({
+        //         current_security: security_level
+        //     })
+        //     .catch((error) => console.log(error));
+        // })
+        // .catch(error => console.log(error));
     }
 };
