@@ -2,8 +2,8 @@ const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_security_model = require('../models').medical_equipments_security;
 const rooms_model = require('../models').rooms;
 
-var pos_io;
-var security_io;
+let pos_io;
+let security_io;
 module.exports = {
     start: (io) => {
         pos_io = io.of('/equipment/position/');
