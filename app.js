@@ -35,6 +35,7 @@ require('./server/monitoring/routes')(app);
 require('./server/admin/routes')(app);
 require('./server/registration/routes')(app);
 require('./server/auth/routes')(app);
+require('./server/login/routes')(app);
 
 const productivity = require('./server/monitoring/productivity');
 const safety = require('./server/monitoring/safety');

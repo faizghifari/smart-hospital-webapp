@@ -53,19 +53,19 @@ module.exports = {
                 var user_role_name;
 
                 switch(user_role){
-                    case 2:
+                    case 1:
                         user_role_name = "MOH";
                         break;
-                    case 3:
+                    case 2:
                         user_role_name = "Management";
                         break;
-                    case 4:
+                    case 3:
                         user_role_name = "User";
                         break;
-                    case 5:
+                    case 4:
                         user_role_name = "Engineer";
                         break;
-                    case 6:
+                    case 5:
                         user_role_name = "Superuser";
                         break;
                 }
