@@ -1,6 +1,7 @@
 const users = require('../models').users
 const jwtLogin = require('jwt-login');
 const bcrypt = require('bcryptjs');
+const randomize = require('randomatic');
 
 module.exports = {
     login(req, res) {
@@ -8,8 +9,8 @@ module.exports = {
         var user = data.username;
         var password = data.password;
 
-        console.log(user, password);
-
+        pin = randomize('0', 6);
+        
         users
         .findOne({
             where: {username: user}
@@ -30,5 +31,5 @@ module.exports = {
 
     logout(req, res) {
         jwtLogin.signout(req, res, false);
-    }
+    },
 }
