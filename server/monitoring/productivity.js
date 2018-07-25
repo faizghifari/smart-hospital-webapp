@@ -1,21 +1,13 @@
+const request = require('request');
+
 const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_productivity_model = require('../models').medical_equipments_productivity;
 
-// const io = require('../../app').io;
-
-// const productivity_io = io.of('/equipment/productivity/');
-
-// productivity_io.on('connection', (client) => {
-//     console.log('Client Connected');
-
-//     client.on('disconnect', () => {
-//         console.log('Client Disconnected');
-//     });
-// });
+let productivity_io;
 
 module.exports = {
     start: (io) => {
-        const productivity_io = io.of('/equipment/productivity/');
+        productivity_io = io.of('/equipment/productivity/');
 
         productivity_io.on('connection', (client) => {
             console.log('Client Connected');
@@ -39,15 +31,15 @@ module.exports = {
         })
         .then(equipment_productivity => {
             let usage = equipment_productivity.count_usage + 1;
-            let object = {
+            let data = {
                 "equipment_id": req.params.equipment_id,
                 "count_usage": usage
             }
-            let data = JSON.stringify(object);
 
             this.update(data.equipment_id, data);
 
-            return res.status(200).send(data);
+            let data_stringified = JSON.stringify(data);
+            return res.status(200).send(data_stringified);
         })
         .catch(error => res.status(400).send(error));
     },
@@ -104,18 +96,18 @@ module.exports = {
     },
 
     update_productivity(equipment_id, productivity_level) {
-        medical_equipments_model
-        .findById(equipment_id)
-        .then(medical_equipment => {
-            if (!medical_equipment) {
-                console.log("Medical Equipment Not Found");
-            }
-            medical_equipment
-            .update({
-                current_productivity: productivity_level
-            })
-            .catch((error) => console.log(error));
-        })
-        .catch(error => console.log(error));
+        let data = {
+            "current_productivity": productivity_level
+        }
+        const url = "http://localhost:3002/api/equipment/" + equipment_id;
+
+        request.put({
+            url: url,
+            json: data
+        }, (error, response, body) => {
+            console.log('error:', error);
+            console.log('status_code:', response && response.statusCode);
+            console.log('body:', body);
+        });
     }
 };

@@ -3,10 +3,10 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const passportJWT = require('passport-jwt');
+const http = require('http');
+
 const JwtStrategy = passportJWT.Strategy;
 const ExtractJwt = passportJWT.ExtractJwt;
-
-const http = require('http');
 
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -23,11 +23,10 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
-app.use(logger('dev'));
-
 passport.use(strategy);
-app.use(passport.initialize());
 
+app.use(passport.initialize());
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -52,14 +51,5 @@ const port = parseInt(process.env.PORT, 10) || 3002;
 app.set('port', port);
 
 server.listen(port);
-
-// var pos_io = io.of('/equipment/position/');
-// pos_io.on('connection', (client) => {
-//     console.log('Client Connected');
-
-//     client.on('disconnect', () => {
-//         console.log('Client Disconnected');
-//     });
-// });
 
 module.exports = app, io;
