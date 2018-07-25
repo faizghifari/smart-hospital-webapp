@@ -6,6 +6,7 @@ module.exports = (app) => {
     app.get('/api/equipment', role_controller.valid_login, role_controller.role_check, equipment.list);
     app.get('/api/equipment/:equipment_id', role_controller.valid_login, role_controller.role_check, equipment.retrieve);
     app.get('/api/equipment/:equipment_id/details', role_controller.valid_login, role_controller.role_check, equipment.retrieve_details);
-    app.put('/api/equipment/:equipment_id', role_controller.valid_login, role_controller.role_check, equipment.update);
+    // app.put('/api/equipment/:equipment_id', role_controller.valid_login, role_controller.role_check, equipment.update);
+    app.put('/api/equipment/:equipment_id', equipment.update);
     app.delete('/api/equipment/:equipment_id', role_controller.valid_login, role_controller.role_check, equipment.destroy);
 };
