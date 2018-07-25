@@ -83,7 +83,7 @@ module.exports = {
         return security_level;
     },
 
-    send_raw_pos(data_stringified, equipment_id) {
+    send_raw_pos(equipment_id, data_stringified) {
         pos_io.emit('position/' + equipment_id, data_stringified);
     },
 
@@ -96,7 +96,8 @@ module.exports = {
             let data = {
                 "equipment_id": req.params.equipment_id,
                 "latitude": req.body.latitude,
-                "longitude": req.body.longitude
+                "longitude": req.body.longitude,
+                "status": 'pos'
             };
 
             let new_room_id = await module.exports.calculate_raw_pos(data);
@@ -109,7 +110,7 @@ module.exports = {
             let data_stringified = JSON.stringify(data);
 
             module.exports.update(data.equipment_id, data);
-            module.exports.send_raw_pos(data_stringified, data.equipment_id);
+            module.exports.send_raw_pos(data.equipment_id, data_stringified);
 
             return res.status(200).send(data_stringified);
         } else {
@@ -123,7 +124,7 @@ module.exports = {
         if (req.body.user_id) {
             let data = {
                 "equipment_id": req.params.equipment_id,
-                "pic_id": req.body.user_id
+                "pic_id": req.body.user_id,
             }
 
             module.exports.update(data.equipment_id, data);
@@ -156,18 +157,20 @@ module.exports = {
             }
         })
         .then(equipment_security => {
+            let id_room = equipment_security.room_id;
+            if (data.status) {
+                id_room = data.room_id
+            }
+
             equipment_security
             .update({
                 is_room_locked: data.is_room_locked || equipment_security.is_room_locked,
-                // room_id: data.room_id || equipment_security.room_id,
-                room_id: data.room_id,
+                room_id: id_room,
                 pic_id: data.pic_id || equipment_security.pic_id
             })
             .then(async equipment_security_new => {
                 let security_level = await module.exports.calculate_security(equipment_security_new);
-                console.log('sec level ' + security_level);
                 
-
                 if (security_level != -1) {
                     module.exports.update_security(equipment_id, security_level);
                     module.exports.send_security(equipment_id, security_level);
@@ -192,18 +195,5 @@ module.exports = {
             console.log('status_code:', response && response.statusCode);
             console.log('body:', body);
         });
-        // medical_equipments_model
-        // .findById(equipment_id)
-        // .then(medical_equipment => {
-        //     if (!medical_equipment) {
-        //         console.log("Medical Equipment Not Found");
-        //     }
-        //     medical_equipment
-        //     .update({
-        //         current_security: security_level
-        //     })
-        //     .catch((error) => console.log(error));
-        // })
-        // .catch(error => console.log(error));
     }
 };

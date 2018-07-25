@@ -109,18 +109,5 @@ module.exports = {
             console.log('status_code:', response && response.statusCode);
             console.log('body:', body);
         });
-    //     medical_equipments_model
-    //     .findById(equipment_id)
-    //     .then(medical_equipment => {
-    //         if (!medical_equipment) {
-    //             console.log("Medical Equipment Not Found");
-    //         }
-    //         medical_equipment
-    //         .update({
-    //             current_productivity: productivity_level
-    //         })
-    //         .catch((error) => console.log(error));
-    //     })
-    //     .catch(error => console.log(error));
     }
 };
