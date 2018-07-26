@@ -1,31 +1,11 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const passport = require('passport');
-const passportJWT = require('passport-jwt');
-const http = require('http');
-
-const JwtStrategy = passportJWT.Strategy;
-const ExtractJwt = passportJWT.ExtractJwt;
-
-const opts = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: 'secretKey'
-};
-
-const strategy = new JwtStrategy(opts, (payload, next) => {
-    users.findOne({id: payload.id}).then(res => {
-        next(null, res);
-    });
-});
 
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
-passport.use(strategy);
-
-app.use(passport.initialize());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

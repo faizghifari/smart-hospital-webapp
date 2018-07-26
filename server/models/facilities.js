@@ -1,20 +1,20 @@
 module.exports = (sequelize, DataTypes) => {
-  const facilities = sequelize.define('facilities', {
-    facilities_name: DataTypes.STRING,
-    facilities_desc: DataTypes.STRING
-  }, {});
-  facilities.associate = (models) => {
-    facilities.belongsTo(models.medical_equipments_type_basic, {
-      foreignKey: 'equipments_type_basic_id',
-    });
+    const facilities = sequelize.define('facilities', {
+        facilities_name: DataTypes.STRING,
+        facilities_desc: DataTypes.STRING
+    }, {});
+    facilities.associate = (models) => {
+        facilities.belongsTo(models.medical_equipments_type_basic, {
+            foreignKey: 'equipments_type_basic_id',
+        });
 
-    facilities.belongsTo(models.medical_equipments_type_medium, {
-      foreignKey: 'equipments_type_medium_id',
-    });
+        facilities.belongsTo(models.medical_equipments_type_medium, {
+            foreignKey: 'equipments_type_medium_id',
+        });
 
-    facilities.belongsTo(models.medical_equipments_type_high, {
-      foreignKey: 'equipments_type_high_id',
-    });
-  };
-  return facilities;
+        facilities.belongsTo(models.medical_equipments_type_high, {
+            foreignKey: 'equipments_type_high_id',
+        });
+    };
+    return facilities;
 };

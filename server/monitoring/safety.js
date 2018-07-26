@@ -1,28 +1,27 @@
 const cron = require('node-cron');
 const request = require('request');
 
-const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_safety_model = require('../models').medical_equipments_safety;
 
 let safety_io;
 
-let update_age = cron.schedule('* 0 * * *', () => {
+cron.schedule('* 0 * * *', () => {
     medical_equipments_safety_model
-    .findAll()
-    .then(equipments_safety => {
-        equipments_safety.forEach(equipment_safety => {
-            let age = equipment_safety.equipment_age + 1;
-            let data = {
-                "equipment_age": age,
-                "last_maintenance_date": equipment_safety.last_maintenance_date,
-                "standard_maintenance": equipment_safety.standard_maintenance
-            };
+        .findAll()
+        .then(equipments_safety => {
+            equipments_safety.forEach(equipment_safety => {
+                let age = equipment_safety.equipment_age + 1;
+                let data = {
+                    'equipment_age': age,
+                    'last_maintenance_date': equipment_safety.last_maintenance_date,
+                    'standard_maintenance': equipment_safety.standard_maintenance
+                };
 
-            this.update(equipment_safety.equipment_id, data);
-        });
-    })
-    .catch(error => console.log(error));
-})
+                this.update(equipment_safety.equipment_id, data);
+            });
+        })
+        .catch(error => console.log(error));
+});
 
 module.exports = {
     start: (io) => {
@@ -44,9 +43,9 @@ module.exports = {
     receive_mt(req,res) {
         if (req.body.last_maintenance_date) {
             let data = {
-                "equipment_id": req.params.equipment_id,
-                "last_maintenance_date": req.body.last_maintenance_date
-            }
+                'equipment_id': req.params.equipment_id,
+                'last_maintenance_date': req.body.last_maintenance_date
+            };
 
             this.update(data.equipment_id, data);
 
@@ -55,16 +54,16 @@ module.exports = {
         } else {
             return res.status(400).send({
                 msg: 'Maintenance date is not received'
-            })
+            });
         }
     },
 
     receive_report(req,res) {
         if (req.body.is_reported) {
             let data = {
-                "equipment_id": req.params.equipment_id,
-                "is_reported": req.body.is_reported
-            }
+                'equipment_id': req.params.equipment_id,
+                'is_reported': req.body.is_reported
+            };
 
             this.update(data.equipment_id, data);
 
@@ -73,7 +72,7 @@ module.exports = {
         } else {
             return res.status(400).send({
                 msg: 'Maintenance date is not received'
-            })
+            });
         }
     },
 
@@ -96,57 +95,57 @@ module.exports = {
 
     create(equipment_id, data) {
         medical_equipments_safety_model
-        .create({
-            equipment_id: equipment_id,
-            equipment_age: data.equipment_age,
-            last_maintenance_date: data.last_maintenance_date,
-            standard_maintenance: data.standard_maintenance,
-            is_reported: data.is_reported
-        })
-        .catch(error => console.log(error));
+            .create({
+                equipment_id: equipment_id,
+                equipment_age: data.equipment_age,
+                last_maintenance_date: data.last_maintenance_date,
+                standard_maintenance: data.standard_maintenance,
+                is_reported: data.is_reported
+            })
+            .catch(error => console.log(error));
     },
 
     update(equipment_id, data) {
         medical_equipments_safety_model
-        .findOne({
-            where: {
-                equipment_id: equipment_id
-            }
-        })
-        .then(equipment_safety => {
-            equipment_safety
-            .update({
-                equipment_age: data.equipment_age || equipment_safety.equipment_age,
-                last_maintenance_date: data.last_maintenance_date || equipment_safety.last_maintenance_date,
-                standard_maintenance: data.standard_maintenance || equipment_safety.standard_maintenance,
-                is_reported: data.is_reported || equipment_safety.is_reported
-            })
-            .then(equipment_safety_new => {
-                let safety_level = this.calculate_safety(equipment_safety_new);
-
-                if (safety_level != -1) {
-                    this.update_safety(equipment_id, safety_level);
-                    this.send_safety(equipment_id, safety_level);
+            .findOne({
+                where: {
+                    equipment_id: equipment_id
                 }
             })
-            .catch((error) => console.log(error));
-        })
-        .catch(error => console.log(error));
+            .then(equipment_safety => {
+                equipment_safety
+                    .update({
+                        equipment_age: data.equipment_age || equipment_safety.equipment_age,
+                        last_maintenance_date: data.last_maintenance_date || equipment_safety.last_maintenance_date,
+                        standard_maintenance: data.standard_maintenance || equipment_safety.standard_maintenance,
+                        is_reported: data.is_reported || equipment_safety.is_reported
+                    })
+                    .then(equipment_safety_new => {
+                        let safety_level = this.calculate_safety(equipment_safety_new);
+
+                        if (safety_level != -1) {
+                            this.update_safety(equipment_id, safety_level);
+                            this.send_safety(equipment_id, safety_level);
+                        }
+                    })
+                    .catch((error) => console.log(error));
+            })
+            .catch(error => console.log(error));
     },
 
     update_safety(equipment_id, safety_level) {
         let data = {
-            "current_safety": safety_level
-        }
-        const url = "http://localhost:3002/api/equipment/" + equipment_id;
+            'current_safety': safety_level
+        };
+        const url = 'http://localhost:3002/api/equipment/' + equipment_id;
 
-        require.put({
+        request.put({
             url: url,
             json: data
         }, (error, response, body) => {
             console.log('error:', error);
             console.log('status_code:', response && response.statusCode);
             console.log('body:', body);
-        })
+        });
     }
 };
