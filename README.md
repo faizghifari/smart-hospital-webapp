@@ -32,10 +32,11 @@ NOTES : Make sure all the prerequisites are already installed and running.
 2. Navigate to the project directory.
 3. Run `npm install` to download all the dependencies.
 4. Run `npm run start:dev` to start the application.
-5. Access Apps on port 3001, make sure to get the welcome message and the Apps running properly
+5. Access Apps on port (configured at `app.js`), make sure to get the welcome message and the Apps running properly
 
 - The Apps using Nodemon module that enable auto-restart when detecting changes on code. So don't worry about starting the Apps after adding some features.
 - If there's additional node modules at package.json when pulling from the repository, just run `npm install` again to match all dependencies.
+- Some libraries are needed to be installed globally like `sequelize-cli` and `eslint`. Please kindly run `npm install -g <LIBRARY_NAME>` to install it globally.
 
 ### Setting up for Production
 
@@ -69,14 +70,18 @@ TBD
 3. Next thing you need to do are refactoring the generated code file and migrations file into JavaScript ES6. You can refer to the existing table for refactoring. To add options for table attributes, you can read the [Sequelize Documentation](http://docs.sequelizejs.com/manual/tutorial/migrations.html)
 4. Before do database migrations, please ensure that your code is free from errors (and warnings if necessary).
 5. Do database migrations by running `sequelize db:migrate`.
-6. If there is any changes on the database either tables or attributes, run `sequelize db:migrate:undo:all` first to revert the existing database and then run `sequelize db:migrate`
+6. If there is any changes on the database either tables or attributes, run `sequelize db:migrate:undo:all` first to revert the existing database and then run `sequelize db:migrate`.
 
 Notes:
 - If there's any problem occured while creating table or migrating database, you can read the [Sequelize Documentation](http://docs.sequelizejs.com/manual/tutorial/migrations.html) to see additional command like Undo, etc.
 
 ### Linting
 
-TBD
+This project use ESLint v5.2.0 to measure code quality and find potential errors and/or bugs. To start linting, run `eslint <SERVER_OR_DIRECTORY_NAME>`. As default, you must run `eslint server app.js` to make sure all project code are measured.
+
+- Make sure ESLint already installed globally.
+- If you're using VSCode, it's easire to install ESLint Extension on VSCode workspace.
+- PLEASE make sure there is NO WARNING/ERROR/ANYTHING that measured by ESLint. You must pass all the ESLint linter before making a pull request or deployment.
 
 ### Tests
 
