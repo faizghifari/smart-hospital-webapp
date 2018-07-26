@@ -1,6 +1,5 @@
 const request = require('request');
 
-const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_productivity_model = require('../models').medical_equipments_productivity;
 
 let productivity_io;
@@ -24,24 +23,24 @@ module.exports = {
 
     receive_usage(req,res) {
         medical_equipments_productivity_model
-        .findOne({
-            where: {
-                equipment_id: req.params.equipment_id
-            }
-        })
-        .then(equipment_productivity => {
-            let usage = equipment_productivity.count_usage + 1;
-            let data = {
-                "equipment_id": req.params.equipment_id,
-                "count_usage": usage
-            }
+            .findOne({
+                where: {
+                    equipment_id: req.params.equipment_id
+                }
+            })
+            .then(equipment_productivity => {
+                let usage = equipment_productivity.count_usage + 1;
+                let data = {
+                    'equipment_id': req.params.equipment_id,
+                    'count_usage': usage
+                };
 
-            this.update(data.equipment_id, data);
+                this.update(data.equipment_id, data);
 
-            let data_stringified = JSON.stringify(data);
-            return res.status(200).send(data_stringified);
-        })
-        .catch(error => res.status(400).send(error));
+                let data_stringified = JSON.stringify(data);
+                return res.status(200).send(data_stringified);
+            })
+            .catch(error => res.status(400).send(error));
     },
 
     calculate_productivity(data) {
@@ -61,45 +60,45 @@ module.exports = {
 
     create(equipment_id, data) {
         medical_equipments_productivity_model
-        .create({
-            equipment_id: equipment_id,
-            count_usage: data.count_usage || 0,
-            standard_usage: data.standard_usage
-        })
-        .catch(error => console.log(error));
+            .create({
+                equipment_id: equipment_id,
+                count_usage: data.count_usage || 0,
+                standard_usage: data.standard_usage
+            })
+            .catch(error => console.log(error));
     },
 
     update(equipment_id, data) {
         medical_equipments_productivity_model
-        .findOne({
-            where: {
-                equipment_id: equipment_id
-            }
-        })
-        .then(equipment_productivity => {
-            equipment_productivity
-            .update({
-                count_usage: data.count_usage,
-                standard_usage: data.standard_usage
-            })
-            .then(equipment_productivity_new => {
-                let productivity_level = this.calculate_productivity(equipment_productivity_new);
-
-                if (productivity_level != -1) {
-                    this.update_productivity(equipment_id, productivity_level);
-                    this.send_productivity(equipment_id, productivity_level);
+            .findOne({
+                where: {
+                    equipment_id: equipment_id
                 }
             })
-            .catch((error) => console.log(error));
-        })
-        .catch(error => console.log(error));
+            .then(equipment_productivity => {
+                equipment_productivity
+                    .update({
+                        count_usage: data.count_usage,
+                        standard_usage: data.standard_usage
+                    })
+                    .then(equipment_productivity_new => {
+                        let productivity_level = this.calculate_productivity(equipment_productivity_new);
+
+                        if (productivity_level != -1) {
+                            this.update_productivity(equipment_id, productivity_level);
+                            this.send_productivity(equipment_id, productivity_level);
+                        }
+                    })
+                    .catch((error) => console.log(error));
+            })
+            .catch(error => console.log(error));
     },
 
     update_productivity(equipment_id, productivity_level) {
         let data = {
-            "current_productivity": productivity_level
-        }
-        const url = "http://localhost:3002/api/equipment/" + equipment_id;
+            'current_productivity': productivity_level
+        };
+        const url = 'http://localhost:3002/api/equipment/' + equipment_id;
 
         request.put({
             url: url,
