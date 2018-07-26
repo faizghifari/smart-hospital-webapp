@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     password_hash: DataTypes.TEXT,
     is_ministry: DataTypes.BOOLEAN,
-    is_admin: DataTypes.BOOLEAN
+    is_admin: DataTypes.BOOLEAN,
+    login_pin: DataTypes.STRING
   }, {});
   
   users.associate = (models) => {

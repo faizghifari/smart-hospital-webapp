@@ -29,6 +29,11 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
+      login_pin: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: '000000'
+      },
       role_id: {
         type: Sequelize.INTEGER,
         references: {
