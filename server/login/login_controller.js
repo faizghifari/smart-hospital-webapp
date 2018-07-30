@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer');
 
 
 module.exports = {
-    login(req, res) {
+    verify(req, res) {
         var data = req.body;
         var user = data.username;
         var password = data.password;
@@ -23,13 +23,13 @@ module.exports = {
                 if (!matches) {
                     return res.status(400).send('Auth failed. Wrong password.');   
                 } else {
-                    module.exports.update_send_pin(result.id);
+                    module.exports.update_send_pin(result.id); 
                 }
             }
         });
     },
 
-    verify(req, res) {
+    login(req, res) {
         var data = req.body;
         var user = data.username;
         var pin = data.pin;
@@ -47,7 +47,7 @@ module.exports = {
         });
     },
 
-    verification_email(result_id) {
+    verification_email(result_id, result_email, result_username) {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -63,15 +63,15 @@ module.exports = {
         var mailOptions = {
             from: 'Smart Healthcare <elife.shams@gmail.com>',
             to: 'arinanda.adib@gmail.com',
-            subject: 'Verify its you!',
-            text: 'Hey! Your verification code is ' + result_id
+            subject: 'Verify it\'s you!',
+            text: 'Hey ' + result_username + '! Your verification code is ' + result_id
         };
          
         transporter.sendMail(mailOptions, function(err, res) {
             if(err) {
                 console.log('error');
             } else {
-                console.log('sent');
+                console.log('email sent!');
             }
         });  
     },
@@ -86,8 +86,7 @@ module.exports = {
                 login_pin: generated_pin
             })
             .catch((error) => console.log(error));
-            module.exports.verification_email(result.login_pin);
-            console.log('sent');
+            module.exports.verification_email(result.login_pin, result.email, result.username);
         })
         .catch(error => console.log(error));
     },
