@@ -1,7 +1,4 @@
 const medical_equipments_type = require('../models').medical_equipments_type;
-const type_basic_crud = require('./type_basic_crud');
-const type_medium_crud = require('./type_medium_crud');
-const type_high_crud = require('./type_high_crud');
 
 module.exports = {
     create(req,res) {
@@ -9,14 +6,13 @@ module.exports = {
             .create({
                 type_name: req.body.type_name,
                 type_desc: req.body.type_desc,
+                type_hr_req: req.body.type_hr_req,
+                type_time_params: req.body.type_time_params,
+                type_level: req.body.type_level,
+                apparatus_id: req.body.apparatus_id,
+                type_quantitative_tasks: req.body.type_quantitative_tasks
             })
-            .then(eq_type => {
-                type_basic_crud.create(eq_type.id, req.body.basic);
-                type_medium_crud.create(eq_type.id, req.body.medium);
-                type_high_crud.create(eq_type.id, req.body.high);
-
-                return res.status(201).send(eq_type);
-            })
+            .then(eq_type => res.status(201).send(eq_type))
             .catch(error => res.status(400).send(error));
     },
 
@@ -54,6 +50,11 @@ module.exports = {
                     .update({
                         type_name: req.body.type_name || eq_type.type_name,
                         type_desc: req.body.type_desc || eq_type.type_desc,
+                        type_hr_req: req.body.type_hr_req|| eq_type.type_hr_req,
+                        type_time_params: req.body.type_time_params || eq_type.type_time_params,
+                        type_level: req.body.type_level || eq_type.type_level,
+                        apparatus_id: req.body.apparatus_id || eq_type.apparatus_id,
+                        type_quantitative_tasks: req.body.type_quantitative_tasks || eq_type.type_quantitative_tasks
                     })
                     .then(() => res.status(200).send(eq_type))
                     .catch((error) => res.status(400).send(error));
