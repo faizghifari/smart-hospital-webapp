@@ -1,18 +1,6 @@
 const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_productivity_model = require('../models').medical_equipments_productivity;
 
-// const io = require('../../app').io;
-
-// const productivity_io = io.of('/equipment/productivity/');
-
-// productivity_io.on('connection', (client) => {
-//     console.log('Client Connected');
-
-//     client.on('disconnect', () => {
-//         console.log('Client Disconnected');
-//     });
-// });
-
 module.exports = {
     start: (io) => {
         const productivity_io = io.of('/equipment/productivity/');
