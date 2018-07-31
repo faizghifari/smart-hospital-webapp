@@ -9,8 +9,11 @@ module.exports = {
                 type_hr_req: req.body.type_hr_req,
                 type_time_params: req.body.type_time_params,
                 type_level: req.body.type_level,
-                apparatus_id: req.body.apparatus_id,
-                type_quantitative_tasks: req.body.type_quantitative_tasks
+                apparatus_type_id: req.body.apparatus_type_id,
+                spare_part_type_id: req.body.spare_part_type_id,
+                qualitative_tasks: req.body.qualitative_tasks,
+                quantitative_tasks: req.body.quantitative_tasks,
+                preventive_tasks: req.body.preventive_tasks
             })
             .then(eq_type => res.status(201).send(eq_type))
             .catch(error => res.status(400).send(error));
@@ -53,8 +56,11 @@ module.exports = {
                         type_hr_req: req.body.type_hr_req|| eq_type.type_hr_req,
                         type_time_params: req.body.type_time_params || eq_type.type_time_params,
                         type_level: req.body.type_level || eq_type.type_level,
-                        apparatus_id: req.body.apparatus_id || eq_type.apparatus_id,
-                        type_quantitative_tasks: req.body.type_quantitative_tasks || eq_type.type_quantitative_tasks
+                        apparatus_type_id: req.body.apparatus_type_id || eq_type.apparatus_type_id,
+                        spare_part_type_id: req.body.spare_part_type_id || eq_type.spare_part_type_id,
+                        qualitative_tasks: req.body.qualitative_tasks || eq_type.qualitative_tasks,
+                        quantitative_tasks: req.body.quantitative_tasks || eq_type.quantitative_tasks,
+                        preventive_tasks: req.body.preventive_tasks || eq_type.preventive_tasks
                     })
                     .then(() => res.status(200).send(eq_type))
                     .catch((error) => res.status(400).send(error));

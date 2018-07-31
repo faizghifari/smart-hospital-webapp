@@ -72,7 +72,7 @@ module.exports = {
                 references: {
                     model: 'rooms',
                     key: 'id',
-                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
             pic_id: {
@@ -80,7 +80,7 @@ module.exports = {
                 references: {
                     model: 'users',
                     key: 'id',
-                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
             pic_mt_id: {
@@ -88,7 +88,7 @@ module.exports = {
                 references: {
                     model: 'users',
                     key: 'id',
-                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
             pic_usage_id: {
@@ -96,7 +96,7 @@ module.exports = {
                 references: {
                     model: 'users',
                     key: 'id',
-                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
             createdAt: {

@@ -51,6 +51,14 @@ module.exports = (sequelize, DataTypes) => {
         users.hasMany(models.medical_equipments_security, {
             foreignKey: 'pic_id'
         });
+
+        users.hasMany(models.maintenance_ppm, {
+            foreignKey: 'user_id'
+        });
+        
+        users.hasMany(models.maintenance_cm, {
+            foreignKey: 'user_id'
+        });
     };
     return users;
 };

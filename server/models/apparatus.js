@@ -6,8 +6,10 @@ module.exports = (sequelize, DataTypes) => {
         apparatus_qrcode: DataTypes.STRING,
         apparatus_calibration_due_on: DataTypes.DATEONLY
     }, {});
-    apparatus.associate = (/*models*/) => {
-    // associations can be defined here
+    apparatus.associate = (models) => {
+        apparatus.belongsTo(models.apparatus_type, {
+            foreignKey: 'apparatus_type_id'
+        });
     };
     return apparatus;
 };

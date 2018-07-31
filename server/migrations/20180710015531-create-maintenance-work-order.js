@@ -1,31 +1,25 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('apparatus', {
+        queryInterface.createTable('maintenance_work_orders', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            apparatus_name: {
-                type: Sequelize.STRING
+            wo_desc: {
+                type: Sequelize.TEXT
             },
-            apparatus_desc: {
-                type: Sequelize.STRING
+            wo_designation: {
+                type: Sequelize.TEXT
             },
-            apparatus_sn: {
-                type: Sequelize.STRING
+            wo_req_details: {
+                type: Sequelize.TEXT
             },
-            apparatus_qrcode: {
-                type: Sequelize.STRING
-            },
-            apparatus_calibration_due_on: {
-                type: Sequelize.DATEONLY
-            },
-            apparatus_type_id: {
+            ppm_id: {
                 type: Sequelize.INTEGER,
                 references: {
-                    model: 'apparatus_types',
+                    model: 'maintenance_ppms',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
@@ -40,6 +34,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        queryInterface.dropTable('apparatus');
+        return queryInterface.dropTable('maintenance_work_orders');
     }
 };

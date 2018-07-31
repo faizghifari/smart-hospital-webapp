@@ -1,31 +1,27 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('apparatus', {
+        queryInterface.createTable('maintenance_qty_tasks', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            apparatus_name: {
-                type: Sequelize.STRING
-            },
-            apparatus_desc: {
-                type: Sequelize.STRING
-            },
-            apparatus_sn: {
-                type: Sequelize.STRING
-            },
-            apparatus_qrcode: {
-                type: Sequelize.STRING
-            },
-            apparatus_calibration_due_on: {
-                type: Sequelize.DATEONLY
+            quantitave_tasks: {
+                type: Sequelize.ARRAY(Sequelize.JSON)
             },
             apparatus_type_id: {
                 type: Sequelize.INTEGER,
                 references: {
                     model: 'apparatus_types',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            equipments_type_id: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'medical_equipments_types',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
@@ -40,6 +36,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        queryInterface.dropTable('apparatus');
+        return queryInterface.dropTable('maintenance_qty_tasks');
     }
 };

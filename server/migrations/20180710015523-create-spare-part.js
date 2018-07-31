@@ -1,31 +1,31 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('apparatus', {
+        queryInterface.createTable('spare_parts', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            apparatus_name: {
+            part_name: {
                 type: Sequelize.STRING
             },
-            apparatus_desc: {
+            part_desc: {
                 type: Sequelize.STRING
             },
-            apparatus_sn: {
+            part_sn: {
                 type: Sequelize.STRING
             },
-            apparatus_qrcode: {
+            part_qrcode: {
                 type: Sequelize.STRING
             },
-            apparatus_calibration_due_on: {
-                type: Sequelize.DATEONLY
+            part_qty: {
+                type: Sequelize.INTEGER
             },
-            apparatus_type_id: {
+            part_type_id: {
                 type: Sequelize.INTEGER,
                 references: {
-                    model: 'apparatus_types',
+                    model: 'spare_part_types',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
@@ -40,6 +40,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        queryInterface.dropTable('apparatus');
+        return queryInterface.dropTable('spare_parts');
     }
 };

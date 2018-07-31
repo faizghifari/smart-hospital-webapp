@@ -55,6 +55,14 @@ module.exports = (sequelize, DataTypes) => {
         medical_equipments.hasOne(models.medical_equipments_security, {
             foreignKey: 'equipment_id',
         });
+
+        medical_equipments.hasMany(models.maintenance_ppm, {
+            foreignKey: 'equipment_id'
+        });
+
+        medical_equipments.hasMany(models.maintenance_cm, {
+            foreignKey: 'equipment_id'
+        });
     };
     return medical_equipments;
 };
