@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const randomize = require('randomatic');
 const nodemailer = require('nodemailer');
 
-
 module.exports = {
     verify(req, res) {
         var data = req.body;
@@ -64,7 +63,7 @@ module.exports = {
             from: 'Smart Healthcare <elife.shams@gmail.com>',
             to: 'arinanda.adib@gmail.com',
             subject: 'Verify it\'s you!',
-            text: 'Hey ' + result_username + '! Your verification code is ' + result_id
+            text: 'Hey ' + result_username + '!\n\nPlease verify that it’s you.\n\nUse the following code to confirm your identity:\n\n' + result_id + '\n\n' + 'Here are the details of the sign-in attempt:\n' + new Date() + '\nAccount: ' + result_email
         };
          
         transporter.sendMail(mailOptions, function(err, res) {
