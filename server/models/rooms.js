@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'level_id'
         });
 
+        rooms.belongsTo(models.hospitals, {
+            foreignKey: 'hospital_id'
+        });
+
         rooms.hasMany(models.beds, {
             foreignKey: 'room_id'
         });

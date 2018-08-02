@@ -19,6 +19,15 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
+    list_name(req,res) {
+        return manufacturers_model
+            .findAll({
+                attributes: ['id', 'manufacturers_name']
+            })
+            .then(manufacturers => res.status(200).send(manufacturers))
+            .catch(error => res.status(400).send(error));
+    },
+
     retrieve(req,res) {
         return manufacturers_model
             .findById(req.params.manufacturer_id)

@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'ppm_id'
         });
 
+        maintenance_work_order.belongsTo(models.report, {
+            foreignKey: 'report_id'
+        });
+        
         maintenance_work_order.hasOne(models.maintenance_cm, {
             foreignKey: 'work_order_id'
         });

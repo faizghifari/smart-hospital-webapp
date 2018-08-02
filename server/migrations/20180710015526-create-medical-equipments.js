@@ -99,6 +99,14 @@ module.exports = {
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
+            device_id: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'devices',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
