@@ -22,7 +22,7 @@ module.exports = {
     list_sn(req,res) {
         return device_model
             .findAll({
-                attributes: ['id', 'device_ns']
+                attributes: ['id', 'device_sn']
             })
             .then(devices => res.status(200).send(devices))
             .catch(error => res.status(400).send(error));

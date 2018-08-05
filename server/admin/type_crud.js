@@ -91,8 +91,7 @@ module.exports = {
                     spare_part_list.push(spare_part_type.retrieve(eq_type.spare_part_type_id[i]));
                 }
 
-                // add qty_tasks
-
+                data.quantitative_tasks = quantitative_tasks;
                 data.apparatus_list = apparatus_list;
                 data.spare_part_list = spare_part_list;
 
