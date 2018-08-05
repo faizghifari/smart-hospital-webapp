@@ -37,6 +37,18 @@ module.exports = {
             .catch(error => console.log(error));
     },
 
+    retrieve_qty_task(data) {
+        return maintenance_qty_task_model
+            .findOne({
+                where: {
+                    equipments_type_id: data.equipments_type_id,
+                    apparatus_type_id: data.apparatus_type_id
+                },
+                attributes: ['quantitave_tasks']
+            })
+            .catch(error => console.log(error));
+    },
+
     update(req,res) {
         return maintenance_qty_task_model
             .findById(req.params.qty_task_id)

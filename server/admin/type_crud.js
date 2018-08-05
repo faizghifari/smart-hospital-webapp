@@ -1,6 +1,7 @@
 const medical_equipments_type = require('../models').medical_equipments_type;
 const apparatus_type = require('./apparatus_type_crud');
 const spare_part_type = require('./spare_part_type_crud');
+const qty_task = require('./qty_task_crud');
 
 module.exports = {
     create(req,res) {
@@ -73,8 +74,16 @@ module.exports = {
                 };
 
                 let apparatus_list = [];
+                let quantitative_tasks = [];
+
                 for (let i in eq_type.apparatus_type_id) {
                     apparatus_list.push(apparatus_type.retrieve(eq_type.apparatus_type_id[i]));
+
+                    let params = {
+                        'equipments_type_id': eq_type.id,
+                        'apparatus_type_id': i
+                    };
+                    quantitative_tasks.push(qty_task.retrieve_qty_task(params));
                 }
 
                 let spare_part_list = [];
@@ -83,7 +92,7 @@ module.exports = {
                 }
 
                 // add qty_tasks
-                
+
                 data.apparatus_list = apparatus_list;
                 data.spare_part_list = spare_part_list;
 
