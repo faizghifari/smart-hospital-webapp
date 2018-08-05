@@ -16,6 +16,28 @@ module.exports = {
             wo_req_details: {
                 type: Sequelize.TEXT
             },
+            wo_status: {
+                type: Sequelize.BOOLEAN
+            },
+            wo_sn: {
+                type: Sequelize.STRING
+            },
+            user_id: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'users',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            equipment_id: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'medical_equipments',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
             ppm_id: {
                 type: Sequelize.INTEGER,
                 references: {

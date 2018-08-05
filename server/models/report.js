@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
         report_status: DataTypes.BOOLEAN
     }, {});
     report.associate = (models) => {
+        report.belongsTo(models.users, {
+            foreignKey: 'user_id'
+        });
+        
         report.hasOne(models.maintenance_work_order, {
             foreignKey: 'report_id'
         });

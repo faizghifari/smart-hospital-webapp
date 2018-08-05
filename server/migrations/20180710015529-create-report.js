@@ -19,6 +19,14 @@ module.exports = {
             report_status: {
                 type: Sequelize.BOOLEAN
             },
+            user_id: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'users',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

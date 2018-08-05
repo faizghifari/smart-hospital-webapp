@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         preventive_tasks: DataTypes.ARRAY(DataTypes.JSON),
         est_tasks: DataTypes.ARRAY(DataTypes.JSON),
         notes: DataTypes.TEXT,
+        cm_sn: DataTypes.STRING,
         cm_status: DataTypes.BOOLEAN,
         cm_result: DataTypes.BOOLEAN,
         cm_next_date: DataTypes.DATEONLY

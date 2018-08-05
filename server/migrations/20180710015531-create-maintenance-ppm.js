@@ -28,6 +28,9 @@ module.exports = {
             notes: {
                 type: Sequelize.TEXT
             },
+            ppm_sn: {
+                type: Sequelize.STRING
+            },
             ppm_status: {
                 type: Sequelize.BOOLEAN
             },

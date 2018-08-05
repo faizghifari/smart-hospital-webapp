@@ -28,6 +28,9 @@ module.exports = {
             notes: {
                 type: Sequelize.TEXT
             },
+            cm_sn: {
+                type: Sequelize.STRING
+            },
             cm_status: {
                 type: Sequelize.BOOLEAN
             },
