@@ -26,9 +26,15 @@ module.exports = {
     },
 
     retrieve(apparatus_type_id) {
-        return apparatus_type_id
-            .findById(apparatus_type_id)
-            .catch(error => console.log(error));
+        return new Promise((resolve) => {
+            apparatus_type_model
+                .findById(apparatus_type_id)
+                .then(apparatus_type => {
+                    console.log('masuk then');
+                    resolve(apparatus_type);
+                })
+                .catch(error => console.log(error));
+        });
     },
 
     update(req,res) {

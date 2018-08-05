@@ -26,9 +26,14 @@ module.exports = {
     },
 
     retrieve(spare_part_type_id) {
-        return spare_part_type_model
-            .findById(spare_part_type_id)
-            .catch(error => console.log(error));
+        return new Promise((resolve) => {
+            spare_part_type_model
+                .findById(spare_part_type_id)
+                .then(part_type => {
+                    resolve(part_type);
+                })
+                .catch(error => console.log(error));
+        });
     },
 
     update(req,res) {

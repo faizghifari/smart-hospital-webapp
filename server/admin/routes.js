@@ -12,9 +12,11 @@ const room = require('./room_crud');
 module.exports = (app) => {
     app.post('/api/admin/equipment_type', equipment_type.create);
     app.get('/api/admin/equipment_type', equipment_type.list);
-    app.get('/api/admin/equipment_type/:type_id', equipment_type.retrieve);
-    app.put('/api/admin/equipment_type/:type_id', equipment_type.update);
-    app.delete('/api/admin/equipment_type/:type_id', equipment_type.destroy);
+    app.get('/api/admin/equipment_type/names', equipment_type.list_name);
+    app.get('/api/admin/:type_id/equipment_type', equipment_type.retrieve);
+    app.get('/api/admin/:type_id/equipment_type/mt_plan', equipment_type.retrieve_mt_plan);
+    app.put('/api/admin/:type_id/equipment_type', equipment_type.update);
+    app.delete('/api/admin/:type_id/equipment_type', equipment_type.destroy);
 
     app.post('/api/admin/apparatus_type', apparatus_type.create);
     app.get('/api/admin/apparatus_type', apparatus_type.list);
@@ -24,9 +26,13 @@ module.exports = (app) => {
 
     app.post('/api/admin/apparatus', apparatus.create);
     app.get('/api/admin/apparatus', apparatus.list);
-    app.get('/api/admin/apparatus/:apparatus_id', apparatus.retrieve);
-    app.put('/api/admin/apparatus/:apparatus_id', apparatus.update);
-    app.delete('/api/admin/apparatus/:apparatus_id', apparatus.destroy);
+    app.get('/api/admin/:apparatus_id/apparatus', apparatus.retrieve);
+    app.put('/api/admin/:apparatus_id/apparatus', apparatus.update);
+    app.delete('/api/admin/:apparatus_id/apparatus', apparatus.destroy);
+    app.get('/api/admin/apparatus/sn/:apparatus_sn', apparatus.retrieve_sn);
+    app.put('/api/admin/apparatus/sn/:apparatus_sn', apparatus.update_sn);
+    app.get('/api/admin/apparatus/sn/:apparatus_qrcode', apparatus.retrieve_qrcode);
+    app.put('/api/admin/apparatus/sn/:apparatus_qrcode', apparatus.update_qrcode);
 
     app.post('/api/admin/spare_part_type', spare_part_type.create);
     app.get('/api/admin/spare_part_type', spare_part_type.list);
@@ -46,6 +52,7 @@ module.exports = (app) => {
 
     app.post('/api/admin/manufacturer', manufacturer.create);
     app.get('/api/admin/manufacturer', manufacturer.list);
+    app.get('/api/admin/manufacturer/names', manufacturer.list_name);
     app.get('/api/admin/manufacturer/:manufacturer_id', manufacturer.retrieve);
     app.put('/api/admin/manufacturer/:manufacturer_id', manufacturer.update);
     app.delete('/api/admin/manufacturer/:manufacturer_id', manufacturer.destroy);

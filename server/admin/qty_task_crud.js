@@ -38,15 +38,20 @@ module.exports = {
     },
 
     retrieve_qty_task(data) {
-        return maintenance_qty_task_model
-            .findOne({
-                where: {
-                    equipments_type_id: data.equipments_type_id,
-                    apparatus_type_id: data.apparatus_type_id
-                },
-                attributes: ['quantitave_tasks']
-            })
-            .catch(error => console.log(error));
+        return new Promise((resolve) => {
+            maintenance_qty_task_model
+                .findOne({
+                    where: {
+                        equipments_type_id: data.equipments_type_id,
+                        apparatus_type_id: data.apparatus_type_id
+                    },
+                    attributes: ['quantitave_tasks']
+                })
+                .then(qty_task => {
+                    resolve(qty_task);
+                })
+                .catch(error => console.log(error));
+        });
     },
 
     update(req,res) {

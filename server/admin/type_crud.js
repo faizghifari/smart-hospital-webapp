@@ -54,10 +54,46 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
-    retrieve_mt_plan(req,res) { // dipindah ke registration
+    async retrieve_apparatus_type(type_list) {
+        let apparatus_list = [];
+
+        for (let i in type_list) {
+            let apparatus = await apparatus_type.retrieve(type_list[i]);
+            apparatus_list.push(apparatus);
+        }
+
+        return apparatus_list;
+    },
+
+    async retrieve_qty_tasks(equipment_type_id, type_list) {
+        let quantitative_tasks = [];
+        for (let i in type_list) {
+            let params = {
+                'equipments_type_id': equipment_type_id,
+                'apparatus_type_id': type_list[i]
+            };
+
+            let quantitative_task = await qty_task.retrieve_qty_task(params);
+            quantitative_tasks.push(quantitative_task);
+        }
+
+        return quantitative_tasks;
+    },
+
+    async retrieve_part_type(part_type_list) {
+        let spare_part_list = [];
+        for (let i in part_type_list) {
+            let part_type = await spare_part_type.retrieve(part_type_list[i]);
+            spare_part_list.push(part_type);
+        }
+
+        return spare_part_list;
+    },
+
+    retrieve_mt_plan(req,res) { // need to move?
         return medical_equipments_type
             .findById(req.params.type_id)
-            .then(eq_type => {
+            .then(async eq_type => {
                 if (!eq_type) {
                     return res.status(404).send({
                         msg: 'Medical Equipment Type Not Found',
@@ -73,23 +109,9 @@ module.exports = {
                     'preventive_tasks': eq_type.preventive_tasks
                 };
 
-                let apparatus_list = [];
-                let quantitative_tasks = [];
-
-                for (let i in eq_type.apparatus_type_id) {
-                    apparatus_list.push(apparatus_type.retrieve(eq_type.apparatus_type_id[i]));
-
-                    let params = {
-                        'equipments_type_id': eq_type.id,
-                        'apparatus_type_id': i
-                    };
-                    quantitative_tasks.push(qty_task.retrieve_qty_task(params));
-                }
-
-                let spare_part_list = [];
-                for (let i in eq_type.spare_part_type_id) {
-                    spare_part_list.push(spare_part_type.retrieve(eq_type.spare_part_type_id[i]));
-                }
+                let apparatus_list = await module.exports.retrieve_apparatus_type(eq_type.apparatus_type_id);
+                let quantitative_tasks = await module.exports.retrieve_qty_tasks(eq_type.id, eq_type.apparatus_type_id);
+                let spare_part_list = await module.exports.retrieve_part_type(eq_type.spare_part_type_id);
 
                 data.quantitative_tasks = quantitative_tasks;
                 data.apparatus_list = apparatus_list;
