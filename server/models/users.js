@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'hospital_id'
         });
 
+        users.hasMany(models.report, {
+            foreignKey: 'user_id'
+        });
+
         users.hasMany(models.buildings, {
             foreignKey: 'pic_id'
         });
@@ -50,6 +54,14 @@ module.exports = (sequelize, DataTypes) => {
 
         users.hasMany(models.medical_equipments_security, {
             foreignKey: 'pic_id'
+        });
+
+        users.hasMany(models.maintenance_ppm, {
+            foreignKey: 'user_id'
+        });
+        
+        users.hasMany(models.maintenance_cm, {
+            foreignKey: 'user_id'
         });
     };
     return users;

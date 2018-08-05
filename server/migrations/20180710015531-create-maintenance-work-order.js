@@ -1,45 +1,58 @@
-'use strict';
 module.exports = {
-    up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('medical_equipments_type_procs', {
+    up: (queryInterface, Sequelize) =>
+        queryInterface.createTable('maintenance_work_orders', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            equipments_type_basic_id: {
-                type: Sequelize.INTEGER,
-                references: {
-                    model: 'medical_equipments_type_basics',
-                    key: 'id',
-                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-                }
+            wo_desc: {
+                type: Sequelize.TEXT
             },
-            equipments_type_medium_id: {
-                type: Sequelize.INTEGER,
-                references: {
-                    model: 'medical_equipments_type_media',
-                    key: 'id',
-                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-                }
+            wo_designation: {
+                type: Sequelize.TEXT
             },
-            equipments_type_high_id: {
-                type: Sequelize.INTEGER,
-                references: {
-                    model: 'medical_equipments_type_highs',
-                    key: 'id',
-                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-                }
+            wo_req_details: {
+                type: Sequelize.TEXT
             },
-            proc_sequence_num: {
-                type: Sequelize.INTEGER
+            wo_status: {
+                type: Sequelize.BOOLEAN
             },
-            proc_type: {
+            wo_sn: {
                 type: Sequelize.STRING
             },
-            proc_action: {
-                type: Sequelize.STRING
+            user_id: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'users',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            equipment_id: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'medical_equipments',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            ppm_id: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'maintenance_ppms',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            report_id: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'reports',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
             },
             createdAt: {
                 allowNull: false,
@@ -49,9 +62,8 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             }
-        });
-    },
+        }),
     down: (queryInterface) => {
-        return queryInterface.dropTable('medical_equipments_type_procs');
+        return queryInterface.dropTable('maintenance_work_orders');
     }
 };

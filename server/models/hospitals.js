@@ -20,6 +20,14 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'hospital_id'
         });
 
+        hospitals.hasMany(models.levels, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.rooms, {
+            foreignKey: 'hospital_id'
+        });
+
         hospitals.hasMany(models.users, {
             foreignKey: 'hospital_id'
         });
