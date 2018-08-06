@@ -1,26 +1,34 @@
-'use strict';
 module.exports = {
-    up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('medical_equipments_type_basics', {
+    up: (queryInterface, Sequelize) =>
+        queryInterface.createTable('spare_parts', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            equipments_type_id: {
+            part_name: {
+                type: Sequelize.STRING
+            },
+            part_desc: {
+                type: Sequelize.STRING
+            },
+            part_sn: {
+                type: Sequelize.STRING
+            },
+            part_qrcode: {
+                type: Sequelize.STRING
+            },
+            part_qty: {
+                type: Sequelize.INTEGER
+            },
+            part_type_id: {
                 type: Sequelize.INTEGER,
                 references: {
-                    model: 'medical_equipments_types',
+                    model: 'spare_part_types',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
-            },
-            type_time_params: {
-                type: Sequelize.INTEGER
-            },
-            type_hr_req: {
-                type: Sequelize.STRING
             },
             createdAt: {
                 allowNull: false,
@@ -30,9 +38,8 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             }
-        });
-    },
+        }),
     down: (queryInterface) => {
-        return queryInterface.dropTable('medical_equipments_type_basics');
+        return queryInterface.dropTable('spare_parts');
     }
 };

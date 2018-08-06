@@ -1,29 +1,46 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('levels', {
+        queryInterface.createTable('maintenance_cms', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            level_name: {
-                type: Sequelize.STRING,
-                allowNull: false
+            apparatus_id: {
+                type: Sequelize.ARRAY(Sequelize.INTEGER)
             },
-            count_rooms: {
-                type: Sequelize.INTEGER
+            spare_part_id: {
+                type: Sequelize.ARRAY(Sequelize.INTEGER)
             },
-            current_safety: {
-                type: Sequelize.INTEGER
+            qualitative_tasks: {
+                type: Sequelize.ARRAY(Sequelize.JSON)
             },
-            current_security: {
-                type: Sequelize.INTEGER
+            quantitative_tasks: {
+                type: Sequelize.ARRAY(Sequelize.JSON)
             },
-            current_productivity: {
-                type: Sequelize.INTEGER
+            preventive_tasks: {
+                type: Sequelize.ARRAY(Sequelize.JSON)
             },
-            pic_id: {
+            est_tasks: {
+                type: Sequelize.ARRAY(Sequelize.JSON)
+            },
+            notes: {
+                type: Sequelize.TEXT
+            },
+            cm_sn: {
+                type: Sequelize.STRING
+            },
+            cm_status: {
+                type: Sequelize.BOOLEAN
+            },
+            cm_result: {
+                type: Sequelize.BOOLEAN
+            },
+            cm_next_date: {
+                type: Sequelize.DATEONLY
+            },
+            user_id: {
                 type: Sequelize.INTEGER,
                 references: {
                     model: 'users',
@@ -31,18 +48,18 @@ module.exports = {
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
-            building_id: {
+            equipment_id: {
                 type: Sequelize.INTEGER,
                 references: {
-                    model: 'buildings',
+                    model: 'medical_equipments',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
-            hospital_id: {
+            work_order_id: {
                 type: Sequelize.INTEGER,
                 references: {
-                    model: 'hospitals',
+                    model: 'maintenance_work_orders',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
@@ -57,6 +74,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        queryInterface.dropTable('levels');
+        return queryInterface.dropTable('maintenance_cms');
     }
 };

@@ -1,6 +1,6 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('medical_equipments_types', {
+        queryInterface.createTable('apparatus_types', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
@@ -23,6 +23,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        queryInterface.dropTable('medical_equipments_types');
+        return queryInterface.dropTable('apparatus_types');
     }
 };
