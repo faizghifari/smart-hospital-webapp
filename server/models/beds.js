@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
         current_productivity: DataTypes.INTEGER
     }, {});
     beds.associate = (models) => {
+        beds.belongsTo(models.hospitals, {
+            foreignKey: 'hospital_id'
+        });
+
         beds.belongsTo(models.rooms, {
             foreignKey: 'room_id'
         });

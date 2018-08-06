@@ -34,6 +34,7 @@ module.exports = {
             },
             pic_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'users',
                     key: 'id',
@@ -42,6 +43,8 @@ module.exports = {
             },
             level_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'levels',
                     key: 'id',
@@ -50,6 +53,8 @@ module.exports = {
             },
             hospital_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'hospitals',
                     key: 'id',

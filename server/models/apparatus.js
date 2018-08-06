@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
         apparatus_calibration_due_on: DataTypes.DATEONLY
     }, {});
     apparatus.associate = (models) => {
+        apparatus.belongsTo(models.hospitals, {
+            foreignKey: 'hospital_id'
+        });
+
         apparatus.belongsTo(models.apparatus_type, {
             foreignKey: 'apparatus_type_id'
         });

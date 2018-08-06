@@ -8,7 +8,9 @@ module.exports = {
                 apparatus_desc: req.body.apparatus_desc,
                 apparatus_sn: req.body.apparatus_sn,
                 apparatus_qrcode: req.body.apparatus_qrcode,
-                apparatus_calibration_due_on: req.body.apparatus_calibration_due_on
+                apparatus_calibration_due_on: req.body.apparatus_calibration_due_on,
+                apparatus_type_id: req.body.apparatus_type_id,
+                hospital_id: req.params.hospital_id
             })
             .then(apparatus => res.status(201).send(apparatus))
             .catch(error => res.status(400).send(error));
@@ -17,6 +19,17 @@ module.exports = {
     list(req,res) {
         return apparatus_model
             .findAll()
+            .then(apparatus => res.staus(200).send(apparatus))
+            .catch(error => res.status(400).send(error));
+    },
+
+    list_hospital(req,res) {
+        return apparatus_model
+            .findAll({
+                where: {
+                    hospital_id: req.params.hospital_id
+                }
+            })
             .then(apparatus => res.staus(200).send(apparatus))
             .catch(error => res.status(400).send(error));
     },
@@ -32,6 +45,7 @@ module.exports = {
         return apparatus_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     apparatus_sn: req.params.apparatus_sn
                 }
             })
@@ -43,6 +57,7 @@ module.exports = {
         return apparatus_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     apparatus_qrcode: req.params.apparatus_qrcode
                 }
             })
@@ -65,7 +80,9 @@ module.exports = {
                         apparatus_desc: req.body.apparatus_desc || apparatus.apparatus_desc,
                         apparatus_sn: req.body.apparatus_sn || apparatus.apparatus_sn,
                         apparatus_qrcode: req.body.apparatus_qrcode || apparatus.apparatus_qrcode,
-                        apparatus_calibration_due_on: req.body.apparatus_calibration_due_on || apparatus.apparatus_calibration_due_on
+                        apparatus_calibration_due_on: req.body.apparatus_calibration_due_on || apparatus.apparatus_calibration_due_on,
+                        apparatus_type_id: req.body.apparatus_type_id || apparatus.apparatus_type_id,
+                        hospital_id: req.params.hospital_id || apparatus.hospital_id
                     })
                     .then(() => res.status(200).send(apparatus))
                     .catch((error) => res.status(400).send(error));
@@ -77,6 +94,7 @@ module.exports = {
         return apparatus_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     apparatus_sn: req.params.apparatus_sn
                 }
             })
@@ -92,7 +110,9 @@ module.exports = {
                         apparatus_desc: req.body.apparatus_desc || apparatus.apparatus_desc,
                         apparatus_sn: req.body.apparatus_sn || apparatus.apparatus_sn,
                         apparatus_qrcode: req.body.apparatus_qrcode || apparatus.apparatus_qrcode,
-                        apparatus_calibration_due_on: req.body.apparatus_calibration_due_on || apparatus.apparatus_calibration_due_on
+                        apparatus_calibration_due_on: req.body.apparatus_calibration_due_on || apparatus.apparatus_calibration_due_on,
+                        apparatus_type_id: req.body.apparatus_type_id || apparatus.apparatus_type_id,
+                        hospital_id: req.params.hospital_id || apparatus.hospital_id
                     })
                     .then(() => res.status(200).send(apparatus))
                     .catch((error) => res.status(400).send(error));
@@ -104,6 +124,7 @@ module.exports = {
         return apparatus_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     apparatus_qrcode: req.params.apparatus_qrcode
                 }
             })
@@ -119,7 +140,9 @@ module.exports = {
                         apparatus_desc: req.body.apparatus_desc || apparatus.apparatus_desc,
                         apparatus_sn: req.body.apparatus_sn || apparatus.apparatus_sn,
                         apparatus_qrcode: req.body.apparatus_qrcode || apparatus.apparatus_qrcode,
-                        apparatus_calibration_due_on: req.body.apparatus_calibration_due_on || apparatus.apparatus_calibration_due_on
+                        apparatus_calibration_due_on: req.body.apparatus_calibration_due_on || apparatus.apparatus_calibration_due_on,
+                        apparatus_type_id: req.body.apparatus_type_id || apparatus.apparatus_type_id,
+                        hospital_id: req.params.hospital_id || apparatus.hospital_id
                     })
                     .then(() => res.status(200).send(apparatus))
                     .catch((error) => res.status(400).send(error));

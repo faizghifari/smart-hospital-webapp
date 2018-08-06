@@ -9,6 +9,8 @@ module.exports = {
             },
             equipment_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'medical_equipments',
                     key: 'id',

@@ -4,7 +4,7 @@ module.exports = {
     create(req,res) {
         return maintenance_qty_task_model
             .create({
-                quantitave_tasks: req.body.quantitave_tasks,
+                quantitative_tasks: req.body.quantitative_tasks,
                 apparatus_type_id: req.body.apparatus_type_id,
                 equipments_type_id: req.body.equipments_type_id
             })
@@ -45,7 +45,7 @@ module.exports = {
                         equipments_type_id: data.equipments_type_id,
                         apparatus_type_id: data.apparatus_type_id
                     },
-                    attributes: ['quantitave_tasks']
+                    attributes: ['quantitative_tasks']
                 })
                 .then(qty_task => {
                     resolve(qty_task);
@@ -60,7 +60,7 @@ module.exports = {
             .then(qty_task => {
                 return qty_task
                     .update({
-                        quantitave_tasks: req.body.quantitave_tasks || qty_task.quantitave_tasks,
+                        quantitative_tasks: req.body.quantitative_tasks || qty_task.quantitative_tasks,
                         apparatus_type_id: req.body.apparatus_type_id || qty_task.apparatus_type_id,
                         equipments_type_id: req.body.equipments_type_id || qty_task.equipments_type_id
                     })
@@ -81,7 +81,7 @@ module.exports = {
             .then(qty_task => {
                 return qty_task
                     .update({
-                        quantitave_tasks: data.quantitave_tasks || qty_task.quantitave_tasks,
+                        quantitative_tasks: data.quantitative_tasks || qty_task.quantitative_tasks,
                         apparatus_type_id: data.apparatus_type_id || qty_task.apparatus_type_id,
                         equipments_type_id: data.equipments_type_id || qty_task.equipments_type_id
                     })

@@ -9,6 +9,8 @@ module.exports = {
             },
             hospital_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'hospitals',
                     key: 'id',

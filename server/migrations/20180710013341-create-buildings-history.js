@@ -9,6 +9,8 @@ module.exports = {
             },
             building_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'buildings',
                     key: 'id',

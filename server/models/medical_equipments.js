@@ -4,18 +4,29 @@ module.exports = (sequelize, DataTypes) => {
         equipments_desc: DataTypes.STRING,
         equipments_sn: DataTypes.STRING,
         equipments_qrcode: DataTypes.STRING,
-        equipments_status: DataTypes.BOOLEAN,
         equipments_lifetime: DataTypes.INTEGER,
         equipments_value: DataTypes.INTEGER,
         purchase_date: DataTypes.DATE,
+        is_used: DataTypes.BOOLEAN,
         is_active: DataTypes.BOOLEAN,
         is_on: DataTypes.BOOLEAN,
-        maintenance_options: DataTypes.INTEGER,
         current_safety: DataTypes.INTEGER,
         current_security: DataTypes.INTEGER,
         current_productivity: DataTypes.INTEGER
     }, {});
     medical_equipments.associate = (models) => {
+        medical_equipments.belongsTo(models.hospitals, {
+            foreignKey: 'hospital_id'
+        });
+
+        medical_equipments.belongsTo(models.department, {
+            foreignKey: 'dep_id'
+        });
+
+        medical_equipments.belongsTo(models.division, {
+            foreignKey: 'div_id'
+        });
+
         medical_equipments.belongsTo(models.manufacturers, {
             foreignKey: 'manufacturers_id',
         });
@@ -42,6 +53,10 @@ module.exports = (sequelize, DataTypes) => {
 
         medical_equipments.belongsTo(models.device, {
             foreignKey: 'device_id'
+        });
+
+        medical_equipments.hasMany(models.report, {
+            foreignKey: 'equipment_id'
         });
 
         medical_equipments.hasMany(models.medical_equipments_history, {

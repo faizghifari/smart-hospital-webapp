@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
         part_qty: DataTypes.INTEGER
     }, {});
     spare_part.associate = (models) => {
+        spare_part.belongsTo(models.hospitals, {
+            foreignKey: 'hospital_id'
+        });
+
         spare_part.belongsTo(models.spare_part_type, {
             foreignKey: 'part_type_id'
         });

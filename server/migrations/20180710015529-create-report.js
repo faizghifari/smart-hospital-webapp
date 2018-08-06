@@ -16,11 +16,32 @@ module.exports = {
             report_details: {
                 type: Sequelize.TEXT
             },
-            report_status: {
+            is_open: {
                 type: Sequelize.BOOLEAN
+            },
+            equipment_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
+                references: {
+                    model: 'medical_equipments',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            hospital_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
+                references: {
+                    model: 'hospitals',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
             },
             user_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'users',
                     key: 'id',

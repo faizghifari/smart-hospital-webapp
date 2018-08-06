@@ -7,11 +7,13 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            quantitave_tasks: {
+            quantitative_tasks: {
                 type: Sequelize.ARRAY(Sequelize.JSON)
             },
             apparatus_type_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'apparatus_types',
                     key: 'id',
@@ -20,6 +22,8 @@ module.exports = {
             },
             equipments_type_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'medical_equipments_types',
                     key: 'id',

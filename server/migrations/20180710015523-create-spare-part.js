@@ -24,8 +24,19 @@ module.exports = {
             },
             part_type_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'spare_part_types',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            hospital_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
+                references: {
+                    model: 'hospitals',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }

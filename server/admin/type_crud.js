@@ -54,6 +54,21 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
+    retrieve_type(type_name, type_level) {
+        return new Promise((resolve) => {
+            medical_equipments_type
+                .findOne({
+                    where: {
+                        type_name: type_name,
+                        type_level: type_level
+                    }
+                })
+                .then(eq_type => {
+                    resolve(eq_type);
+                });
+        });
+    },
+
     async retrieve_apparatus_type(type_list) {
         let apparatus_list = [];
 

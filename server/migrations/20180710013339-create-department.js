@@ -1,31 +1,27 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('states_histories', {
+        queryInterface.createTable('departments', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            state_id: {
+            dep_name: {
+                type: Sequelize.STRING
+            },
+            dep_desc: {
+                type: Sequelize.STRING
+            },
+            hospital_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
-                    model: 'states',
+                    model: 'hospitals',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
-            },
-            date_time: {
-                type: Sequelize.DATE
-            },
-            record_safety: {
-                type: Sequelize.INTEGER
-            },
-            record_security: {
-                type: Sequelize.INTEGER
-            },
-            record_productivity: {
-                type: Sequelize.INTEGER
             },
             createdAt: {
                 allowNull: false,
@@ -37,6 +33,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        queryInterface.dropTable('states_histories');
+        return queryInterface.dropTable('departments');
     }
 };

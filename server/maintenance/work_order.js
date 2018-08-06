@@ -7,8 +7,9 @@ module.exports = {
                 wo_desc: req.body.wo_desc,
                 wo_designation: req.body.wo_designation,
                 wo_req_details: req.body.wo_req_details,
-                wo_status: req.body.wo_status,
                 wo_sn: req.body.wo_sn,
+                is_open: req.body.is_open,
+                hospital_id: req.body.hospital_id,
                 user_id: req.body.user_id,
                 equipment_id: req.body.equipment_id,
                 ppm_id: req.body.ppm_id,
@@ -27,9 +28,9 @@ module.exports = {
 
     list_open(req,res) {
         return maintenance_work_order_model
-            .findAll({
+            .findOne({
                 where: {
-                    wo_status: true
+                    is_open: true
                 }
             })
             .then(work_orders => res.status(200).send(work_orders))
@@ -38,9 +39,44 @@ module.exports = {
 
     list_closed(req,res) {
         return maintenance_work_order_model
+            .findOne({
+                where: {
+                    is_open: false
+                }
+            })
+            .then(work_orders => res.status(200).send(work_orders))
+            .catch(error => res.status(400).send(error));
+    },
+
+    list_hospital(req,res) {
+        return maintenance_work_order_model
             .findAll({
                 where: {
-                    wo_status: false
+                    hospital_id: req.params.hospital_id
+                }
+            })
+            .then(work_orders => res.status(200).send(work_orders))
+            .catch(error => res.status(400).send(error));
+    },
+
+    list_hospital_open(req,res) {
+        return maintenance_work_order_model
+            .findOne({
+                where: {
+                    hospital_id: req.params.hospital_id,
+                    is_open: true
+                }
+            })
+            .then(work_orders => res.status(200).send(work_orders))
+            .catch(error => res.status(400).send(error));
+    },
+
+    list_hospital_closed(req,res) {
+        return maintenance_work_order_model
+            .findOne({
+                where: {
+                    hospital_id: req.params.hospital_id,
+                    is_open: false
                 }
             })
             .then(work_orders => res.status(200).send(work_orders))
@@ -58,6 +94,7 @@ module.exports = {
         return maintenance_work_order_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     wo_sn: req.params.wo_sn
                 }
             })
@@ -74,8 +111,9 @@ module.exports = {
                         wo_desc: req.body.wo_desc || work_order.wo_desc,
                         wo_designation: req.body.wo_designation || work_order.wo_designation,
                         wo_req_details: req.body.wo_req_details || work_order.wo_req_details,
-                        wo_status: req.body.wo_status || work_order.wo_status,
                         wo_sn: req.body.wo_sn || work_order.wo_sn,
+                        is_open: req.body.is_open || work_order.is_open,
+                        hospital_id: req.body.hospital_id || work_order.hospital_id,
                         user_id: req.body.user_id || work_order.user_id,
                         equipment_id: req.body.equipment_id || work_order.equipment_id,
                         ppm_id: req.body.ppm_id || work_order.ppm_id,
@@ -91,6 +129,7 @@ module.exports = {
         return maintenance_work_order_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     wo_sn: req.params.wo_sn
                 }
             })
@@ -100,8 +139,9 @@ module.exports = {
                         wo_desc: req.body.wo_desc || work_order.wo_desc,
                         wo_designation: req.body.wo_designation || work_order.wo_designation,
                         wo_req_details: req.body.wo_req_details || work_order.wo_req_details,
-                        wo_status: req.body.wo_status || work_order.wo_status,
                         wo_sn: req.body.wo_sn || work_order.wo_sn,
+                        is_open: req.body.is_open || work_order.is_open,
+                        hospital_id: req.body.hospital_id || work_order.hospital_id,
                         user_id: req.body.user_id || work_order.user_id,
                         equipment_id: req.body.equipment_id || work_order.equipment_id,
                         ppm_id: req.body.ppm_id || work_order.ppm_id,
@@ -129,6 +169,7 @@ module.exports = {
         return maintenance_work_order_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     wo_sn: req.params.wo_sn
                 }
             })

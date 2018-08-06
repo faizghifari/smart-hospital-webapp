@@ -20,9 +20,6 @@ module.exports = {
             equipments_qrcode: {
                 type: Sequelize.STRING
             },
-            equipments_status: {
-                type: Sequelize.BOOLEAN
-            },
             equipments_lifetime: {
                 type: Sequelize.INTEGER
             },
@@ -33,14 +30,14 @@ module.exports = {
                 type: Sequelize.DATE,
                 defaultValue: Sequelize.NOW
             },
+            is_used: {
+                type: Sequelize.BOOLEAN
+            },
             is_active: {
                 type: Sequelize.BOOLEAN
             },
             is_on: {
                 type: Sequelize.BOOLEAN
-            },
-            maintenance_options: {
-                type: Sequelize.INTEGER
             },
             current_safety: {
                 type: Sequelize.INTEGER
@@ -53,6 +50,7 @@ module.exports = {
             },
             equipments_type_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'medical_equipments_types',
                     key: 'id',
@@ -61,6 +59,7 @@ module.exports = {
             },
             manufacturers_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'manufacturers',
                     key: 'id',
@@ -69,6 +68,7 @@ module.exports = {
             },
             room_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'rooms',
                     key: 'id',
@@ -77,6 +77,7 @@ module.exports = {
             },
             pic_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'users',
                     key: 'id',
@@ -85,6 +86,7 @@ module.exports = {
             },
             pic_mt_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'users',
                     key: 'id',
@@ -93,6 +95,7 @@ module.exports = {
             },
             pic_usage_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'users',
                     key: 'id',
@@ -101,8 +104,37 @@ module.exports = {
             },
             device_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'devices',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            hospital_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
+                references: {
+                    model: 'hospitals',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            dep_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
+                references: {
+                    model: 'departments',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            div_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
+                references: {
+                    model: 'divisions',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
