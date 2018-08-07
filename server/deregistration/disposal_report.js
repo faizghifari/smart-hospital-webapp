@@ -40,7 +40,7 @@ module.exports = {
                     disposal_tasks: req.body.disposal_tasks,
                     is_open: req.body.is_open,
                     hospital_id: req.params.hospital_id,
-                    equipment_id: req.params.equipment_id,
+                    equipment_id: req.body.equipment_id,
                     user_id: req.body.user_id,
                     request_id: req.body.request_id
                 })
@@ -156,7 +156,7 @@ module.exports = {
                             disposal_tasks: req.body.disposal_tasks || disposal_report.disposal_tasks,
                             is_open: req.body.is_open || disposal_report.is_open,
                             hospital_id: req.params.hospital_id || disposal_report.hospital_id,
-                            equipment_id: req.params.equipment_id || disposal_report.equipment_id,
+                            equipment_id: req.body.equipment_id || disposal_report.equipment_id,
                             user_id: req.body.user_id || disposal_report.user_id,
                             request_id: req.body.request_id || disposal_report.request_id
                         })
@@ -196,7 +196,7 @@ module.exports = {
                             disposal_tasks: req.body.disposal_tasks || disposal_report.disposal_tasks,
                             is_open: req.body.is_open || disposal_report.is_open,
                             hospital_id: req.params.hospital_id || disposal_report.hospital_id,
-                            equipment_id: req.params.equipment_id || disposal_report.equipment_id,
+                            equipment_id: req.body.equipment_id || disposal_report.equipment_id,
                             user_id: req.body.user_id || disposal_report.user_id,
                             request_id: req.body.request_id || disposal_report.request_id
                         })
