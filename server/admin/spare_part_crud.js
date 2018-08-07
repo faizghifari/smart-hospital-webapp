@@ -8,7 +8,9 @@ module.exports = {
                 part_desc: req.body.part_desc,
                 part_sn: req.body.part_sn,
                 part_qrcode: req.body.part_qrcode,
-                part_qty: req.body.part_qty
+                part_qty: req.body.part_qty,
+                part_type_id: req.body.part_type_id,
+                hospital_id: req.params.hospital_id
             })
             .then(spare_part => res.status(201).send(spare_part))
             .catch(error => res.status(400).send(error));
@@ -17,6 +19,17 @@ module.exports = {
     list(req,res) {
         return spare_part_model
             .findAll()
+            .then(spare_parts => res.status(200).send(spare_parts))
+            .catch(error => res.status(400).send(error));
+    },
+
+    list_hospital(req,res) {
+        return spare_part_model
+            .findAll({
+                where: {
+                    hospital_id: req.params.hospital_id
+                }
+            })
             .then(spare_parts => res.status(200).send(spare_parts))
             .catch(error => res.status(400).send(error));
     },
@@ -32,6 +45,7 @@ module.exports = {
         return spare_part_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     part_sn: req.params.part_sn
                 }
             })
@@ -43,6 +57,7 @@ module.exports = {
         return spare_part_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     part_qrcode: req.params.part_qrcode
                 }
             })
@@ -65,7 +80,9 @@ module.exports = {
                         part_desc: req.body.part_desc || spare_part.part_desc,
                         part_sn: req.body.part_sn || spare_part.part_sn,
                         part_qrcode: req.body.part_qrcode || spare_part.part_qrcode,
-                        part_qty: req.body.part_qty || spare_part.part_qty
+                        part_qty: req.body.part_qty || spare_part.part_qty,
+                        part_type_id: req.body.part_type_id || spare_part.part_type_id,
+                        hospital_id: req.params.hospital_id || spare_part.hospital_id
                     })
                     .then (() => res.status(200).send(spare_part))
                     .catch((error) => res.status(400).send(error));
@@ -77,6 +94,7 @@ module.exports = {
         return spare_part_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     part_sn: req.params.part_sn
                 }
             })
@@ -92,7 +110,9 @@ module.exports = {
                         part_desc: req.body.part_desc || spare_part.part_desc,
                         part_sn: req.body.part_sn || spare_part.part_sn,
                         part_qrcode: req.body.part_qrcode || spare_part.part_qrcode,
-                        part_qty: req.body.part_qty || spare_part.part_qty
+                        part_qty: req.body.part_qty || spare_part.part_qty,
+                        part_type_id: req.body.part_type_id || spare_part.part_type_id,
+                        hospital_id: req.params.hospital_id || spare_part.hospital_id
                     })
                     .then (() => res.status(200).send(spare_part))
                     .catch((error) => res.status(400).send(error));
@@ -104,6 +124,7 @@ module.exports = {
         return spare_part_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     part_qrcode: req.params.part_qrcode
                 }
             })
@@ -119,7 +140,9 @@ module.exports = {
                         part_desc: req.body.part_desc || spare_part.part_desc,
                         part_sn: req.body.part_sn || spare_part.part_sn,
                         part_qrcode: req.body.part_qrcode || spare_part.part_qrcode,
-                        part_qty: req.body.part_qty || spare_part.part_qty
+                        part_qty: req.body.part_qty || spare_part.part_qty,
+                        part_type_id: req.body.part_type_id || spare_part.part_type_id,
+                        hospital_id: req.params.hospital_id || spare_part.hospital_id
                     })
                     .then (() => res.status(200).send(spare_part))
                     .catch((error) => res.status(400).send(error));

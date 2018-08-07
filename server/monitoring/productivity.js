@@ -17,8 +17,8 @@ module.exports = {
         });
     },
 
-    send_productivity(equipment_id, productivity_level) {
-        productivity_io.emit('productivity/' + equipment_id, productivity_level);
+    send_productivity(data) {
+        productivity_io.emit('/' + data.hospital_id + '/productivity/' + data.equipment_id, data.productivity_level);
     },
 
     receive_usage(req,res) {
@@ -31,11 +31,12 @@ module.exports = {
             .then(equipment_productivity => {
                 let usage = equipment_productivity.count_usage + 1;
                 let data = {
+                    'hospital_id': req.params.hospital_id,
                     'equipment_id': req.params.equipment_id,
                     'count_usage': usage
                 };
 
-                this.update(data.equipment_id, data);
+                module.exports.update(data.equipment_id, data);
 
                 let data_stringified = JSON.stringify(data);
                 return res.status(200).send(data_stringified);
@@ -46,10 +47,10 @@ module.exports = {
     calculate_productivity(data) {
         let productivity_level = -1;
 
-        if (data.count_usage > data.standard_usage) {
+        if (data.count_usage > 0.8*data.standard_usage) {
             productivity_level = 3;
         } else
-        if (data.count_usage > 0) {
+        if (data.count_usage > 0.5*data.standard_usage) {
             productivity_level = 2;
         } else {
             productivity_level = 1;
@@ -82,11 +83,16 @@ module.exports = {
                         standard_usage: data.standard_usage
                     })
                     .then(equipment_productivity_new => {
-                        let productivity_level = this.calculate_productivity(equipment_productivity_new);
+                        let productivity_level = module.exports.calculate_productivity(equipment_productivity_new);
+                        let result = {
+                            'hospital_id': data.hospital_id,
+                            'equipment_id': equipment_id,
+                            'productivity_level': productivity_level
+                        };
 
                         if (productivity_level != -1) {
-                            this.update_productivity(equipment_id, productivity_level);
-                            this.send_productivity(equipment_id, productivity_level);
+                            module.exports.update_productivity(result);
+                            module.exports.send_productivity(result);
                         }
                     })
                     .catch((error) => console.log(error));
@@ -94,15 +100,15 @@ module.exports = {
             .catch(error => console.log(error));
     },
 
-    update_productivity(equipment_id, productivity_level) {
-        let data = {
-            'current_productivity': productivity_level
+    update_productivity(data) {
+        let payload = {
+            'current_productivity': data.productivity_level
         };
-        const url = 'http://localhost:3002/api/equipment/' + equipment_id;
+        const url = 'http://localhost:3002/' + data.hospital_id + '/' + data.equipment_id + '/equipment/';
 
         request.put({
             url: url,
-            json: data
+            json: payload
         }, (error, response, body) => {
             console.log('error:', error);
             console.log('status_code:', response && response.statusCode);

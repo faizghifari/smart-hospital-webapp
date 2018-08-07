@@ -32,8 +32,19 @@ module.exports = {
             current_productivity: {
                 type: Sequelize.INTEGER
             },
+            hospital_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
+                references: {
+                    model: 'hospitals',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
             room_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'rooms',
                     key: 'id',
@@ -42,6 +53,7 @@ module.exports = {
             },
             pic_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'users',
                     key: 'id',

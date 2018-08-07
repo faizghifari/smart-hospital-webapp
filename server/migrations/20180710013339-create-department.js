@@ -1,20 +1,17 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('devices', {
+        queryInterface.createTable('departments', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            device_sn: {
+            dep_name: {
                 type: Sequelize.STRING
             },
-            device_qrcode: {
+            dep_desc: {
                 type: Sequelize.STRING
-            },
-            device_sensors: {
-                type: Sequelize.ARRAY(Sequelize.JSON)
             },
             hospital_id: {
                 type: Sequelize.INTEGER,
@@ -36,6 +33,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        return queryInterface.dropTable('devices');
+        return queryInterface.dropTable('departments');
     }
 };

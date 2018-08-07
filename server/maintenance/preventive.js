@@ -11,10 +11,11 @@ module.exports = {
                 preventive_tasks: req.body.preventive_tasks,
                 est_tasks: req.body.est_tasks,
                 notes: req.body.notes,
+                is_open: req.body.is_open,
                 ppm_sn: req.body.ppm_sn,
-                ppm_status: req.body.ppm_status,
                 ppm_result: req.body.ppm_result,
                 ppm_next_date: req.body.ppm_next_date,
+                hospital_id: req.body.hospital_id,
                 user_id: req.body.user_id,
                 equipment_id: req.body.equipment_id
             })
@@ -33,7 +34,7 @@ module.exports = {
         return maintenance_ppm_model
             .findAll({
                 where: {
-                    ppm_status: true
+                    is_open: true
                 }
             })
             .then(ppms => res.status(200).send(ppms))
@@ -44,7 +45,42 @@ module.exports = {
         return maintenance_ppm_model
             .findAll({
                 where: {
-                    ppm_status: false
+                    is_open: false
+                }
+            })
+            .then(ppms => res.status(200).send(ppms))
+            .catch(error => res.status(400).send(error));
+    },
+
+    list_hospital(req,res) {
+        return maintenance_ppm_model
+            .findAll({
+                where: {
+                    hospital_id: req.params.hospital_id
+                }
+            })
+            .then(ppms => res.status(200).send(ppms))
+            .catch(error => res.status(400).send(error));
+    },
+
+    list_hospital_open(req,res) {
+        return maintenance_ppm_model
+            .findAll({
+                where: {
+                    hospital_id: req.params.hospital_id,
+                    is_open: true
+                }
+            })
+            .then(ppms => res.status(200).send(ppms))
+            .catch(error => res.status(400).send(error));
+    },
+
+    list_hospital_closed(req,res) {
+        return maintenance_ppm_model
+            .findAll({
+                where: {
+                    hospital_id: req.params.hospital_id,
+                    is_open: false
                 }
             })
             .then(ppms => res.status(200).send(ppms))
@@ -62,6 +98,7 @@ module.exports = {
         return maintenance_ppm_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     ppm_sn: req.params.ppm_sn
                 }
             })
@@ -82,10 +119,11 @@ module.exports = {
                         preventive_tasks: req.body.preventive_tasks || ppm.preventive_tasks,
                         est_tasks: req.body.est_tasks || ppm.est_tasks,
                         notes: req.body.notes || ppm.notes,
+                        is_open: req.body.is_open || ppm.is_open,
                         ppm_sn: req.body.ppm_sn || ppm.ppm_sn,
-                        ppm_status: req.body.ppm_status || ppm.ppm_status,
                         ppm_result: req.body.ppm_result || ppm.ppm_result,
                         ppm_next_date: req.body.ppm_next_date || ppm.ppm_next_date,
+                        hospital_id: req.body.hospital_id || ppm.hospital_id,
                         user_id: req.body.user_id || ppm.user_id,
                         equipment_id: req.body.equipment_id || ppm.equipment_id
                     })
@@ -99,6 +137,7 @@ module.exports = {
         return maintenance_ppm_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     ppm_sn: req.params.ppm_sn
                 }
             })
@@ -112,10 +151,11 @@ module.exports = {
                         preventive_tasks: req.body.preventive_tasks || ppm.preventive_tasks,
                         est_tasks: req.body.est_tasks || ppm.est_tasks,
                         notes: req.body.notes || ppm.notes,
+                        is_open: req.body.is_open || ppm.is_open,
                         ppm_sn: req.body.ppm_sn || ppm.ppm_sn,
-                        ppm_status: req.body.ppm_status || ppm.ppm_status,
                         ppm_result: req.body.ppm_result || ppm.ppm_result,
                         ppm_next_date: req.body.ppm_next_date || ppm.ppm_next_date,
+                        hospital_id: req.body.hospital_id || ppm.hospital_id,
                         user_id: req.body.user_id || ppm.user_id,
                         equipment_id: req.body.equipment_id || ppm.equipment_id
                     })
@@ -141,6 +181,7 @@ module.exports = {
         return maintenance_ppm_model
             .findOne({
                 where: {
+                    hospital_id: req.params.hospital_id,
                     ppm_sn: req.params.ppm_sn
                 }
             })

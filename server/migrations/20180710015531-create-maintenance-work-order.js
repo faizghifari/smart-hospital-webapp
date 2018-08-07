@@ -16,14 +16,25 @@ module.exports = {
             wo_req_details: {
                 type: Sequelize.TEXT
             },
-            wo_status: {
-                type: Sequelize.BOOLEAN
-            },
             wo_sn: {
                 type: Sequelize.STRING
             },
+            is_open: {
+                type: Sequelize.BOOLEAN
+            },
+            hospital_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
+                references: {
+                    model: 'hospitals',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
             user_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'users',
                     key: 'id',
@@ -32,6 +43,8 @@ module.exports = {
             },
             equipment_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'medical_equipments',
                     key: 'id',
@@ -40,6 +53,7 @@ module.exports = {
             },
             ppm_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
                 references: {
                     model: 'maintenance_ppms',
                     key: 'id',
@@ -48,6 +62,7 @@ module.exports = {
             },
             report_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
                 references: {
                     model: 'reports',
                     key: 'id',

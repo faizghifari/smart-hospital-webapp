@@ -3,9 +3,17 @@ module.exports = (sequelize, DataTypes) => {
         report_sn: DataTypes.STRING,
         report_desc: DataTypes.TEXT,
         report_details: DataTypes.TEXT,
-        report_status: DataTypes.BOOLEAN
+        is_open: DataTypes.BOOLEAN
     }, {});
     report.associate = (models) => {
+        report.belongsTo(models.hospitals, {
+            foreignKey: 'hospital_id'
+        });
+
+        report.belongsTo(models.medical_equipments, {
+            foreignKey: 'equipment_id'
+        });
+
         report.belongsTo(models.users, {
             foreignKey: 'user_id'
         });

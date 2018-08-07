@@ -28,11 +28,11 @@ module.exports = {
             notes: {
                 type: Sequelize.TEXT
             },
+            is_open: {
+                type: Sequelize.BOOLEAN
+            },
             ppm_sn: {
                 type: Sequelize.STRING
-            },
-            ppm_status: {
-                type: Sequelize.BOOLEAN
             },
             ppm_result: {
                 type: Sequelize.BOOLEAN
@@ -40,8 +40,19 @@ module.exports = {
             ppm_next_date: {
                 type: Sequelize.DATEONLY
             },
+            hospital_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
+                references: {
+                    model: 'hospitals',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
             user_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'users',
                     key: 'id',
@@ -50,6 +61,8 @@ module.exports = {
             },
             equipment_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'medical_equipments',
                     key: 'id',

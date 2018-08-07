@@ -3,10 +3,14 @@ module.exports = (sequelize, DataTypes) => {
         wo_desc: DataTypes.TEXT,
         wo_designation: DataTypes.TEXT,
         wo_req_details: DataTypes.TEXT,
-        wo_status: DataTypes.BOOLEAN,
-        wo_sn: DataTypes.STRING
+        wo_sn: DataTypes.STRING,
+        is_open: DataTypes.BOOLEAN
     }, {});
     maintenance_work_order.associate = (models) => {
+        maintenance_work_order.belongsTo(models.hospitals, {
+            foreignKey: 'hospital_id'
+        });
+
         maintenance_work_order.belongsTo(models.users, {
             foreignKey: 'user_id'
         });

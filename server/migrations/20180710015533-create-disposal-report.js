@@ -1,42 +1,54 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('apparatus', {
+        queryInterface.createTable('disposal_reports', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            apparatus_name: {
+            dispose_sn: {
                 type: Sequelize.STRING
             },
-            apparatus_desc: {
+            dispose_desc: {
                 type: Sequelize.STRING
             },
-            apparatus_sn: {
+            dispose_reason: {
                 type: Sequelize.STRING
             },
-            apparatus_qrcode: {
-                type: Sequelize.STRING
-            },
-            apparatus_calibration_due_on: {
-                type: Sequelize.DATEONLY
-            },
-            apparatus_type_id: {
-                type: Sequelize.INTEGER,
-                onDelete: 'SET NULL',
-                references: {
-                    model: 'apparatus_types',
-                    key: 'id',
-                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-                }
-            },
-            hospital_id: {
+            hospital_id:{
                 type: Sequelize.INTEGER,
                 onDelete: 'CASCADE',
                 allowNull: false,
                 references: {
                     model: 'hospitals',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            user_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
+                references: {
+                    model: 'users',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            equipment_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
+                references: {
+                    model: 'medical_equipments',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            cm_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
+                references: {
+                    model: 'maintenance_cms',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
@@ -51,6 +63,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        queryInterface.dropTable('apparatus');
+        return queryInterface.dropTable('disposal_reports');
     }
 };

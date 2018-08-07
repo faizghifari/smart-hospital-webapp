@@ -1,34 +1,37 @@
 module.exports = {
-    up: (queryInterface, Sequelize) => 
-        queryInterface.createTable('medical_equipments_safeties', {
+    up: (queryInterface, Sequelize) =>
+        queryInterface.createTable('divisions', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            equipment_id: {
+            div_name: {
+                type: Sequelize.STRING
+            },
+            div_desc: {
+                type: Sequelize.STRING
+            },
+            hospital_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
-                    model: 'medical_equipments',
+                    model: 'hospitals',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
-            equipments_age: {
+            dep_id: {
                 type: Sequelize.INTEGER,
-                defaultValue: 0
-            },
-            last_maintenance_date: {
-                type: Sequelize.DATE,
-                defaultValue: Sequelize.NOW
-            },
-            standard_maintenance: {
-                type: Sequelize.INTEGER
-            },
-            is_reported: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
+                onDelete: 'CASCADE',
+                allowNull: false,
+                references: {
+                    model: 'departments',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
             },
             createdAt: {
                 allowNull: false,
@@ -40,6 +43,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        queryInterface.dropTable('medical_equipments_safeties');
+        return queryInterface.dropTable('divisions');
     }
 };

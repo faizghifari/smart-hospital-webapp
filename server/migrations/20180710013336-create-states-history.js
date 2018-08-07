@@ -1,38 +1,33 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('hospitals', {
+        queryInterface.createTable('states_histories', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            hospital_name: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-            count_buildings: {
-                type: Sequelize.INTEGER
-            },
-            count_rooms: {
-                type: Sequelize.INTEGER
-            },
-            current_safety: {
-                type: Sequelize.INTEGER
-            },
-            current_security: {
-                type: Sequelize.INTEGER
-            },
-            current_productivity: {
-                type: Sequelize.INTEGER
-            },
             state_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'states',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
+            },
+            date_time: {
+                type: Sequelize.DATE
+            },
+            record_safety: {
+                type: Sequelize.INTEGER
+            },
+            record_security: {
+                type: Sequelize.INTEGER
+            },
+            record_productivity: {
+                type: Sequelize.INTEGER
             },
             createdAt: {
                 allowNull: false,
@@ -44,6 +39,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        queryInterface.dropTable('hospitals');
+        queryInterface.dropTable('states_histories');
     }
 };

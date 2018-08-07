@@ -7,12 +7,17 @@ module.exports = (sequelize, DataTypes) => {
         preventive_tasks: DataTypes.ARRAY(DataTypes.JSON),
         est_tasks: DataTypes.ARRAY(DataTypes.JSON),
         notes: DataTypes.TEXT,
+        is_open: DataTypes.BOOLEAN,
+        is_ber: DataTypes.BOOLEAN,
         cm_sn: DataTypes.STRING,
-        cm_status: DataTypes.BOOLEAN,
         cm_result: DataTypes.BOOLEAN,
         cm_next_date: DataTypes.DATEONLY
     }, {});
     maintenance_cm.associate = (models) => {
+        maintenance_cm.belongsTo(models.hospitals, {
+            foreignKey: 'hospital_id'
+        });
+
         maintenance_cm.belongsTo(models.users, {
             foreignKey: 'user_id'
         });
@@ -23,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
 
         maintenance_cm.belongsTo(models.maintenance_work_order, {
             foreignKey: 'work_order_id'
+        });
+
+        maintenance_cm.hasMany(models.disposal_report, {
+            foreignKey: 'cm_id'
         });
     };
     return maintenance_cm;

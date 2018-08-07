@@ -12,6 +12,58 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'state_id'
         });
 
+        hospitals.hasMany(models.disposal_equipment, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.disposal_report, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.maintenance_cm, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.maintenance_work_order, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.maintenance_ppm, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.report, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.medical_equipments, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.device, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.spare_part, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.apparatus, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.beds, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.department, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.division, {
+            foreignKey: 'hospital_id'
+        });
+        
         hospitals.hasMany(models.hospitals_history, {
             foreignKey: 'hospital_id'
         });

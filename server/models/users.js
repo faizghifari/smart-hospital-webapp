@@ -8,6 +8,14 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
   
     users.associate = (models) => {
+        users.belongsTo(models.department, {
+            foreignKey: 'dep_id'
+        });
+
+        users.belongsTo(models.division, {
+            foreignKey: 'div_id'
+        });
+
         users.belongsTo(models.roles, {
             foreignKey: 'role_id'
         });
@@ -16,8 +24,16 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'hospital_id'
         });
 
+        users.hasMany(models.disposal_report, {
+            foreignKey: 'user_id'
+        });
+
         users.hasMany(models.report, {
             foreignKey: 'user_id'
+        });
+
+        users.hasMany(models.medical_equipments_security_history, {
+            foreignKey: 'pic_id'
         });
 
         users.hasMany(models.buildings, {

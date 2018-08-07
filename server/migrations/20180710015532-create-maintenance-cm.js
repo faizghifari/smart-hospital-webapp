@@ -28,11 +28,14 @@ module.exports = {
             notes: {
                 type: Sequelize.TEXT
             },
+            is_open: {
+                type: Sequelize.BOOLEAN
+            },
+            is_ber: {
+                type: Sequelize.BOOLEAN
+            },
             cm_sn: {
                 type: Sequelize.STRING
-            },
-            cm_status: {
-                type: Sequelize.BOOLEAN
             },
             cm_result: {
                 type: Sequelize.BOOLEAN
@@ -40,8 +43,19 @@ module.exports = {
             cm_next_date: {
                 type: Sequelize.DATEONLY
             },
+            hospital_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
+                references: {
+                    model: 'hospitals',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
             user_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
                 references: {
                     model: 'users',
                     key: 'id',
@@ -50,6 +64,8 @@ module.exports = {
             },
             equipment_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'medical_equipments',
                     key: 'id',
@@ -58,6 +74,8 @@ module.exports = {
             },
             work_order_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
                     model: 'maintenance_work_orders',
                     key: 'id',
