@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'hospital_id'
         });
 
+        rooms.hasMany(models.medical_equipments_security_history, {
+            foreignKey: 'room_id'
+        });
+        
         rooms.hasMany(models.beds, {
             foreignKey: 'room_id'
         });

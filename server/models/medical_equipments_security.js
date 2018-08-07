@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         medical_equipments_security.belongsTo(models.medical_equipments, {
             foreignKey: 'equipment_id'
         });
+
+        medical_equipments_security.belongsTo(models.medical_equipments_security_history, {
+            foreignKey: 'security_id'
+        });
     };
     return medical_equipments_security;
 };

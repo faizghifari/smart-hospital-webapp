@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
         maintenance_cm.belongsTo(models.maintenance_work_order, {
             foreignKey: 'work_order_id'
         });
+
+        maintenance_cm.hasMany(models.disposal_report, {
+            foreignKey: 'cm_id'
+        });
     };
     return maintenance_cm;
 };
