@@ -16,10 +16,6 @@ module.exports = {
             dispose_reason: {
                 type: Sequelize.STRING
             },
-            createdAt: {
-                allowNull: false,
-                type: Sequelize.DATE
-            },
             hospital_id:{
                 type: Sequelize.INTEGER,
                 onDelete: 'CASCADE',
@@ -56,6 +52,10 @@ module.exports = {
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
+            },
+            createdAt: {
+                allowNull: false,
+                type: Sequelize.DATE
             },
             updatedAt: {
                 allowNull: false,
