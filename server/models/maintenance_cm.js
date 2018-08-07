@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'work_order_id'
         });
 
-        maintenance_cm.hasMany(models.disposal_report, {
+        maintenance_cm.hasMany(models.disposal_request, {
             foreignKey: 'cm_id'
         });
     };

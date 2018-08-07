@@ -1,11 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
     const disposal_report = sequelize.define('disposal_report', {
-        dispose_sn: DataTypes.STRING,
-        dispose_desc: DataTypes.STRING,
-        dispose_reason: DataTypes.STRING,
-        is_approved: DataTypes.BOOLEAN
+        report_sn: DataTypes.STRING,
+        report_desc: DataTypes.STRING,
+        disposal_reason: DataTypes.STRING,
+        disposal_tasks: DataTypes.ARRAY(DataTypes.JSON),
+        is_open: DataTypes.BOOLEAN
     }, {});
-    disposal_report.associate = function(models) {
+    disposal_report.associate = (models) => {
         disposal_report.belongsTo(models.hospitals, {
             foreignKey: 'hospital_id'
         });
@@ -18,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'user_id'
         });
 
-        disposal_report.belongsTo(models.maintenance_cm, {
-            foreignKey: 'cm_id'
+        disposal_report.belongsTo(models.disposal_request, {
+            foreignKey: 'request_id'
         });
 
         disposal_report.hasOne(models.disposal_equipment, {

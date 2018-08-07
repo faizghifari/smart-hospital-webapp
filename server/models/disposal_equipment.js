@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
         equipment_details: DataTypes.ARRAY(DataTypes.JSON),
         disposal_reason: DataTypes.STRING
     }, {});
-    disposal_equipment.associate = function(models) {
+    disposal_equipment.associate = (models) => {
         disposal_equipment.belongsTo(models.hospitals, {
             foreignKey: 'hospital_id'
         });
