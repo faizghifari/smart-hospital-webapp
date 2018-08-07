@@ -7,22 +7,10 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            equipment_name: {
-                type: Sequelize.STRING
-            },
-            equipment_desc: {
-                type: Sequelize.STRING
-            },
-            equipment_sn: {
-                type: Sequelize.STRING
-            },
-            equipment_qrcode: {
-                type: Sequelize.STRING
-            },
             equipment_details: {
                 type: Sequelize.ARRAY(Sequelize.JSON)
             },
-            dispose_reason: {
+            disposal_reason: {
                 type: Sequelize.STRING
             },
             hospital_id:{

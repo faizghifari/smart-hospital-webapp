@@ -97,7 +97,7 @@ module.exports = {
             .findOne({
                 where: {
                     hospital_id: req.params.hospital_id,
-                    equipments_sn: req.body.equipments_sn
+                    equipments_sn: req.params.equipments_sn
                 }
             })
             .then(medical_equipment => {
@@ -116,7 +116,7 @@ module.exports = {
             .findOne({
                 where: {
                     hospital_id: req.params.hospital_id,
-                    equipments_qrcode: req.body.equipments_qrcode
+                    equipments_qrcode: req.params.equipments_qrcode
                 }
             })
             .then(medical_equipment => {
@@ -153,7 +153,7 @@ module.exports = {
             .findOne({
                 where: {
                     hospital_id: req.params.hospital_id,
-                    equipments_sn: req.body.equipments_sn
+                    equipments_sn: req.params.equipments_sn
                 },
                 include: [{
                     all: true,
@@ -175,7 +175,7 @@ module.exports = {
             .findOne({
                 where: {
                     hospital_id: req.params.hospital_id,
-                    equipments_qrcode: req.body.equipments_qrcode
+                    equipments_qrcode: req.params.equipments_qrcode
                 },
                 include: [{
                     all: true,
@@ -190,6 +190,20 @@ module.exports = {
                 return res.status(200).send(medical_equipment);
             })
             .catch(error => res.status(400).send(error));
+    },
+
+    retrieve_equipment_details(data) {
+        return new Promise((resolve) => {
+            medical_equipments_model
+                .findById(data.equipment_id, {
+                    include: [{
+                        all: true,
+                    }]
+                })
+                .then(medical_equipment => {
+                    resolve(medical_equipment);
+                });
+        });
     },
 
     update(req,res) {
@@ -246,7 +260,7 @@ module.exports = {
             .findOne({
                 where: {
                     hospital_id: req.params.hospital_id,
-                    equipments_sn: req.body.equipments_sn
+                    equipments_sn: req.params.equipments_sn
                 }
             })
             .then(async medical_equipment => {
@@ -300,7 +314,7 @@ module.exports = {
             .findOne({
                 where: {
                     hospital_id: req.params.hospital_id,
-                    equipments_qrcode: req.body.equipments_qrcode
+                    equipments_qrcode: req.params.equipments_qrcode
                 }
             })
             .then(async medical_equipment => {
@@ -364,5 +378,17 @@ module.exports = {
                     .catch((error) => res.status(400).send(error));
             })
             .catch(error => res.status(400).send(error));
+    },
+
+    destroy_equipment(data) {
+        return new Promise((resolve) => {
+            medical_equipments_model
+                .findById(data.equipment_id)
+                .then(medical_equipment => {
+                    medical_equipment
+                        .destroy()
+                        .then(() => resolve(true));
+                });
+        });
     }
 };

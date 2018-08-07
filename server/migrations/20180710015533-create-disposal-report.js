@@ -16,6 +16,9 @@ module.exports = {
             dispose_reason: {
                 type: Sequelize.STRING
             },
+            is_approved: {
+                type: Sequelize.BOOLEAN
+            },
             hospital_id:{
                 type: Sequelize.INTEGER,
                 onDelete: 'CASCADE',

@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
     const disposal_report = sequelize.define('disposal_report', {
         dispose_sn: DataTypes.STRING,
         dispose_desc: DataTypes.STRING,
-        dispose_reason: DataTypes.STRING
+        dispose_reason: DataTypes.STRING,
+        is_approved: DataTypes.BOOLEAN
     }, {});
     disposal_report.associate = function(models) {
         disposal_report.belongsTo(models.hospitals, {
