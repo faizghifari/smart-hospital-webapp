@@ -16,9 +16,6 @@ module.exports = {
             equipment_sn: {
                 type: Sequelize.STRING
             },
-            equipment_qrcode: {
-                type: Sequelize.STRING
-            },
             equipment_details: {
                 type: Sequelize.ARRAY(Sequelize.JSON)
             },

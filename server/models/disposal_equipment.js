@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
         equipment_name: DataTypes.STRING,
         equipment_desc: DataTypes.STRING,
         equipment_sn: DataTypes.STRING,
-        equipment_qrcode: DataTypes.STRING,
         equipment_details: DataTypes.ARRAY(DataTypes.JSON),
         dispose_reason: DataTypes.STRING
     }, {});
