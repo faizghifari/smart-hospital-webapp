@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         apparatus_type_id: DataTypes.ARRAY(DataTypes.INTEGER),
         spare_part_type_id: DataTypes.ARRAY(DataTypes.INTEGER),
         qualitative_tasks: DataTypes.ARRAY(DataTypes.JSON),
-        preventive_tasks: DataTypes.ARRAY(DataTypes.JSON)
+        preventive_tasks: DataTypes.ARRAY(DataTypes.JSON),
+        disposal_tasks: DataTypes.ARRAY(DataTypes.JSON)
     }, {});
     medical_equipments_type.associate = (models) => {
         medical_equipments_type.hasMany(models.medical_equipments, {

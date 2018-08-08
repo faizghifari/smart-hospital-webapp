@@ -34,6 +34,9 @@ module.exports = {
             preventive_tasks: {
                 type: Sequelize.ARRAY(Sequelize.JSON)
             },
+            disposal_tasks: {
+                type: Sequelize.ARRAY(Sequelize.JSON)
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

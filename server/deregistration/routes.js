@@ -2,7 +2,6 @@ const disposal_request = require('./disposal_request');
 const disposal_report = require('./disposal_report');
 const disposal_equipment = require('./disposal_equipment');
 
-
 module.exports = (app) => {
     app.get(    '/disposal/request',                                        disposal_request.list);
     app.get(    '/disposal/request/approved',                               disposal_request.list_approved);
