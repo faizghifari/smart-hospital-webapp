@@ -7,6 +7,9 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
+            is_room_locked: {
+                type: Sequelize.BOOLEAN
+            },
             equipment_id: {
                 type: Sequelize.INTEGER,
                 onDelete: 'CASCADE',
@@ -16,9 +19,6 @@ module.exports = {
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
-            },
-            is_room_locked: {
-                type: Sequelize.BOOLEAN
             },
             room_id: {
                 type: Sequelize.INTEGER,
