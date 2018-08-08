@@ -10,13 +10,14 @@ const qty_task = require('./qty_task_crud');
 const room = require('./room_crud');
 
 module.exports = (app) => {
-    app.post(   '/equipment_type',                  equipment_type.create);
-    app.get(    '/equipment_type',                  equipment_type.list);
-    app.get(    '/equipment_type/names',            equipment_type.list_name);
-    app.get(    '/:type_id/equipment_type',         equipment_type.retrieve);
-    app.get(    '/:type_id/equipment_type/mt_plan', equipment_type.retrieve_mt_plan);
-    app.put(    '/:type_id/equipment_type',         equipment_type.update);
-    app.delete( '/:type_id/equipment_type',         equipment_type.destroy);
+    app.post(   '/equipment_type',                          equipment_type.create);
+    app.get(    '/equipment_type',                          equipment_type.list);
+    app.get(    '/equipment_type/names',                    equipment_type.list_name);
+    app.get(    '/:type_id/equipment_type',                 equipment_type.retrieve);
+    app.get(    '/:type_id/equipment_type/mt_plan',         equipment_type.retrieve_mt_plan);
+    app.get(    '/:type_id/equipment_type/disposal_plan',   equipment_type.retrieve_disposal_plan);
+    app.put(    '/:type_id/equipment_type',                 equipment_type.update);
+    app.delete( '/:type_id/equipment_type',                 equipment_type.destroy);
 
     app.post(   '/apparatus_type',                      apparatus_type.create);
     app.get(    '/apparatus_type',                      apparatus_type.list);
