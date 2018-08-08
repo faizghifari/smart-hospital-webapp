@@ -4,6 +4,8 @@ const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_security_model = require('../models').medical_equipments_security;
 const rooms_model = require('../models').rooms;
 
+const security_history = require('./security_history');
+
 let pos_io;
 let security_io;
 
@@ -124,24 +126,32 @@ module.exports = {
         }
     },
 
+    receive_pos(req,res) {
+        let data = {
+            'hospital_id': req.params.hospital_id,
+            'equipment_id': req.params.equipment_id,
+            'room_id': req.body.room_id,
+            'receive_type': 'pos'
+        };
+
+        module.exports.update(data);
+
+        let data_stringified = JSON.stringify(data);
+        return res.status(200).send(data_stringified);
+    },
+
     receive_pic(req,res) {
-        if (req.body.user_id) {
-            let data = {
-                'hospital_id': req.params.hospital_id,
-                'equipment_id': req.params.equipment_id,
-                'pic_id': req.body.user_id,
-                'receive_type': 'pic'
-            };
+        let data = {
+            'hospital_id': req.params.hospital_id,
+            'equipment_id': req.params.equipment_id,
+            'pic_id': req.body.user_id,
+            'receive_type': 'pic'
+        };
 
-            module.exports.update(data.equipment_id, data);
+        module.exports.update(data);
 
-            let data_stringified = JSON.stringify(data);
-            return res.status(200).send(data_stringified);
-        } else {
-            return res.status(400).send({
-                msg: 'User info is not received'
-            });
-        }
+        let data_stringified = JSON.stringify(data);
+        return res.status(200).send(data_stringified);
     },
 
     create(equipment_id, data) {
@@ -155,7 +165,7 @@ module.exports = {
             .catch(error => console.log(error));
     },
 
-    update(data) { // need to add security history when onRoomChange || onPicChange
+    update(data) {
         medical_equipments_security_model
             .findOne({
                 where: {
@@ -164,15 +174,29 @@ module.exports = {
             })
             .then(equipment_security => {
                 let id_room = equipment_security.room_id;
+                let id_pic = equipment_security.pic_id;
                 if (data.receive_type == 'pos') {
                     id_room = data.room_id;
+                } else {
+                    id_pic = data.pic_id;
+                }
+
+                if ((id_room != equipment_security.room_id) || (id_pic != equipment_security.pic_id)) {
+                    let payload = {
+                        'security_id': equipment_security.id,
+                        'equipment_id': equipment_security.equipment_id,
+                        'room_id': id_room,
+                        'pic_id': id_pic
+                    };
+
+                    security_history.create(payload);
                 }
 
                 equipment_security
                     .update({
                         is_room_locked: data.is_room_locked || equipment_security.is_room_locked,
                         room_id: id_room,
-                        pic_id: data.pic_id || equipment_security.pic_id
+                        pic_id: id_pic
                     })
                     .then(async equipment_security_new => {
                         let security_level = await module.exports.calculate_security(equipment_security_new);
