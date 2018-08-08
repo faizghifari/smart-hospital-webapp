@@ -1,44 +1,50 @@
+'use strict';
 module.exports = {
-    up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('disposal_equipments', {
+    up: (queryInterface, Sequelize) => {
+        return queryInterface.createTable('medical-equipments-bookings', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            equipment_name: {
-                type: Sequelize.STRING
+            start_time: {
+                type: Sequelize.DATE
             },
-            equipment_desc: {
-                type: Sequelize.STRING
+            end_time: {
+                type: Sequelize.DATE
             },
-            equipment_sn: {
-                type: Sequelize.STRING
+            purpose: {
+                type: Sequelize.TEXT
             },
-            equipment_qrcode: {
-                type: Sequelize.STRING
+            is_used: {
+                type: Sequelize.BOOLEAN
             },
-            equipment_details: {
-                type: Sequelize.ARRAY(Sequelize.JSON)
-            },
-            dispose_reason: {
-                type: Sequelize.STRING
-            },
-            hospital_id:{
+            user_id: {
                 type: Sequelize.INTEGER,
-                onDelete: 'CASCADE',
-                allowNull: false,
+                onDelete: 'SET NULL',
                 references: {
-                    model: 'hospitals',
+                    model: 'users',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
-            report_id: {
+            equipment_id: {
                 type: Sequelize.INTEGER,
+                onDelete: 'CASCADE',
+                allowNull: false,
                 references: {
-                    model: 'disposal_reports',
+                    model: 'medical_equipments',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            room_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
+                allowNull: false,
+                references: {
+                    model: 'rooms',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
@@ -51,8 +57,9 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             }
-        }),
+        });
+    },
     down: (queryInterface) => {
-        return queryInterface.dropTable('disposal_equipments');
+        return queryInterface.dropTable('medical-equipments-bookings');
     }
 };
