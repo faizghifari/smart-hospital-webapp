@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'equipment_id'
         });
 
-        medical_equipments_security.belongsTo(models.medical_equipments_security_history, {
+        medical_equipments_security.hasMany(models.medical_equipments_security_history, {
             foreignKey: 'security_id'
         });
     };

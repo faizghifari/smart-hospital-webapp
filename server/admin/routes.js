@@ -76,7 +76,8 @@ module.exports = (app) => {
     app.put(    '/:hospital_id/:device_id/device',  device.update);
     app.delete( '/:hospital_id/:device_id/device',  device.destroy);
 
-    app.get(    '/:hospital_id/room',           room.list_hospital);
+    app.get(    '/:hospital_id/room',               room.list_hospital);
+    app.get(    '/:hospital_id/room/sn/:room_sn',   room.retrieve_sn);
 
     app.get(    '/:hospital_id/user/engineer',  user.list_engineer);
 };

@@ -11,6 +11,10 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false
             },
+            room_sn: {
+                type: Sequelize.STRING,
+                allowNull: false
+            },
             latitude_low: {
                 type: Sequelize.FLOAT
             },

@@ -124,24 +124,32 @@ module.exports = {
         }
     },
 
+    receive_pos(req,res) {
+        let data = {
+            'hospital_id': req.params.hospital_id,
+            'equipment_id': req.params.equipment_id,
+            'room_id': req.body.room_id,
+            'receive_type': 'pos'
+        };
+
+        module.exports.update(data);
+
+        let data_stringified = JSON.stringify(data);
+        return res.status(200).send(data_stringified);
+    },
+
     receive_pic(req,res) {
-        if (req.body.user_id) {
-            let data = {
-                'hospital_id': req.params.hospital_id,
-                'equipment_id': req.params.equipment_id,
-                'pic_id': req.body.user_id,
-                'receive_type': 'pic'
-            };
+        let data = {
+            'hospital_id': req.params.hospital_id,
+            'equipment_id': req.params.equipment_id,
+            'pic_id': req.body.user_id,
+            'receive_type': 'pic'
+        };
 
-            module.exports.update(data.equipment_id, data);
+        module.exports.update(data);
 
-            let data_stringified = JSON.stringify(data);
-            return res.status(200).send(data_stringified);
-        } else {
-            return res.status(400).send({
-                msg: 'User info is not received'
-            });
-        }
+        let data_stringified = JSON.stringify(data);
+        return res.status(200).send(data_stringified);
     },
 
     create(equipment_id, data) {
