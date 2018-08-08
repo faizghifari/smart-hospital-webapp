@@ -10,9 +10,6 @@ module.exports = {
             device_sn: {
                 type: Sequelize.STRING
             },
-            device_qrcode: {
-                type: Sequelize.STRING
-            },
             device_sensors: {
                 type: Sequelize.ARRAY(Sequelize.JSON)
             },

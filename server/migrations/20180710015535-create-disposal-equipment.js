@@ -26,7 +26,7 @@ module.exports = {
             report_id: {
                 type: Sequelize.INTEGER,
                 references: {
-                    model: 'disposal_reports',
+                    model: 'device_reports',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
