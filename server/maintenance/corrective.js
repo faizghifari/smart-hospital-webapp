@@ -142,6 +142,16 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
+    retrieve_cm(cm_id) {
+        return new Promise((resolve) => {
+            maintenance_cm_model
+                .findById(cm_id)
+                .then(cm => {
+                    resolve(cm);
+                });
+        });
+    },
+
     retrieve_sn(req,res) {
         return maintenance_cm_model
             .findOne({

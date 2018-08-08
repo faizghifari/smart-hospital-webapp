@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'hospital_id'
         });
 
+        hospitals.hasMany(models.disposal_request, {
+            foreignKey: 'hospital_id'
+        });
+        
         hospitals.hasMany(models.maintenance_cm, {
             foreignKey: 'hospital_id'
         });

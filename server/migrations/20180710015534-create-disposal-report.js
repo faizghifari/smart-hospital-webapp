@@ -7,14 +7,20 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            dispose_sn: {
+            report_sn: {
                 type: Sequelize.STRING
             },
-            dispose_desc: {
+            report_desc: {
                 type: Sequelize.STRING
             },
-            dispose_reason: {
+            disposal_reason: {
                 type: Sequelize.STRING
+            },
+            disposal_tasks: {
+                type: Sequelize.ARRAY(Sequelize.JSON)
+            },
+            is_open: {
+                type: Sequelize.BOOLEAN
             },
             hospital_id:{
                 type: Sequelize.INTEGER,
@@ -44,11 +50,11 @@ module.exports = {
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
-            cm_id: {
+            request_id: {
                 type: Sequelize.INTEGER,
                 onDelete: 'SET NULL',
                 references: {
-                    model: 'maintenance_cms',
+                    model: 'disposal_requests',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
