@@ -1,20 +1,23 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('disposal_reports', {
+        queryInterface.createTable('disposal_requests', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            dispose_sn: {
+            request_sn: {
                 type: Sequelize.STRING
             },
-            dispose_desc: {
+            request_desc: {
                 type: Sequelize.STRING
             },
-            dispose_reason: {
+            disposal_reason: {
                 type: Sequelize.STRING
+            },
+            is_approved: {
+                type: Sequelize.BOOLEAN
             },
             hospital_id:{
                 type: Sequelize.INTEGER,
@@ -63,6 +66,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        return queryInterface.dropTable('disposal_reports');
+        return queryInterface.dropTable('disposal_requests');
     }
 };

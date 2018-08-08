@@ -15,7 +15,8 @@ module.exports = {
                 apparatus_type_id: req.body.apparatus_type_id,
                 spare_part_type_id: req.body.spare_part_type_id,
                 qualitative_tasks: req.body.qualitative_tasks,
-                preventive_tasks: req.body.preventive_tasks
+                preventive_tasks: req.body.preventive_tasks,
+                disposal_tasks: req.body.disposal_tasks
             })
             .then(eq_type => res.status(201).send(eq_type))
             .catch(error => res.status(400).send(error));
@@ -139,6 +140,15 @@ module.exports = {
 
     },
 
+    retrieve_disposal_plan(req,res) {
+        return medical_equipments_type
+            .findById(req.params.type_id, {
+                attributes: ['id', 'disposal_tasks']
+            })
+            .then(eq_type => res.status(200).send(eq_type))
+            .catch(error => res.status(400).send(error));
+    },
+
     update(req,res) {
         return medical_equipments_type
             .findById(req.params.type_id)
@@ -158,7 +168,8 @@ module.exports = {
                         apparatus_type_id: req.body.apparatus_type_id || eq_type.apparatus_type_id,
                         spare_part_type_id: req.body.spare_part_type_id || eq_type.spare_part_type_id,
                         qualitative_tasks: req.body.qualitative_tasks || eq_type.qualitative_tasks,
-                        preventive_tasks: req.body.preventive_tasks || eq_type.preventive_tasks
+                        preventive_tasks: req.body.preventive_tasks || eq_type.preventive_tasks,
+                        disposal_tasks: req.body.disposal_tasks || eq_type.disposal_tasks
                     })
                     .then(() => res.status(200).send(eq_type))
                     .catch((error) => res.status(400).send(error));

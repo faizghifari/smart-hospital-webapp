@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'user_id'
         });
 
+        users.hasMany(models.disposal_request, {
+            foreignKey: 'user_id'
+        });
+
         users.hasMany(models.disposal_report, {
             foreignKey: 'user_id'
         });

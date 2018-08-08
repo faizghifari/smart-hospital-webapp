@@ -1,39 +1,32 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('medical_equipments_securities', {
+        queryInterface.createTable('disposal_equipments', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            is_room_locked: {
-                type: Sequelize.BOOLEAN
+            equipment_details: {
+                type: Sequelize.ARRAY(Sequelize.JSON)
             },
-            equipment_id: {
+            disposal_reason: {
+                type: Sequelize.STRING
+            },
+            hospital_id:{
                 type: Sequelize.INTEGER,
                 onDelete: 'CASCADE',
                 allowNull: false,
                 references: {
-                    model: 'medical_equipments',
+                    model: 'hospitals',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
-            room_id: {
+            report_id: {
                 type: Sequelize.INTEGER,
-                onDelete: 'SET NULL',
                 references: {
-                    model: 'rooms',
-                    key: 'id',
-                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-                }
-            },
-            pic_id: {
-                type: Sequelize.INTEGER,
-                onDelete: 'SET NULL',
-                references: {
-                    model: 'users',
+                    model: 'device_reports',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
@@ -48,6 +41,6 @@ module.exports = {
             }
         }),
     down: (queryInterface) => {
-        queryInterface.dropTable('medical_equipments_securities');
+        return queryInterface.dropTable('disposal_equipments');
     }
 };
