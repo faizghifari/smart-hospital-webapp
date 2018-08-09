@@ -17,9 +17,6 @@ module.exports = {
             equipments_sn: {
                 type: Sequelize.STRING
             },
-            equipments_qrcode: {
-                type: Sequelize.STRING
-            },
             equipments_lifetime: {
                 type: Sequelize.INTEGER
             },
