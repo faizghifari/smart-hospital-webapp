@@ -16,9 +16,6 @@ module.exports = {
             part_sn: {
                 type: Sequelize.STRING
             },
-            part_qrcode: {
-                type: Sequelize.STRING
-            },
             part_qty: {
                 type: Sequelize.INTEGER
             },
