@@ -5,7 +5,6 @@ module.exports = {
         return device_model
             .create({
                 device_sn: req.body.device_sn,
-                device_qrcode: req.body.device_qrcode,
                 device_sensors: req.body.device_sensors,
                 hospital_id: req.params.hospital_id
             })
@@ -78,7 +77,6 @@ module.exports = {
                 return device
                     .update({
                         device_sn: req.body.device_sn || device.device_sn,
-                        device_qrcode: req.body.device_qrcode || device.device_qrcode,
                         device_sensors: req.body.device_sensors || device.device_sensors,
                         hospital_id: req.params.hospital_id || device.hospital_id
                     })

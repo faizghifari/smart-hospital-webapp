@@ -12,10 +12,6 @@ module.exports = (app) => {
     app.put(    '/:hospital_id/equipment/sn/:equipments_sn',            role_controller.valid_login, role_controller.role_check, equipment.update_sn);
     app.get(    '/:hospital_id/equipment/sn/details/:equipments_sn',    role_controller.valid_login, role_controller.role_check, equipment.retrieve_details_sn);
 
-    app.get(    '/:hospital_id/equipment/qrcode/:equipments_qrcode',            role_controller.valid_login, role_controller.role_check, equipment.retrieve_qrcode);
-    app.put(    '/:hospital_id/equipment/qrcode/:equipments_qrcode',            role_controller.valid_login, role_controller.role_check, equipment.update_qrcode);
-    app.get(    '/:hospital_id/equipment/qrcode/details/:equipments_qrcode',    role_controller.valid_login, role_controller.role_check, equipment.retrieve_details_qrcode);
-
     app.get(    '/:hospital_id/:equipment_id/equipment',            role_controller.valid_login, role_controller.role_check, equipment.retrieve);
     app.put(    '/:hospital_id/:equipment_id/equipment',            role_controller.valid_login, role_controller.role_check, equipment.update);
     app.delete( '/:hospital_id/:equipment_id/equipment',            role_controller.valid_login, role_controller.role_check, equipment.destroy);

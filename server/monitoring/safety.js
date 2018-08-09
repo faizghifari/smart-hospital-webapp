@@ -1,27 +1,8 @@
-// const cron = require('node-cron');
 const request = require('request');
 
 const medical_equipments_safety_model = require('../models').medical_equipments_safety;
 
 let safety_io;
-
-// cron.schedule('* 0 * * *', () => {
-//     medical_equipments_safety_model
-//         .findAll()
-//         .then(equipments_safety => {
-//             equipments_safety.forEach(equipment_safety => {
-//                 let age = equipment_safety.equipment_age + 1;
-//                 let data = {
-//                     'equipment_age': age,
-//                     'last_maintenance_date': equipment_safety.last_maintenance_date,
-//                     'standard_maintenance': equipment_safety.standard_maintenance
-//                 };
-
-//                 module.exports.update(equipment_safety.equipment_id, data);
-//             });
-//         })
-//         .catch(error => console.log(error));
-// });
 
 module.exports = {
     start: (io) => {
