@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
         state_name: DataTypes.STRING,
         count_hospitals: DataTypes.INTEGER,
         current_safety: DataTypes.INTEGER,
+        current_security: DataTypes.INTEGER,
         current_productivity: DataTypes.INTEGER
     }, {});
     states.associate = (models) => {
