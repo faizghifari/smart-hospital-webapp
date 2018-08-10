@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const medical_equipments_booking = sequelize.define('medical-equipments-booking', {
+    const medical_equipments_booking = sequelize.define('medical_equipments_booking', {
         start_time: DataTypes.DATE,
         end_time: DataTypes.DATE,
         purpose: DataTypes.TEXT,
