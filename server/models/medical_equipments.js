@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         is_used: DataTypes.BOOLEAN,
         is_active: DataTypes.BOOLEAN,
         is_on: DataTypes.BOOLEAN,
+        is_available: DataTypes.BOOLEAN,
         current_safety: DataTypes.INTEGER,
         current_security: DataTypes.INTEGER,
         current_productivity: DataTypes.INTEGER

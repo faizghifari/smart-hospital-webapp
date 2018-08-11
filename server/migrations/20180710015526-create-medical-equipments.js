@@ -36,6 +36,9 @@ module.exports = {
             is_on: {
                 type: Sequelize.BOOLEAN
             },
+            is_available: {
+                type: Sequelize.BOOLEAN
+            },
             current_safety: {
                 type: Sequelize.INTEGER
             },
