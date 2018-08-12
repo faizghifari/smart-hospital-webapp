@@ -17,6 +17,30 @@ module.exports = {
         });
     },
 
+    cron_age: (scheduler) => {
+        const rule = new scheduler.RecurrenceRule();
+        rule.hour = 0;
+        rule.dayOfWeek = new scheduler.Range(0,6);
+
+        scheduler.scheduleJob(rule, function() {
+            medical_equipments_safety_model
+                .findAll()
+                .then(equipments_safety => {
+                    equipments_safety.forEach(equipment_safety => {
+                        let age = equipment_safety.equipment_age + 1;
+                        let data = {
+                            'equipment_age': age,
+                            'last_maintenance_date': equipment_safety.last_maintenance_date,
+                            'standard_maintenance': equipment_safety.standard_maintenance
+                        };
+
+                        this.update(equipment_safety.equipment_id, data);
+                    });
+                })
+                .catch(error => console.log(error));
+        });
+    },
+
     send_safety(data) {
         safety_io.emit('/' + data.hospital_id + '/safety/' + data.equipment_id, data.safety_level);
     },

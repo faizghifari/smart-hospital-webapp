@@ -1,6 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const scheduler = require('node-schedule');
 
 const app = express();
 const server = require('http').createServer(app);
@@ -25,6 +26,8 @@ const security = require('./server/monitoring/security');
 productivity.start(io);
 safety.start(io);
 security.start(io);
+
+safety.cron_age(scheduler);
 
 app.get('/', (req, res) => res.status(200).send({
     message: 'Welcome to Smart Hospital Server',
