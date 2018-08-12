@@ -27,9 +27,9 @@ module.exports = {
                 .findAll()
                 .then(equipments_safety => {
                     equipments_safety.forEach(equipment_safety => {
-                        let age = equipment_safety.equipment_age + 1;
+                        let age = equipment_safety.equipments_age + 1;
                         let data = {
-                            'equipment_age': age,
+                            'equipments_age': age,
                             'last_maintenance_date': equipment_safety.last_maintenance_date,
                             'standard_maintenance': equipment_safety.standard_maintenance
                         };
@@ -104,7 +104,7 @@ module.exports = {
         medical_equipments_safety_model
             .create({
                 equipment_id: equipment_id,
-                equipment_age: data.equipment_age,
+                equipments_age: data.equipments_age,
                 last_maintenance_date: data.last_maintenance_date,
                 standard_maintenance: data.standard_maintenance,
                 is_reported: data.is_reported
@@ -122,7 +122,7 @@ module.exports = {
             .then(equipment_safety => {
                 equipment_safety
                     .update({
-                        equipment_age: data.equipment_age || equipment_safety.equipment_age,
+                        equipments_age: data.equipments_age || equipment_safety.equipments_age,
                         last_maintenance_date: data.last_maintenance_date || equipment_safety.last_maintenance_date,
                         standard_maintenance: data.standard_maintenance || equipment_safety.standard_maintenance,
                         is_reported: data.is_reported || equipment_safety.is_reported
