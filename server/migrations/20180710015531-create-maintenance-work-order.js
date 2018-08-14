@@ -64,7 +64,7 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 onDelete: 'CASCADE',
                 references: {
-                    model: 'reports',
+                    model: 'breakdown_report',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }

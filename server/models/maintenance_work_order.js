@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'ppm_id'
         });
 
-        maintenance_work_order.belongsTo(models.report, {
+        maintenance_work_order.belongsTo(models.breakdown_report, {
             foreignKey: 'report_id'
         });
         

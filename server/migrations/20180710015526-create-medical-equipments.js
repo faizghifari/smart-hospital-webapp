@@ -66,6 +66,15 @@ module.exports = {
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
+            supplier_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
+                references: {
+                    model: 'suppliers',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
             room_id: {
                 type: Sequelize.INTEGER,
                 onDelete: 'SET NULL',

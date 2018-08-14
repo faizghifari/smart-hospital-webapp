@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'manufacturers_id',
         });
 
+        medical_equipments.belongsTo(models.suppliers, {
+            foreignKey: 'supplier_id',
+        });
+
         medical_equipments.belongsTo(models.medical_equipments_type, {
             foreignKey: 'equipments_type_id',
         });
@@ -71,7 +75,11 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'equipment_id'
         });
 
-        medical_equipments.hasMany(models.report, {
+        medical_equipments.hasMany(models.breakdown_report, {
+            foreignKey: 'equipment_id'
+        });
+
+        medical_equipments.hasMany(models.adverse_event_reports, {
             foreignKey: 'equipment_id'
         });
 

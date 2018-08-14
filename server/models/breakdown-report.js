@@ -1,26 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
-    const report = sequelize.define('report', {
+    const breakdown_report = sequelize.define('breakdown_report', {
         report_sn: DataTypes.STRING,
         report_desc: DataTypes.TEXT,
         report_details: DataTypes.TEXT,
         is_open: DataTypes.BOOLEAN
     }, {});
-    report.associate = (models) => {
-        report.belongsTo(models.hospitals, {
+    breakdown_report.associate = (models) => {
+        breakdown_report.belongsTo(models.hospitals, {
             foreignKey: 'hospital_id'
         });
 
-        report.belongsTo(models.medical_equipments, {
+        breakdown_report.belongsTo(models.medical_equipments, {
             foreignKey: 'equipment_id'
         });
 
-        report.belongsTo(models.users, {
+        breakdown_report.belongsTo(models.users, {
             foreignKey: 'user_id'
         });
         
-        report.hasOne(models.maintenance_work_order, {
+        breakdown_report.hasOne(models.maintenance_work_order, {
             foreignKey: 'report_id'
         });
     };
-    return report;
+    return breakdown_report;
 };

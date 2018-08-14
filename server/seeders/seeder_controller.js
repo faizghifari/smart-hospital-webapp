@@ -33,7 +33,7 @@ const medical_equipments_productivity = require('../models').medical_equipments_
 const medical_equipments_safety = require('../models').medical_equipments_safety;
 const medical_equipments_security = require('../models').medical_equipments_security;
 const medical_equipments_security_history = require('../models').medical_equipments_security_history;
-const report = require('../models').report;
+const breakdown_report = require('../models').breakdown_report;
 const maintenance_qty_task = require('../models').maintenance_qty_task;
 const maintenance_ppm = require('../models').maintenance_ppm;
 const maintenance_work_order = require('../models').maintenance_work_order;
@@ -104,7 +104,8 @@ module.exports = {
                 current_safety: 3,
                 current_security: 3,
                 current_productivity: 3,
-                state_id: 1
+                state_id: 1,
+                dep_code: 1
             }),
         hospitals
             .create({
@@ -114,7 +115,8 @@ module.exports = {
                 current_safety: 2,
                 current_security: 3,
                 current_productivity: 1,
-                state_id: 1
+                state_id: 1,
+                dep_code: 2
             }),
         hospitals
             .create({
@@ -124,7 +126,8 @@ module.exports = {
                 current_safety: 1,
                 current_security: 1,
                 current_productivity: 1,
-                state_id: 1
+                state_id: 1,
+                dep_code: 3
             }),
         hospitals
             .create({
@@ -134,7 +137,8 @@ module.exports = {
                 current_safety: 3,
                 current_security: 3,
                 current_productivity: 3,
-                state_id: 2
+                state_id: 2,
+                dep_code: 1
             }),
         hospitals
             .create({
@@ -144,7 +148,8 @@ module.exports = {
                 current_safety: 2,
                 current_security: 3,
                 current_productivity: 1,
-                state_id: 2   
+                state_id: 2,
+                dep_code: 2
             }),
         hospitals
             .create({
@@ -154,7 +159,8 @@ module.exports = {
                 current_safety: 1,
                 current_security: 1,
                 current_productivity: 1,
-                state_id: 2 
+                state_id: 2,
+                dep_code: 3
             }),
         hospitals
             .create({
@@ -164,7 +170,8 @@ module.exports = {
                 current_safety: 3,
                 current_security: 3,
                 current_productivity: 3,
-                state_id: 3
+                state_id: 3,
+                dep_code: 1
             }),
         hospitals
             .create({
@@ -174,7 +181,8 @@ module.exports = {
                 current_safety: 2,
                 current_security: 3,
                 current_productivity: 1,
-                state_id: 3
+                state_id: 3,
+                dep_code: 2
             }),
         hospitals
             .create({
@@ -184,7 +192,8 @@ module.exports = {
                 current_safety: 1,
                 current_security: 1,
                 current_productivity: 1,
-                state_id: 3
+                state_id: 3,
+                dep_code: 3
             }),
 
         hospitals_history
@@ -2685,11 +2694,10 @@ module.exports = {
                 equipments_name: 'Equipments 1',
                 equipments_desc: 'Desc equipments 1',
                 equipments_sn: '',
-                equipments_lifetime: 100,
+                equipments_life_expectancy: 100,
                 equipments_value: 50,
-                purchase_date: '2018-08-09 07:42:28',
-                is_used: true,
-                is_active: true,
+                equipments_value_currency: 'MYR',
+                manufacturing_date: '2018-08-09 07:42:28',
                 is_on: true,
                 is_available: true,
                 current_safety: 3,
@@ -2704,18 +2712,18 @@ module.exports = {
                 device_id: 1,
                 hospital_id: 1,
                 dep_id: 1,
-                div_id: 1
+                div_id: 1,
+                file: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 2',
                 equipments_desc: 'Desc equipments 2',
                 equipments_sn: '',
-                equipments_lifetime: 100,
+                equipments_life_expectancy: 100,
                 equipments_value: 50,
-                purchase_date: '2018-08-09 07:42:28',
-                is_used: true,
-                is_active: true,
+                equipments_value_currency: 'MYR',
+                manufacturing_date: '2018-08-09 07:42:28',
                 is_on: true,
                 is_available: true,
                 current_safety: 2,
@@ -2730,18 +2738,18 @@ module.exports = {
                 device_id: 1,
                 hospital_id: 1,
                 dep_id: 1,
-                div_id: 1
+                div_id: 1,
+                file: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 3',
                 equipments_desc: 'Desc equipments 3',
                 equipments_sn: '',
-                equipments_lifetime: 100,
+                equipments_life_expectancy: 100,
                 equipments_value: 50,
-                purchase_date: '2018-08-09 07:42:28',
-                is_used: true,
-                is_active: true,
+                equipments_value_currency: 'MYR',
+                manufacturing_date: '2018-08-09 07:42:28',
                 is_on: true,
                 is_available: true,
                 current_safety: 1,
@@ -2756,18 +2764,18 @@ module.exports = {
                 device_id: 1,
                 hospital_id: 1,
                 dep_id: 1,
-                div_id: 1
+                div_id: 1,
+                file: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 1',
                 equipments_desc: 'Desc equipments 1',
                 equipments_sn: '',
-                equipments_lifetime: 100,
+                equipments_life_expectancy: 100,
                 equipments_value: 50,
-                purchase_date: '2018-08-09 07:42:28',
-                is_used: true,
-                is_active: true,
+                equipments_value_currency: 'MYR',
+                manufacturing_date: '2018-08-09 07:42:28',
                 is_on: true,
                 is_available: true,
                 current_safety: 3,
@@ -2782,18 +2790,18 @@ module.exports = {
                 device_id: 2,
                 hospital_id: 2,
                 dep_id: 2,
-                div_id: 2
+                div_id: 2,
+                file: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 2',
                 equipments_desc: 'Desc equipments 2',
                 equipments_sn: '',
-                equipments_lifetime: 100,
+                equipments_life_expectancy: 100,
                 equipments_value: 50,
-                purchase_date: '2018-08-09 07:42:28',
-                is_used: true,
-                is_active: true,
+                equipments_value_currency: 'MYR',
+                manufacturing_date: '2018-08-09 07:42:28',
                 is_on: true,
                 is_available: true,
                 current_safety: 2,
@@ -2808,18 +2816,18 @@ module.exports = {
                 device_id: 2,
                 hospital_id: 2,
                 dep_id: 2,
-                div_id: 2
+                div_id: 2,
+                file: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 3',
                 equipments_desc: 'Desc equipments 3',
                 equipments_sn: '',
-                equipments_lifetime: 100,
+                equipments_life_expectancy: 100,
                 equipments_value: 50,
-                purchase_date: '2018-08-09 07:42:28',
-                is_used: true,
-                is_active: true,
+                equipments_value_currency: 'MYR',
+                manufacturing_date: '2018-08-09 07:42:28',
                 is_on: true,
                 is_available: true,
                 current_safety: 1,
@@ -2834,18 +2842,18 @@ module.exports = {
                 device_id: 2,
                 hospital_id: 2,
                 dep_id: 2,
-                div_id: 2
+                div_id: 2,
+                file: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 1',
                 equipments_desc: 'Desc equipments 1',
                 equipments_sn: '',
-                equipments_lifetime: 100,
+                equipments_life_expectancy: 100,
                 equipments_value: 50,
-                purchase_date: '2018-08-09 07:42:28',
-                is_used: true,
-                is_active: true,
+                equipments_value_currency: 'MYR',
+                manufacturing_date: '2018-08-09 07:42:28',
                 is_on: true,
                 is_available: true,
                 current_safety: 3,
@@ -2860,18 +2868,18 @@ module.exports = {
                 device_id: 3,
                 hospital_id: 3,
                 dep_id: 3,
-                div_id: 3
+                div_id: 3,
+                file: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 2',
                 equipments_desc: 'Desc equipments 2',
                 equipments_sn: '',
-                equipments_lifetime: 100,
+                equipments_life_expectancy: 100,
                 equipments_value: 50,
-                purchase_date: '2018-08-09 07:42:28',
-                is_used: true,
-                is_active: true,
+                equipments_value_currency: 'MYR',
+                manufacturing_date: '2018-08-09 07:42:28',
                 is_on: true,
                 is_available: true,
                 current_safety: 2,
@@ -2886,18 +2894,18 @@ module.exports = {
                 device_id: 3,
                 hospital_id: 3,
                 dep_id: 3,
-                div_id: 3
+                div_id: 3,
+                file: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 3',
                 equipments_desc: 'Desc equipments 3',
                 equipments_sn: '',
-                equipments_lifetime: 100,
+                equipments_life_expectancy: 100,
                 equipments_value: 50,
-                purchase_date: '2018-08-09 07:42:28',
-                is_used: true,
-                is_active: true,
+                equipments_value_currency: 'MYR',
+                manufacturing_date: '2018-08-09 07:42:28',
                 is_on: true,
                 is_available: true,
                 current_safety: 1,
@@ -2912,7 +2920,8 @@ module.exports = {
                 device_id: 3,
                 hospital_id: 3,
                 dep_id: 3,
-                div_id: 3
+                div_id: 3,
+                file: null
             }),
 
         medical_equipments_history
@@ -3253,7 +3262,7 @@ module.exports = {
                 security_id: 9
             }),
 
-        report
+        breakdown_report
             .create({
                 report_sn: '1',
                 report_desc: 'Desc report ',
@@ -3263,7 +3272,7 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1
             }),
-        report
+        breakdown_report
             .create({
                 report_sn: '2',
                 report_desc: 'Desc report ',
@@ -3273,7 +3282,7 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1
             }),
-        report
+        breakdown_report
             .create({
                 report_sn: '3',
                 report_desc: 'Desc report ',
@@ -3283,7 +3292,7 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1
             }),
-        report
+        breakdown_report
             .create({
                 report_sn: '4',
                 report_desc: 'Desc report ',
@@ -3293,7 +3302,7 @@ module.exports = {
                 hospital_id: 2,
                 user_id: 2
             }),
-        report
+        breakdown_report
             .create({
                 report_sn: '5',
                 report_desc: 'Desc report ',
@@ -3303,7 +3312,7 @@ module.exports = {
                 hospital_id: 2,
                 user_id: 2
             }),
-        report
+        breakdown_report
             .create({
                 report_sn: '6',
                 report_desc: 'Desc report ',
@@ -3313,7 +3322,7 @@ module.exports = {
                 hospital_id: 2,
                 user_id: 2
             }),
-        report
+        breakdown_report
             .create({
                 report_sn: '7',
                 report_desc: 'Desc report ',
@@ -3323,7 +3332,7 @@ module.exports = {
                 hospital_id: 3,
                 user_id: 3
             }),
-        report
+        breakdown_report
             .create({
                 report_sn: '8',
                 report_desc: 'Desc report ',
@@ -3333,7 +3342,7 @@ module.exports = {
                 hospital_id: 3,
                 user_id: 3
             }),
-        report
+        breakdown_report
             .create({
                 report_sn: '9',
                 report_desc: 'Desc report ',
@@ -3681,7 +3690,6 @@ module.exports = {
                 est_tasks: [{}],
                 notes: 'notes 1',
                 is_open: true,
-                is_ber: true,
                 cm_sn: '1',
                 cm_result: true,
                 ppm_next_date: '2018-08-09 07:42:28',
@@ -3700,7 +3708,6 @@ module.exports = {
                 est_tasks: [{}],
                 notes: 'notes 2',
                 is_open: true,
-                is_ber: true,
                 cm_sn: '2',
                 cm_result: true,
                 ppm_next_date: '2018-08-09 07:42:28',
@@ -3719,7 +3726,6 @@ module.exports = {
                 est_tasks: [{}],
                 notes: 'notes 3',
                 is_open: true,
-                is_ber: true,
                 cm_sn: '3',
                 cm_result: true,
                 ppm_next_date: '2018-08-09 07:42:28',
@@ -3738,7 +3744,6 @@ module.exports = {
                 est_tasks: [{}],
                 notes: 'notes 4',
                 is_open: true,
-                is_ber: true,
                 cm_sn: '4',
                 cm_result: true,
                 ppm_next_date: '2018-08-09 07:42:28',
@@ -3757,7 +3762,6 @@ module.exports = {
                 est_tasks: [{}],
                 notes: 'notes 5',
                 is_open: true,
-                is_ber: true,
                 cm_sn: '5',
                 cm_result: true,
                 ppm_next_date: '2018-08-09 07:42:28',
@@ -3776,7 +3780,6 @@ module.exports = {
                 est_tasks: [{}],
                 notes: 'notes 6',
                 is_open: true,
-                is_ber: true,
                 cm_sn: '6',
                 cm_result: true,
                 ppm_next_date: '2018-08-09 07:42:28',
@@ -3795,7 +3798,6 @@ module.exports = {
                 est_tasks: [{}],
                 notes: 'notes 7',
                 is_open: true,
-                is_ber: true,
                 cm_sn: '7',
                 cm_result: true,
                 ppm_next_date: '2018-08-09 07:42:28',
@@ -3814,7 +3816,6 @@ module.exports = {
                 est_tasks: [{}],
                 notes: 'notes 8',
                 is_open: true,
-                is_ber: true,
                 cm_sn: '8',
                 cm_result: true,
                 ppm_next_date: '2018-08-09 07:42:28',
@@ -3833,7 +3834,6 @@ module.exports = {
                 est_tasks: [{}],
                 notes: 'notes 9',
                 is_open: true,
-                is_ber: true,
                 cm_sn: '9',
                 cm_result: true,
                 ppm_next_date: '2018-08-09 07:42:28',
@@ -3953,7 +3953,8 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1,
                 equipment_id: 1,
-                request_id: 1
+                request_id: 1,
+                file: null
             }),
         disposal_report
             .create({
@@ -3965,7 +3966,8 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1,
                 equipment_id: 2,
-                request_id: 2
+                request_id: 2,
+                file: null
             }),
         disposal_report
             .create({
@@ -3977,7 +3979,8 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1,
                 equipment_id: 3,
-                request_id: 3
+                request_id: 3,
+                file: null
             }),
         disposal_report
             .create({
@@ -3989,7 +3992,8 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1,
                 equipment_id: 4,
-                request_id: 4
+                request_id: 4,
+                file: null
             }),
         disposal_report
             .create({
@@ -4001,7 +4005,8 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1,
                 equipment_id: 5,
-                request_id: 5
+                request_id: 5,
+                file: null
             }),
         disposal_report
             .create({
@@ -4013,7 +4018,8 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1,
                 equipment_id: 6,
-                request_id: 6
+                request_id: 6,
+                file: null
             }),
         disposal_report
             .create({
@@ -4025,7 +4031,8 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1,
                 equipment_id: 7,
-                request_id: 7
+                request_id: 7,
+                file: null
             }),
         disposal_report
             .create({
@@ -4037,7 +4044,8 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1,
                 equipment_id: 8,
-                request_id: 8
+                request_id: 8,
+                file: null
             }),
         disposal_report
             .create({
@@ -4049,7 +4057,8 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1,
                 equipment_id: 9,
-                request_id: 9
+                request_id: 9,
+                file: null
             }),
 
         disposal_equipment
@@ -4118,8 +4127,8 @@ module.exports = {
 
         medical_equipments_booking
             .create({
-                start_time: '2018-08-09 07:42:28',
-                end_time: '2018-09-10 07:42:28',
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
                 purpose: 'purpose 1',
                 is_used: true,
                 user_id: 1,
@@ -4129,8 +4138,8 @@ module.exports = {
             }),
         medical_equipments_booking
             .create({
-                start_time: '2018-08-09 07:42:28',
-                end_time: '2018-09-10 07:42:28',
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
                 purpose: 'purpose 2',
                 is_used: true,
                 user_id: 1,
@@ -4140,8 +4149,8 @@ module.exports = {
             }),
         medical_equipments_booking
             .create({
-                start_time: '2018-08-09 07:42:28',
-                end_time: '2018-09-10 07:42:28',
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
                 purpose: 'purpose 3',
                 is_used: true,
                 user_id: 1,
@@ -4151,8 +4160,8 @@ module.exports = {
             }),
         medical_equipments_booking
             .create({
-                start_time: '2018-08-09 07:42:28',
-                end_time: '2018-09-10 07:42:28',
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
                 purpose: 'purpose 4',
                 is_used: true,
                 user_id: 2,
@@ -4162,8 +4171,8 @@ module.exports = {
             }),
         medical_equipments_booking
             .create({
-                start_time: '2018-08-09 07:42:28',
-                end_time: '2018-09-10 07:42:28',
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
                 purpose: 'purpose 5',
                 is_used: true,
                 user_id: 2,
@@ -4173,8 +4182,8 @@ module.exports = {
             }),
         medical_equipments_booking
             .create({
-                start_time: '2018-08-09 07:42:28',
-                end_time: '2018-09-10 07:42:28',
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
                 purpose: 'purpose 6',
                 is_used: true,
                 user_id: 2,
@@ -4184,8 +4193,8 @@ module.exports = {
             }),
         medical_equipments_booking
             .create({
-                start_time: '2018-08-09 07:42:28',
-                end_time: '2018-09-10 07:42:28',
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
                 purpose: 'purpose 7',
                 is_used: true,
                 user_id: 3,
@@ -4195,8 +4204,8 @@ module.exports = {
             }),
         medical_equipments_booking
             .create({
-                start_time: '2018-08-09 07:42:28',
-                end_time: '2018-09-10 07:42:28',
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
                 purpose: 'purpose 8',
                 is_used: true,
                 user_id: 3,
@@ -4206,8 +4215,8 @@ module.exports = {
             }),
         medical_equipments_booking
             .create({
-                start_time: '2018-08-09 07:42:28',
-                end_time: '2018-09-10 07:42:28',
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
                 purpose: 'purpose 9',
                 is_used: true,
                 user_id: 3,
