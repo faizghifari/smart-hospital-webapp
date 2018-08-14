@@ -59,6 +59,9 @@ module.exports = {
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
+            file: {
+                type: Sequelize.BLOB('long')
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

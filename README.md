@@ -71,6 +71,7 @@ TBD
 4. Before do database migrations, please ensure that your code is free from errors (and warnings if necessary).
 5. Do database migrations by running `sequelize db:migrate`.
 6. If there is any changes on the database either tables or attributes, run `sequelize db:migrate:undo:all` first to revert the existing database and then run `sequelize db:migrate`.
+7. To run the seeder, just run the application with `npm run start:dev`, and then you can open `http://localhost:3002/seed` from your browser or use GET method in Postman and use the same URL as in browser.
 
 Notes:
 - If there's any problem occured while creating table or migrating database, you can read the [Sequelize Documentation](http://docs.sequelizejs.com/manual/tutorial/migrations.html) to see additional command like Undo, etc.

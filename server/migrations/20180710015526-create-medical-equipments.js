@@ -17,26 +17,23 @@ module.exports = {
             equipments_sn: {
                 type: Sequelize.STRING
             },
-            equipments_qrcode: {
-                type: Sequelize.STRING
-            },
-            equipments_lifetime: {
+            equipments_life_expectancy: {
                 type: Sequelize.INTEGER
             },
             equipments_value: {
                 type: Sequelize.INTEGER
             },
-            purchase_date: {
+            equipments_value_currency: {
+                type: Sequelize.STRING
+            },
+            manufacturing_date: {
                 type: Sequelize.DATE,
                 defaultValue: Sequelize.NOW
             },
-            is_used: {
-                type: Sequelize.BOOLEAN
-            },
-            is_active: {
-                type: Sequelize.BOOLEAN
-            },
             is_on: {
+                type: Sequelize.BOOLEAN
+            },
+            is_available: {
                 type: Sequelize.BOOLEAN
             },
             current_safety: {
@@ -47,6 +44,9 @@ module.exports = {
             },
             current_productivity: {
                 type: Sequelize.INTEGER
+            },
+            file: {
+                type: Sequelize.BLOB('long')
             },
             equipments_type_id: {
                 type: Sequelize.INTEGER,
@@ -62,6 +62,15 @@ module.exports = {
                 onDelete: 'SET NULL',
                 references: {
                     model: 'manufacturers',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
+            },
+            supplier_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
+                references: {
+                    model: 'suppliers',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }

@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
         part_name: DataTypes.STRING,
         part_desc: DataTypes.STRING,
         part_sn: DataTypes.STRING,
-        part_qrcode: DataTypes.STRING,
         part_qty: DataTypes.INTEGER
     }, {});
     spare_part.associate = (models) => {

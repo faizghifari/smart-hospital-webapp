@@ -1,23 +1,30 @@
+'use strict';
 module.exports = {
-    up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('reports', {
+    up: (queryInterface, Sequelize) => {
+        return queryInterface.createTable('open_bookings', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            report_sn: {
-                type: Sequelize.STRING
+            start_time: {
+                type: Sequelize.DATE
             },
-            report_desc: {
+            end_time: {
+                type: Sequelize.DATE
+            },
+            purpose: {
                 type: Sequelize.TEXT
             },
-            report_details: {
-                type: Sequelize.TEXT
-            },
-            is_open: {
-                type: Sequelize.BOOLEAN
+            user_id: {
+                type: Sequelize.INTEGER,
+                onDelete: 'SET NULL',
+                references: {
+                    model: 'users',
+                    key: 'id',
+                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                }
             },
             equipment_id: {
                 type: Sequelize.INTEGER,
@@ -28,10 +35,10 @@ module.exports = {
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
-            },
+            },   
             hospital_id: {
                 type: Sequelize.INTEGER,
-                onDelete: 'CASCADE',
+                onDelete: 'SET NULL',
                 allowNull: false,
                 references: {
                     model: 'hospitals',
@@ -39,11 +46,12 @@ module.exports = {
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
-            user_id: {
+            room_id: {
                 type: Sequelize.INTEGER,
                 onDelete: 'SET NULL',
+                allowNull: false,
                 references: {
-                    model: 'users',
+                    model: 'rooms',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
@@ -56,8 +64,9 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             }
-        }),
+        });
+    },
     down: (queryInterface) => {
-        return queryInterface.dropTable('reports');
+        return queryInterface.dropTable('open_bookings');
     }
 };

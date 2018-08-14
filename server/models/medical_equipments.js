@@ -3,16 +3,16 @@ module.exports = (sequelize, DataTypes) => {
         equipments_name: DataTypes.STRING,
         equipments_desc: DataTypes.STRING,
         equipments_sn: DataTypes.STRING,
-        equipments_qrcode: DataTypes.STRING,
-        equipments_lifetime: DataTypes.INTEGER,
+        equipments_life_expectancy: DataTypes.INTEGER,
         equipments_value: DataTypes.INTEGER,
-        purchase_date: DataTypes.DATE,
-        is_used: DataTypes.BOOLEAN,
-        is_active: DataTypes.BOOLEAN,
+        equipments_value_currency: DataTypes.STRING,
+        manufacturing_date: DataTypes.DATE,
         is_on: DataTypes.BOOLEAN,
+        is_available: DataTypes.BOOLEAN,
         current_safety: DataTypes.INTEGER,
         current_security: DataTypes.INTEGER,
-        current_productivity: DataTypes.INTEGER
+        current_productivity: DataTypes.INTEGER,
+        file: DataTypes.BLOB('long')
     }, {});
     medical_equipments.associate = (models) => {
         medical_equipments.belongsTo(models.hospitals, {
@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
 
         medical_equipments.belongsTo(models.manufacturers, {
             foreignKey: 'manufacturers_id',
+        });
+
+        medical_equipments.belongsTo(models.suppliers, {
+            foreignKey: 'supplier_id',
         });
 
         medical_equipments.belongsTo(models.medical_equipments_type, {
@@ -59,6 +63,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'equipment_id'
         });
 
+        medical_equipments.hasMany(models.open_bookings, {
+            foreignKey: 'equipment_id'
+        });
+
         medical_equipments.hasMany(models.medical_equipments_security_history, {
             foreignKey: 'equipment_id'
         });
@@ -71,7 +79,11 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'equipment_id'
         });
 
-        medical_equipments.hasMany(models.report, {
+        medical_equipments.hasMany(models.breakdown_reports, {
+            foreignKey: 'equipment_id'
+        });
+
+        medical_equipments.hasMany(models.adverse_event_reports, {
             foreignKey: 'equipment_id'
         });
 

@@ -1,10 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
     const users = sequelize.define('users', {
-        email: DataTypes.STRING,
+        fullname: DataTypes.STRING,
         username: DataTypes.STRING,
-        password_hash: DataTypes.TEXT,
-        is_ministry: DataTypes.BOOLEAN,
-        is_admin: DataTypes.BOOLEAN
+        staffId: DataTypes.STRING,
+        email: DataTypes.STRING,
     }, {});
   
     users.associate = (models) => {
@@ -28,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'user_id'
         });
 
+        users.hasMany(models.open_bookings, {
+            foreignKey: 'user_id'
+        });
+
         users.hasMany(models.disposal_request, {
             foreignKey: 'user_id'
         });
@@ -36,7 +39,11 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'user_id'
         });
 
-        users.hasMany(models.report, {
+        users.hasMany(models.breakdown_reports, {
+            foreignKey: 'user_id'
+        });
+
+        users.hasMany(models.adverse_event_reports, {
             foreignKey: 'user_id'
         });
 

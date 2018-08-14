@@ -18,6 +18,7 @@ require('./server/auth/routes')(app);
 require('./server/maintenance/routes')(app);
 require('./server/deregistration/routes')(app);
 require('./server/usage/routes')(app);
+require('./server/seeders/routes')(app);
 
 const productivity = require('./server/monitoring/productivity');
 const safety = require('./server/monitoring/safety');
