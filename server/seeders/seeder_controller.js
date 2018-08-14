@@ -33,7 +33,7 @@ const medical_equipments_productivity = require('../models').medical_equipments_
 const medical_equipments_safety = require('../models').medical_equipments_safety;
 const medical_equipments_security = require('../models').medical_equipments_security;
 const medical_equipments_security_history = require('../models').medical_equipments_security_history;
-const breakdown_report = require('../models').breakdown_report;
+const breakdown_reports = require('../models').breakdown_reports;
 const maintenance_qty_task = require('../models').maintenance_qty_task;
 const maintenance_ppm = require('../models').maintenance_ppm;
 const maintenance_work_order = require('../models').maintenance_work_order;
@@ -42,6 +42,9 @@ const disposal_request = require('../models').disposal_request;
 const disposal_report = require('../models').disposal_report;
 const disposal_equipment = require('../models').disposal_equipment;
 const medical_equipments_booking = require('../models').medical_equipments_booking;
+const suppliers = require('../models').suppliers;
+const open_booking = require('../models').open_bookings;
+const adverse_event_report = require('../models').adverse_event_reports;
 
 
 module.exports = {
@@ -3262,7 +3265,7 @@ module.exports = {
                 security_id: 9
             }),
 
-        breakdown_report
+        breakdown_reports
             .create({
                 report_sn: '1',
                 report_desc: 'Desc report ',
@@ -3272,7 +3275,7 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1
             }),
-        breakdown_report
+        breakdown_reports
             .create({
                 report_sn: '2',
                 report_desc: 'Desc report ',
@@ -3282,7 +3285,7 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1
             }),
-        breakdown_report
+        breakdown_reports
             .create({
                 report_sn: '3',
                 report_desc: 'Desc report ',
@@ -3292,7 +3295,7 @@ module.exports = {
                 hospital_id: 1,
                 user_id: 1
             }),
-        breakdown_report
+        breakdown_reports
             .create({
                 report_sn: '4',
                 report_desc: 'Desc report ',
@@ -3302,7 +3305,7 @@ module.exports = {
                 hospital_id: 2,
                 user_id: 2
             }),
-        breakdown_report
+        breakdown_reports
             .create({
                 report_sn: '5',
                 report_desc: 'Desc report ',
@@ -3312,7 +3315,7 @@ module.exports = {
                 hospital_id: 2,
                 user_id: 2
             }),
-        breakdown_report
+        breakdown_reports
             .create({
                 report_sn: '6',
                 report_desc: 'Desc report ',
@@ -3322,7 +3325,7 @@ module.exports = {
                 hospital_id: 2,
                 user_id: 2
             }),
-        breakdown_report
+        breakdown_reports
             .create({
                 report_sn: '7',
                 report_desc: 'Desc report ',
@@ -3332,7 +3335,7 @@ module.exports = {
                 hospital_id: 3,
                 user_id: 3
             }),
-        breakdown_report
+        breakdown_reports
             .create({
                 report_sn: '8',
                 report_desc: 'Desc report ',
@@ -3342,7 +3345,7 @@ module.exports = {
                 hospital_id: 3,
                 user_id: 3
             }),
-        breakdown_report
+        breakdown_reports
             .create({
                 report_sn: '9',
                 report_desc: 'Desc report ',
@@ -4223,6 +4226,242 @@ module.exports = {
                 equipment_id: 9,
                 room_id: 9,
                 hospital_id: 3
-            });        
+            }),
+            
+        suppliers
+            .create({
+                supplier_name: 'Supplier 1',
+                supplier_desc: 'Desc Supplier 1',
+                supplier: '1'
+            }),
+            
+        suppliers
+            .create({
+                supplier_name: 'Supplier 2',
+                supplier_desc: 'Desc Supplier 2',
+                supplier: '2'
+            }),
+            
+        suppliers
+            .create({
+                supplier_name: 'Supplier 3',
+                supplier_desc: 'Desc Supplier 3',
+                supplier: '3'
+            }),
+            
+        suppliers
+            .create({
+                supplier_name: 'Supplier 4',
+                supplier_desc: 'Desc Supplier 4',
+                supplier: '4'
+            }),
+            
+        suppliers
+            .create({
+                supplier_name: 'Supplier 5',
+                supplier_desc: 'Desc Supplier 5',
+                supplier: '5'
+            }),
+            
+        suppliers
+            .create({
+                supplier_name: 'Supplier 6',
+                supplier_desc: 'Desc Supplier 6',
+                supplier: '6'
+            }),
+            
+        suppliers
+            .create({
+                supplier_name: 'Supplier 7',
+                supplier_desc: 'Desc Supplier 7',
+                supplier: '7'
+            }),
+            
+        suppliers
+            .create({
+                supplier_name: 'Supplier 8',
+                supplier_desc: 'Desc Supplier 8',
+                supplier: '8'
+            }),
+            
+        suppliers
+            .create({
+                supplier_name: 'Supplier 9',
+                supplier_desc: 'Desc Supplier 9',
+                supplier: '9'
+            }),
+
+        open_booking
+            .create({
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
+                purpose: 'purpose 2',
+                is_used: true,
+                equipment_id: 2,
+                room_id: 2,
+                hospital_id: 1
+            }),
+        open_booking
+            .create({
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
+                purpose: 'purpose 2',
+                is_used: true,
+                equipment_id: 2,
+                room_id: 2,
+                hospital_id: 1
+            }),
+        open_booking
+            .create({
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
+                purpose: 'purpose 2',
+                is_used: true,
+                equipment_id: 2,
+                room_id: 2,
+                hospital_id: 1
+            }),
+        open_booking
+            .create({
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
+                purpose: 'purpose 2',
+                is_used: true,
+                equipment_id: 2,
+                room_id: 2,
+                hospital_id: 1
+            }),
+        open_booking
+            .create({
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
+                purpose: 'purpose 2',
+                is_used: true,
+                equipment_id: 2,
+                room_id: 2,
+                hospital_id: 1
+            }),
+        open_booking
+            .create({
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
+                purpose: 'purpose 2',
+                is_used: true,
+                equipment_id: 2,
+                room_id: 2,
+                hospital_id: 1
+            }),
+        open_booking
+            .create({
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
+                purpose: 'purpose 2',
+                is_used: true,
+                equipment_id: 2,
+                room_id: 2,
+                hospital_id: 1
+            }),
+        open_booking
+            .create({
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
+                purpose: 'purpose 2',
+                is_used: true,
+                equipment_id: 2,
+                room_id: 2,
+                hospital_id: 1
+            }),
+        open_booking
+            .create({
+                start_date: '2018-08-09 07:42:28',
+                end_date: '2018-09-10 07:42:28',
+                purpose: 'purpose 2',
+                is_used: true,
+                equipment_id: 2,
+                room_id: 2,
+                hospital_id: 1
+            }),
+
+        adverse_event_report
+            .create({
+                report_sn: '1',
+                report_desc: 'Desc report ',
+                report_details: 'Details report ',
+                equipment_id: 1,
+                hospital_id: 1,
+                user_id: 1
+            }),
+        adverse_event_report
+            .create({
+                report_sn: '2',
+                report_desc: 'Desc report ',
+                report_details: 'Details report ',
+                equipment_id: 2,
+                hospital_id: 1,
+                user_id: 1
+            }),
+        adverse_event_report
+            .create({
+                report_sn: '3',
+                report_desc: 'Desc report ',
+                report_details: 'Details report ',
+                equipment_id: 3,
+                hospital_id: 1,
+                user_id: 1
+            }),
+        adverse_event_report
+            .create({
+                report_sn: '4',
+                report_desc: 'Desc report ',
+                report_details: 'Details report ',
+                equipment_id: 4,
+                hospital_id: 2,
+                user_id: 2
+            }),
+        adverse_event_report
+            .create({
+                report_sn: '5',
+                report_desc: 'Desc report ',
+                report_details: 'Details report ',
+                equipment_id: 5,
+                hospital_id: 2,
+                user_id: 2
+            }),
+        adverse_event_report
+            .create({
+                report_sn: '6',
+                report_desc: 'Desc report ',
+                report_details: 'Details report ',
+                equipment_id: 6,
+                hospital_id: 2,
+                user_id: 2
+            }),
+        adverse_event_report
+            .create({
+                report_sn: '7',
+                report_desc: 'Desc report ',
+                report_details: 'Details report ',
+                equipment_id: 7,
+                hospital_id: 3,
+                user_id: 3
+            }),
+        adverse_event_report
+            .create({
+                report_sn: '8',
+                report_desc: 'Desc report ',
+                report_details: 'Details report ',
+                equipment_id: 8,
+                hospital_id: 3,
+                user_id: 3
+            }),
+        adverse_event_report
+            .create({
+                report_sn: '9',
+                report_desc: 'Desc report ',
+                report_details: 'Details report ',
+                equipment_id: 9,
+                hospital_id: 3,
+                user_id: 3
+            });
     }
 };
