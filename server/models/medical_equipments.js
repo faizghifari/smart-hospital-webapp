@@ -3,16 +3,16 @@ module.exports = (sequelize, DataTypes) => {
         equipments_name: DataTypes.STRING,
         equipments_desc: DataTypes.STRING,
         equipments_sn: DataTypes.STRING,
-        equipments_lifetime: DataTypes.INTEGER,
+        equipments_life_expectancy: DataTypes.INTEGER,
         equipments_value: DataTypes.INTEGER,
-        purchase_date: DataTypes.DATE,
-        is_used: DataTypes.BOOLEAN,
-        is_active: DataTypes.BOOLEAN,
+        equipments_value_currency: DataTypes.STRING,
+        manufacturing_date: DataTypes.DATE,
         is_on: DataTypes.BOOLEAN,
         is_available: DataTypes.BOOLEAN,
         current_safety: DataTypes.INTEGER,
         current_security: DataTypes.INTEGER,
-        current_productivity: DataTypes.INTEGER
+        current_productivity: DataTypes.INTEGER,
+        file: DataTypes.BLOB('long')
     }, {});
     medical_equipments.associate = (models) => {
         medical_equipments.belongsTo(models.hospitals, {

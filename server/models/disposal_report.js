@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
         report_desc: DataTypes.STRING,
         disposal_reason: DataTypes.STRING,
         disposal_tasks: DataTypes.ARRAY(DataTypes.JSON),
-        is_open: DataTypes.BOOLEAN
+        is_open: DataTypes.BOOLEAN,
+        file: DataTypes.BLOB('long')
     }, {});
     disposal_report.associate = (models) => {
         disposal_report.belongsTo(models.hospitals, {

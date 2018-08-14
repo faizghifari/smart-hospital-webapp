@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
         count_rooms: DataTypes.INTEGER,
         current_safety: DataTypes.INTEGER,
         current_security: DataTypes.INTEGER,
-        current_productivity: DataTypes.INTEGER
+        current_productivity: DataTypes.INTEGER,
+        dep_code: DataTypes.INTEGER
     }, {});
     hospitals.associate = (models) => {
         hospitals.belongsTo(models.states, {
