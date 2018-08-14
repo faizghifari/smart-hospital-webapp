@@ -17,6 +17,9 @@ module.exports = {
             current_safety: {
                 type: Sequelize.INTEGER
             },
+            current_security: {
+                type: Sequelize.INTEGER
+            },
             current_productivity: {
                 type: Sequelize.INTEGER
             },

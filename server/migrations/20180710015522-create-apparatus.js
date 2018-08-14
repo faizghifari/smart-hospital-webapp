@@ -16,9 +16,6 @@ module.exports = {
             apparatus_sn: {
                 type: Sequelize.STRING
             },
-            apparatus_qrcode: {
-                type: Sequelize.STRING
-            },
             apparatus_calibration_due_on: {
                 type: Sequelize.DATEONLY
             },

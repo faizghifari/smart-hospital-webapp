@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
         est_tasks: DataTypes.ARRAY(DataTypes.JSON),
         notes: DataTypes.TEXT,
         is_open: DataTypes.BOOLEAN,
-        is_ber: DataTypes.BOOLEAN,
         cm_sn: DataTypes.STRING,
         cm_result: DataTypes.BOOLEAN,
         cm_next_date: DataTypes.DATEONLY

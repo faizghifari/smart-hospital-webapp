@@ -1,36 +1,24 @@
+'use strict';
 module.exports = {
-    up: (queryInterface, Sequelize) =>
-        queryInterface.createTable('maintenance_work_orders', {
+    up: (queryInterface, Sequelize) => {
+        return queryInterface.createTable('medical_equipments_bookings', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            wo_desc: {
+            start_time: {
+                type: Sequelize.DATE
+            },
+            end_time: {
+                type: Sequelize.DATE
+            },
+            purpose: {
                 type: Sequelize.TEXT
             },
-            wo_designation: {
-                type: Sequelize.TEXT
-            },
-            wo_req_details: {
-                type: Sequelize.TEXT
-            },
-            wo_sn: {
-                type: Sequelize.STRING
-            },
-            is_open: {
+            is_used: {
                 type: Sequelize.BOOLEAN
-            },
-            hospital_id: {
-                type: Sequelize.INTEGER,
-                onDelete: 'CASCADE',
-                allowNull: false,
-                references: {
-                    model: 'hospitals',
-                    key: 'id',
-                    deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-                }
             },
             user_id: {
                 type: Sequelize.INTEGER,
@@ -51,20 +39,22 @@ module.exports = {
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
-            ppm_id: {
+            room_id: {
                 type: Sequelize.INTEGER,
-                onDelete: 'CASCADE',
+                onDelete: 'SET NULL',
+                allowNull: false,
                 references: {
-                    model: 'maintenance_ppms',
+                    model: 'rooms',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
-            report_id: {
+            hospital_id: {
                 type: Sequelize.INTEGER,
-                onDelete: 'CASCADE',
+                onDelete: 'SET NULL',
+                allowNull: false,
                 references: {
-                    model: 'breakdown_reports',
+                    model: 'hospitals',
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
@@ -77,8 +67,9 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             }
-        }),
+        });
+    },
     down: (queryInterface) => {
-        return queryInterface.dropTable('maintenance_work_orders');
+        return queryInterface.dropTable('medical_equipments_bookings');
     }
 };

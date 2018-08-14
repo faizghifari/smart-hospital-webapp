@@ -31,9 +31,6 @@ module.exports = {
             is_open: {
                 type: Sequelize.BOOLEAN
             },
-            is_ber: {
-                type: Sequelize.BOOLEAN
-            },
             cm_sn: {
                 type: Sequelize.STRING
             },

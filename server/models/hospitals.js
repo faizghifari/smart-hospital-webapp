@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
         count_rooms: DataTypes.INTEGER,
         current_safety: DataTypes.INTEGER,
         current_security: DataTypes.INTEGER,
-        current_productivity: DataTypes.INTEGER
+        current_productivity: DataTypes.INTEGER,
+        dep_code: DataTypes.INTEGER
     }, {});
     hospitals.associate = (models) => {
         hospitals.belongsTo(models.states, {
@@ -36,7 +37,11 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'hospital_id'
         });
 
-        hospitals.hasMany(models.report, {
+        hospitals.hasMany(models.breakdown_reports, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.adverse_event_reports, {
             foreignKey: 'hospital_id'
         });
 
@@ -85,6 +90,14 @@ module.exports = (sequelize, DataTypes) => {
         });
 
         hospitals.hasMany(models.users, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.medical_equipments_booking, {
+            foreignKey: 'hospital_id'
+        });
+
+        hospitals.hasMany(models.open_bookings, {
             foreignKey: 'hospital_id'
         });
     };

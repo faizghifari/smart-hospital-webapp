@@ -7,9 +7,6 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            security_desc: {
-                type: Sequelize.STRING
-            },
             equipment_id: {
                 type: Sequelize.INTEGER,
                 onDelete: 'CASCADE',
@@ -19,6 +16,9 @@ module.exports = {
                     key: 'id',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
+            },
+            security_desc: {
+                type: Sequelize.STRING
             },
             room_id: {
                 type: Sequelize.INTEGER,
