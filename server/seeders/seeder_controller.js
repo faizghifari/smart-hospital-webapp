@@ -107,8 +107,7 @@ module.exports = {
                 current_safety: 3,
                 current_security: 3,
                 current_productivity: 3,
-                state_id: 1,
-                dep_code: 1
+                state_id: 1
             }),
         hospitals
             .create({
@@ -118,8 +117,7 @@ module.exports = {
                 current_safety: 2,
                 current_security: 3,
                 current_productivity: 1,
-                state_id: 1,
-                dep_code: 2
+                state_id: 1
             }),
         hospitals
             .create({
@@ -129,8 +127,7 @@ module.exports = {
                 current_safety: 1,
                 current_security: 1,
                 current_productivity: 1,
-                state_id: 1,
-                dep_code: 3
+                state_id: 1
             }),
         hospitals
             .create({
@@ -140,8 +137,7 @@ module.exports = {
                 current_safety: 3,
                 current_security: 3,
                 current_productivity: 3,
-                state_id: 2,
-                dep_code: 1
+                state_id: 2
             }),
         hospitals
             .create({
@@ -151,8 +147,7 @@ module.exports = {
                 current_safety: 2,
                 current_security: 3,
                 current_productivity: 1,
-                state_id: 2,
-                dep_code: 2
+                state_id: 2
             }),
         hospitals
             .create({
@@ -162,8 +157,7 @@ module.exports = {
                 current_safety: 1,
                 current_security: 1,
                 current_productivity: 1,
-                state_id: 2,
-                dep_code: 3
+                state_id: 2
             }),
         hospitals
             .create({
@@ -173,8 +167,7 @@ module.exports = {
                 current_safety: 3,
                 current_security: 3,
                 current_productivity: 3,
-                state_id: 3,
-                dep_code: 1
+                state_id: 3
             }),
         hospitals
             .create({
@@ -184,8 +177,7 @@ module.exports = {
                 current_safety: 2,
                 current_security: 3,
                 current_productivity: 1,
-                state_id: 3,
-                dep_code: 2
+                state_id: 3
             }),
         hospitals
             .create({
@@ -195,8 +187,7 @@ module.exports = {
                 current_safety: 1,
                 current_security: 1,
                 current_productivity: 1,
-                state_id: 3,
-                dep_code: 3
+                state_id: 3
             }),
 
         hospitals_history
@@ -275,163 +266,190 @@ module.exports = {
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 1
+                hospital_id: 1,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 1
+                hospital_id: 1,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 1  
+                hospital_id: 1,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 2
+                hospital_id: 2,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 2
+                hospital_id: 2,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 2
+                hospital_id: 2,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 3
+                hospital_id: 3,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 3
+                hospital_id: 3,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 3
+                hospital_id: 3,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 4 
+                hospital_id: 4,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 4
+                hospital_id: 4,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 4  
+                hospital_id: 4,
+                dep_code: 3  
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 5
+                hospital_id: 5,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 5  
+                hospital_id: 5,
+                dep_code: 2  
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 5 
+                hospital_id: 5,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 6
+                hospital_id: 6,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 6
+                hospital_id: 6,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 6
+                hospital_id: 6,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 7
+                hospital_id: 7,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 7
+                hospital_id: 7,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 7 
+                hospital_id: 7,
+                dep_code: 3 
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 8
+                hospital_id: 8,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 8
+                hospital_id: 8,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 8
+                hospital_id: 8,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 9
+                hospital_id: 9,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 9
+                hospital_id: 9,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 9
+                hospital_id: 9,
+                dep_code: 3
             }),
         division
             .create({
