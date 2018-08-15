@@ -3,12 +3,14 @@ const jwtLogin = require('jwt-login');
 const bcrypt = require('bcryptjs');
 const randomize = require('randomatic');
 const nodemailer = require('nodemailer');
+const requestIp = require('request-ip');
 
 module.exports = {
     verify(req, res) {
         var data = req.body;
         var user = data.username;
         var password = data.password;
+        var clientIp = requestIp.getClientIp(req);
 
         users
         .findOne({
@@ -22,7 +24,7 @@ module.exports = {
                 if (!matches) {
                     return res.status(400).send('Auth failed. Wrong password.');   
                 } else {
-                    module.exports.update_send_pin(result.id); 
+                    module.exports.update_send_pin(result.id, clientIp); 
                 }
             }
         });
@@ -46,7 +48,7 @@ module.exports = {
         });
     },
 
-    verification_email(result_id, result_email, result_username) {
+    verification_email(result_id, result_email, result_username, clientIp) {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -63,7 +65,7 @@ module.exports = {
             from: 'Smart Healthcare <elife.shams@gmail.com>',
             to: 'arinanda.adib@gmail.com',
             subject: 'Verify it\'s you!',
-            text: 'Hey ' + result_username + '!\n\nPlease verify that it’s you.\n\nUse the following code to confirm your identity:\n\n' + result_id + '\n\n' + 'Here are the details of the sign-in attempt:\n' + new Date() + '\nAccount: ' + result_email
+            text: 'Hey ' + result_username + '!\n\nPlease verify that it’s you.\n\nUse the following code to confirm your identity:\n\n' + result_id + '\n\n' + 'Here are the details of the sign-in attempt:\n' + new Date() + '\nAccount: ' + result_email + '\nIP Address: ' + clientIp
         };
          
         transporter.sendMail(mailOptions, function(err, res) {
@@ -75,7 +77,7 @@ module.exports = {
         });  
     },
 
-    update_send_pin(user_id) {
+    update_send_pin(user_id, clientIp) {
         let generated_pin = randomize('0', 6);
         users
         .findById(user_id)
@@ -85,7 +87,7 @@ module.exports = {
                 login_pin: generated_pin
             })
             .catch((error) => console.log(error));
-            module.exports.verification_email(result.login_pin, result.email, result.username);
+            module.exports.verification_email(result.login_pin, result.email, result.username, clientIp);
         })
         .catch(error => console.log(error));
     },
