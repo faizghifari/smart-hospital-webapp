@@ -4,13 +4,23 @@ const bcrypt = require('bcryptjs');
 const randomize = require('randomatic');
 const nodemailer = require('nodemailer');
 const requestIp = require('request-ip');
+const publicIp = require('public-ip');
+const where = require('node-where');
 
 module.exports = {
-    verify(req, res) {
+    get_client_ip() {
+        return new Promise((resolve, reject) => {
+            publicIp.v4().then(ip => {
+                resolve(ip);
+            })
+        })
+    },
+
+    async verify(req, res) {
         var data = req.body;
         var user = data.username;
         var password = data.password;
-        var clientIp = requestIp.getClientIp(req);
+        var clientIp = await module.exports.get_client_ip();        
 
         users
         .findOne({
@@ -48,7 +58,8 @@ module.exports = {
         });
     },
 
-    verification_email(result_id, result_email, result_username, clientIp) {
+    async verification_email(result_id, result_email, result_username, clientIp) {
+
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -65,7 +76,11 @@ module.exports = {
             from: 'Smart Healthcare <elife.shams@gmail.com>',
             to: 'arinanda.adib@gmail.com',
             subject: 'Verify it\'s you!',
-            text: 'Hey ' + result_username + '!\n\nPlease verify that it’s you.\n\nUse the following code to confirm your identity:\n\n' + result_id + '\n\n' + 'Here are the details of the sign-in attempt:\n' + new Date() + '\nAccount: ' + result_email + '\nIP Address: ' + clientIp
+            text: 
+            'Hey ' + result_username + '!\n\nPlease verify that it’s you.\n\nUse the following code to confirm your identity:\n\n' + 
+            result_id + '\n\n' + 'Here are the details of the sign-in attempt:\n' + new Date() + '\nAccount: ' + result_email + 
+            '\nLocation: ' + await module.exports.get_client_city(clientIp) + ', ' + await module.exports.get_client_region(clientIp) + ', ' + await module.exports.get_client_country(clientIp) + ' ' +  await module.exports.get_client_zip(clientIp) +
+            '\nIP Address: ' + clientIp
         };
          
         transporter.sendMail(mailOptions, function(err, res) {
@@ -77,8 +92,9 @@ module.exports = {
         });  
     },
 
-    update_send_pin(user_id, clientIp) {
+    async update_send_pin(user_id, clientIp) {
         let generated_pin = randomize('0', 6);
+        var clientIp = await module.exports.get_client_ip();
         users
         .findById(user_id)
         .then(result => {
@@ -90,6 +106,38 @@ module.exports = {
             module.exports.verification_email(result.login_pin, result.email, result.username, clientIp);
         })
         .catch(error => console.log(error));
+    },
+
+    get_client_city(clientIp) {
+        return new Promise((resolve, reject) => {
+            where.is(clientIp, function(err, result) {
+                resolve(result.get('city'));
+            }) 
+        });
+    },
+
+    get_client_region(clientIp) {
+        return new Promise((resolve, reject) => {
+            where.is(clientIp, function(err, result) {
+                resolve(result.get('region'));
+            }) 
+        });
+    },
+
+    get_client_country(clientIp) {
+        return new Promise((resolve, reject) => {
+            where.is(clientIp, function(err, result) {
+                resolve(result.get('country'));
+            }) 
+        });
+    },
+
+    get_client_zip(clientIp) {
+        return new Promise((resolve, reject) => {
+            where.is(clientIp, function(err, result) {
+                resolve(result.get('postalCode'));
+            }) 
+        });
     },
 
     logout(req, res) {
