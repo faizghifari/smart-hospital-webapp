@@ -21,6 +21,7 @@ module.exports = {
         var user = data.username;
         var password = data.password;
         var clientIp = await module.exports.get_client_ip();        
+        const ip = (requestIp.getClientIp(req)).substr(7);
 
         users
         .findOne({
@@ -34,7 +35,7 @@ module.exports = {
                 if (!matches) {
                     return res.status(400).send('Auth failed. Wrong password.');   
                 } else {
-                    module.exports.update_send_pin(result.id, clientIp); 
+                    module.exports.update_send_pin(result.id, clientIp, ip); 
                 }
             }
         });
@@ -58,7 +59,7 @@ module.exports = {
         });
     },
 
-    async verification_email(result_id, result_email, result_username, clientIp) {
+    async verification_email(result_id, result_email, result_username, clientIp, ip) {
 
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -80,7 +81,9 @@ module.exports = {
             'Hey ' + result_username + '!\n\nPlease verify that it’s you.\n\nUse the following code to confirm your identity:\n\n' + 
             result_id + '\n\n' + 'Here are the details of the sign-in attempt:\n' + new Date() + '\nAccount: ' + result_email + 
             '\nLocation: ' + await module.exports.get_client_city(clientIp) + ', ' + await module.exports.get_client_region(clientIp) + ', ' + await module.exports.get_client_country(clientIp) + ' ' +  await module.exports.get_client_zip(clientIp) +
-            '\nIP Address: ' + clientIp
+            '\nIP Address: ' + clientIp + ' / ' + ip +
+            '\nLatitude: ' + await module.exports.get_client_lat(clientIp) +
+            '\nLongitude: ' + await module.exports.get_client_lng(clientIp)
         };
          
         transporter.sendMail(mailOptions, function(err, res) {
@@ -92,9 +95,10 @@ module.exports = {
         });  
     },
 
-    async update_send_pin(user_id, clientIp) {
+    async update_send_pin(user_id, clientIp, ip) {
         let generated_pin = randomize('0', 6);
         var clientIp = await module.exports.get_client_ip();
+        
         users
         .findById(user_id)
         .then(result => {
@@ -103,7 +107,7 @@ module.exports = {
                 login_pin: generated_pin
             })
             .catch((error) => console.log(error));
-            module.exports.verification_email(result.login_pin, result.email, result.username, clientIp);
+            module.exports.verification_email(result.login_pin, result.email, result.username, clientIp, ip);
         })
         .catch(error => console.log(error));
     },
@@ -136,6 +140,22 @@ module.exports = {
         return new Promise((resolve, reject) => {
             where.is(clientIp, function(err, result) {
                 resolve(result.get('postalCode'));
+            }) 
+        });
+    },
+
+    get_client_lat(clientIp) {
+        return new Promise((resolve, reject) => {
+            where.is(clientIp, function(err, result) {
+                resolve(result.get('lat'));
+            }) 
+        });
+    },
+
+    get_client_lng(clientIp) {
+        return new Promise((resolve, reject) => {
+            where.is(clientIp, function(err, result) {
+                resolve(result.get('lng'));
             }) 
         });
     },
