@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer');
 const requestIp = require('request-ip');
 const publicIp = require('public-ip');
 const where = require('node-where');
+const schedule = require('node-schedule');
 
 module.exports = {
     get_client_ip() {
@@ -99,6 +100,7 @@ module.exports = {
         let generated_pin = randomize('0', 6);
         var clientIp = await module.exports.get_client_ip();
         
+        
         users
         .findById(user_id)
         .then(result => {
@@ -108,8 +110,26 @@ module.exports = {
             })
             .catch((error) => console.log(error));
             module.exports.verification_email(result.login_pin, result.email, result.username, clientIp, ip);
+            module.exports.login_pin_expiry(user_id);
         })
         .catch(error => console.log(error));
+    },
+
+    login_pin_expiry(user_id) {
+        let expiryTime = new Date(Date.now() + 300000);
+        
+        schedule.scheduleJob(expiryTime, function() {
+            users
+            .findById(user_id)
+            .then(result => {
+                result
+                .update({
+                    login_pin: null
+                })
+                .catch((error) => console.log(error));
+            })
+            .catch(error => console.log(error));
+        })
     },
 
     get_client_city(clientIp) {
