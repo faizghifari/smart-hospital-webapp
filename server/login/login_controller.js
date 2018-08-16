@@ -54,6 +54,8 @@ module.exports = {
         .then(result => {
             if(result.login_pin == pin){
                 jwtLogin.sign(req, res, user, "topsecret", 1, false);
+            } else if(result.login_pin == null) {
+                res.send('Session expired. Please login again.')
             } else {
                 res.send('Incorrect PIN!')
             }
