@@ -1,9 +1,10 @@
-const medical_equipments_model = require('../models').medical_equipments;
+const request = require('request');
 const medical_equipments_productivity_model = require('../models').medical_equipments_productivity;
+let productivity_io;
 
 module.exports = {
     start: (io) => {
-        const productivity_io = io.of('/equipment/productivity/');
+        productivity_io = io.of('/equipment/productivity/');
 
         productivity_io.on('connection', (client) => {
             console.log('Client Connected');
@@ -14,39 +15,40 @@ module.exports = {
         });
     },
 
-    send_productivity(equipment_id, productivity_level) {
-        productivity_io.emit('productivity/' + equipment_id, productivity_level);
+    send_productivity(data) {
+        productivity_io.emit('/' + data.hospital_id + '/productivity/' + data.equipment_id, data.productivity_level);
     },
 
     receive_usage(req,res) {
         medical_equipments_productivity_model
-        .findOne({
-            where: {
-                equipment_id: req.params.equipment_id
-            }
-        })
-        .then(equipment_productivity => {
-            let usage = equipment_productivity.count_usage + 1;
-            let object = {
-                "equipment_id": req.params.equipment_id,
-                "count_usage": usage
-            }
-            let data = JSON.stringify(object);
+            .findOne({
+                where: {
+                    equipment_id: req.params.equipment_id
+                }
+            })
+            .then(equipment_productivity => {
+                let usage = equipment_productivity.count_usage + 1;
+                let data = {
+                    'hospital_id': req.params.hospital_id,
+                    'equipment_id': req.params.equipment_id,
+                    'count_usage': usage
+                };
 
-            this.update(data.equipment_id, data);
+                module.exports.update(data.equipment_id, data);
 
-            return res.status(200).send(data);
-        })
-        .catch(error => res.status(400).send(error));
+                let data_stringified = JSON.stringify(data);
+                return res.status(200).send(data_stringified);
+            })
+            .catch(error => res.status(400).send(error));
     },
 
     calculate_productivity(data) {
         let productivity_level = -1;
 
-        if (data.count_usage > data.standard_usage) {
+        if (data.count_usage > 0.8*data.standard_usage) {
             productivity_level = 3;
         } else
-        if (data.count_usage > 0) {
+        if (data.count_usage > 0.5*data.standard_usage) {
             productivity_level = 2;
         } else {
             productivity_level = 1;
@@ -57,53 +59,58 @@ module.exports = {
 
     create(equipment_id, data) {
         medical_equipments_productivity_model
-        .create({
-            equipment_id: equipment_id,
-            count_usage: data.count_usage || 0,
-            standard_usage: data.standard_usage
-        })
-        .catch(error => console.log(error));
+            .create({
+                equipment_id: equipment_id,
+                count_usage: data.count_usage || 0,
+                standard_usage: data.standard_usage
+            })
+            .catch(error => console.log(error));
     },
 
     update(equipment_id, data) {
         medical_equipments_productivity_model
-        .findOne({
-            where: {
-                equipment_id: equipment_id
-            }
-        })
-        .then(equipment_productivity => {
-            equipment_productivity
-            .update({
-                count_usage: data.count_usage,
-                standard_usage: data.standard_usage
-            })
-            .then(equipment_productivity_new => {
-                let productivity_level = this.calculate_productivity(equipment_productivity_new);
-
-                if (productivity_level != -1) {
-                    this.update_productivity(equipment_id, productivity_level);
-                    this.send_productivity(equipment_id, productivity_level);
+            .findOne({
+                where: {
+                    equipment_id: equipment_id
                 }
             })
-            .catch((error) => console.log(error));
-        })
-        .catch(error => console.log(error));
+            .then(equipment_productivity => {
+                equipment_productivity
+                    .update({
+                        count_usage: data.count_usage,
+                        standard_usage: data.standard_usage
+                    })
+                    .then(equipment_productivity_new => {
+                        let productivity_level = module.exports.calculate_productivity(equipment_productivity_new);
+                        let result = {
+                            'hospital_id': data.hospital_id,
+                            'equipment_id': equipment_id,
+                            'productivity_level': productivity_level
+                        };
+
+                        if (productivity_level != -1) {
+                            module.exports.update_productivity(result);
+                            module.exports.send_productivity(result);
+                        }
+                    })
+                    .catch((error) => console.log(error));
+            })
+            .catch(error => console.log(error));
     },
 
-    update_productivity(equipment_id, productivity_level) {
-        medical_equipments_model
-        .findById(equipment_id)
-        .then(medical_equipment => {
-            if (!medical_equipment) {
-                console.log("Medical Equipment Not Found");
-            }
-            medical_equipment
-            .update({
-                current_productivity: productivity_level
-            })
-            .catch((error) => console.log(error));
-        })
-        .catch(error => console.log(error));
+    update_productivity(data) {
+        let payload = {
+            'current_productivity': data.productivity_level
+        };
+        const url = 'http://localhost:3002/' + data.hospital_id + '/' + data.equipment_id + '/equipment/';
+
+        request.put({
+            url: url,
+            json: payload
+        }, (error, response, body) => {
+            console.log('error:', error);
+            console.log('status_code:', response && response.statusCode);
+            console.log('body:', body);
+        });
     }
 };

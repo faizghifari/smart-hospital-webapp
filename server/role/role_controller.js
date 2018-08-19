@@ -1,21 +1,19 @@
 const jwtLogin = require('jwt-login');
-const users = require('../models').users
+const users = require('../models').users;
 const roles = require('user-groups-roles');
 
-//Roles
-roles.createNewRole("MOH"); 
-roles.createNewRole("Management"); 
-roles.createNewRole("User");
-roles.createNewRole("Engineer");
-roles.createNewRole("Superuser");
+roles.createNewRole('MOH'); 
+roles.createNewRole('Management'); 
+roles.createNewRole('User');
+roles.createNewRole('Engineer');
+roles.createNewRole('Superuser');
 
-//Equipment Privileges
-roles.createNewPrivileges(['/api/equipment',                        "GET"],                         "get equipment",                true);
-roles.createNewPrivileges(['/api/equipment/:equipment_id',          "GET"],                         "get equipment by id",          true);
-roles.createNewPrivileges(['/api/equipment/:equipment_id/details',  "GET"],                         "get equipment details by id",  true);
-roles.createNewPrivileges(['/api/equipment/registration',           "POST"],                        "insert equipment",             false);
-roles.createNewPrivileges(['/api/equipment/:equipment_id',          "PUT"],                         "update equipment",             false);
-roles.createNewPrivileges(['/api/equipment/:equipment_id',          "DELETE"],                      "delete equipment",             false);
+roles.createNewPrivileges(['/api/equipment',                        'GET'],                         'get equipment',                true);
+roles.createNewPrivileges(['/api/equipment/:equipment_id',          'GET'],                         'get equipment by id',          true);
+roles.createNewPrivileges(['/api/equipment/:equipment_id/details',  'GET'],                         'get equipment details by id',  true);
+roles.createNewPrivileges(['/api/equipment/registration',           'POST'],                        'insert equipment',             false);
+roles.createNewPrivileges(['/api/equipment/:equipment_id',          'PUT'],                         'update equipment',             false);
+roles.createNewPrivileges(['/api/equipment/:equipment_id',          'DELETE'],                      'delete equipment',             false);
 
 //MOH
 
@@ -24,14 +22,14 @@ roles.createNewPrivileges(['/api/equipment/:equipment_id',          "DELETE"],  
 //User
 
 //Engineer
-roles.addPrivilegeToRole("Engineer", ['/api/equipment/registration',    "POST"],                    true);
-roles.addPrivilegeToRole("Engineer", ['/api/equipment/:equipment_id',   "PUT"],                     true);
-roles.addPrivilegeToRole("Engineer", ['/api/equipment/:equipment_id',   "DELETE"],                  true);
+roles.addPrivilegeToRole('Engineer', ['/api/equipment/registration',    'POST'],                    true);
+roles.addPrivilegeToRole('Engineer', ['/api/equipment/:equipment_id',   'PUT'],                     true);
+roles.addPrivilegeToRole('Engineer', ['/api/equipment/:equipment_id',   'DELETE'],                  true);
 
 //Superuser
-roles.addPrivilegeToRole("Superuser", ['/api/equipment/registration',   "POST"],                    true);
-roles.addPrivilegeToRole("Superuser", ['/api/equipment/:equipment_id',  "PUT"],                     true);
-roles.addPrivilegeToRole("Superuser", ['/api/equipment/:equipment_id',  "DELETE"],                  true);
+roles.addPrivilegeToRole('Superuser', ['/api/equipment/registration',   'POST'],                    true);
+roles.addPrivilegeToRole('Superuser', ['/api/equipment/:equipment_id',  'PUT'],                     true);
+roles.addPrivilegeToRole('Superuser', ['/api/equipment/:equipment_id',  'DELETE'],                  true);
 
 module.exports = {
     valid_login(req, res, next){
@@ -74,11 +72,11 @@ module.exports = {
                     if(is_allowed){
                         next();
                     } else {
-                        throw "Forbidden. Use different account."
+                        throw 'Feature not available. Please use different account.';
                     }
                 } catch (error) {
                     res.status(500).send(error);
                 }
-            })
+            });
     },
-}
+};
