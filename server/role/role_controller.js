@@ -51,21 +51,21 @@ module.exports = {
                 var user_role_name;
 
                 switch(user_role){
-                case 2:
-                    user_role_name = 'MOH';
-                    break;
-                case 3:
-                    user_role_name = 'Management';
-                    break;
-                case 4:
-                    user_role_name = 'User';
-                    break;
-                case 5:
-                    user_role_name = 'Engineer';
-                    break;
-                case 6:
-                    user_role_name = 'Superuser';
-                    break;
+                    case 1:
+                        user_role_name = "MOH";
+                        break;
+                    case 2:
+                        user_role_name = "Management";
+                        break;
+                    case 3:
+                        user_role_name = "User";
+                        break;
+                    case 4:
+                        user_role_name = "Engineer";
+                        break;
+                    case 5:
+                        user_role_name = "Superuser";
+                        break;
                 }
                 var is_allowed = roles.getRoleRoutePrivilegeValue(user_role_name, req.url, req.method);
                 try {

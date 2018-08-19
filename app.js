@@ -14,6 +14,8 @@ require('./server/monitoring/routes')(app);
 require('./server/admin/routes')(app);
 require('./server/registration/routes')(app);
 require('./server/auth/routes')(app);
+require('./server/login/routes')(app);
+require('./server/register/routes')(app);
 require('./server/maintenance/routes')(app);
 require('./server/deregistration/routes')(app);
 require('./server/seeders/routes')(app);
