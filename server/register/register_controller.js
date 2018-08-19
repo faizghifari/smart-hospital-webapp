@@ -9,18 +9,19 @@ module.exports = {
         var data = req.body;
         let password = await bcrypt.hash(generated_password, 10);
 
-        // return users
-        // .create({
-        //     fullname: data.fullname,
-        //     staff_id: data.staff_id,
-        //     role_id: data.role,
-        //     institution: data.institution,
-        //     email: data.email,
-        //     password_hash: password,
-        //     username: data.username
-        // })
-        // .then(user => res.status(200))
-        // .catch(error => console.log(error));
+        return users
+        .create({
+            fullname: data.fullname,
+            username: data.username,
+            staff_id: data.staff_id,
+            email: data.email,
+            role_id: data.role,
+            hospital_id: data.hospital_id,
+            dep_id: data.dep_id,
+            password_hash: password
+        })
+        .then(user => res.status(200))
+        .catch(error => console.log(error));
         module.exports.verification_email(data.username, generated_password);
     },
 
@@ -41,7 +42,7 @@ module.exports = {
             from: 'Smart Healthcare <elife.shams@gmail.com>',
             to: 'arinanda.adib@gmail.com',
             subject: 'Your Username and Password for SMEMS',
-            text: 'Username: ' + username + '\n\nPassword: ' + password
+            text: 'Username: ' + username + '\n\nPassword: ' + password + '\n\nThankyou'
         };
          
         transporter.sendMail(mailOptions, function(err, res) {
