@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         current_safety: DataTypes.INTEGER,
         current_security: DataTypes.INTEGER,
         current_productivity: DataTypes.INTEGER,
-        file: DataTypes.BLOB('long')
+        main_photos: DataTypes.STRING,
+        additional_photos: DataTypes.ARRAY(DataTypes.STRING),
+        documents: DataTypes.ARRAY(DataTypes.STRING)
     }, {});
     medical_equipments.associate = (models) => {
         medical_equipments.belongsTo(models.hospitals, {

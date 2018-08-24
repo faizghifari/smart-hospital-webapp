@@ -53,8 +53,14 @@ module.exports = {
             current_productivity: {
                 type: Sequelize.INTEGER
             },
-            file: {
-                type: Sequelize.BLOB('long')
+            main_photos: {
+                type: Sequelize.STRING
+            },
+            additional_photos: {
+                type: Sequelize.ARRAY(Sequelize.STRING)
+            },
+            documents: {
+                type: Sequelize.ARRAY(Sequelize.STRING)
             },
             equipments_type_id: {
                 type: Sequelize.INTEGER,

@@ -2748,7 +2748,9 @@ module.exports = {
                 hospital_id: 1,
                 dep_id: 1,
                 div_id: 1,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
@@ -2776,7 +2778,9 @@ module.exports = {
                 hospital_id: 1,
                 dep_id: 1,
                 div_id: 1,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
@@ -2804,7 +2808,9 @@ module.exports = {
                 hospital_id: 1,
                 dep_id: 1,
                 div_id: 1,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
@@ -2832,7 +2838,9 @@ module.exports = {
                 hospital_id: 2,
                 dep_id: 2,
                 div_id: 2,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
@@ -2860,7 +2868,9 @@ module.exports = {
                 hospital_id: 2,
                 dep_id: 2,
                 div_id: 2,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
@@ -2888,7 +2898,9 @@ module.exports = {
                 hospital_id: 2,
                 dep_id: 2,
                 div_id: 2,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
@@ -2916,7 +2928,9 @@ module.exports = {
                 hospital_id: 3,
                 dep_id: 3,
                 div_id: 3,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
@@ -2944,7 +2958,9 @@ module.exports = {
                 hospital_id: 3,
                 dep_id: 3,
                 div_id: 3,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
@@ -2972,7 +2988,9 @@ module.exports = {
                 hospital_id: 3,
                 dep_id: 3,
                 div_id: 3,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
 
         medical_equipments_history
