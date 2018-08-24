@@ -31,12 +31,10 @@ module.exports = {
                 defaultValue: Sequelize.NOW
             },
             warranty_start_date: {
-                type: Sequelize.DATEONLY,
-                defaultValue: Sequelize.NOW
+                type: Sequelize.DATEONLY
             },
             warranty_completion_date: {
-                type: Sequelize.DATEONLY,
-                defaultValue: Sequelize.NOW
+                type: Sequelize.DATEONLY
             },
             is_on: {
                 type: Sequelize.BOOLEAN
