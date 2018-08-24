@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         equipments_value: DataTypes.INTEGER,
         equipments_value_currency: DataTypes.STRING,
         manufacturing_date: DataTypes.DATE,
+        warranty_start_date: DataTypes.DATEONLY,
+        warranty_completion_time: DataTypes.DATEONLY,
         is_on: DataTypes.BOOLEAN,
         is_available: DataTypes.BOOLEAN,
         current_safety: DataTypes.INTEGER,
