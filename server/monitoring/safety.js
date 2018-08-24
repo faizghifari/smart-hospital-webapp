@@ -1,77 +1,80 @@
-const cron = require('node-cron');
+// const cron = require('node-cron');
+const request = require('request');
 
-const medical_equipments_model = require('../models').medical_equipments;
 const medical_equipments_safety_model = require('../models').medical_equipments_safety;
 
-const io = require('../../app').io;
+let safety_io;
 
-const safety_io = io.of('/equipment/safety/');
+// cron.schedule('* 0 * * *', () => {
+//     medical_equipments_safety_model
+//         .findAll()
+//         .then(equipments_safety => {
+//             equipments_safety.forEach(equipment_safety => {
+//                 let age = equipment_safety.equipment_age + 1;
+//                 let data = {
+//                     'equipment_age': age,
+//                     'last_maintenance_date': equipment_safety.last_maintenance_date,
+//                     'standard_maintenance': equipment_safety.standard_maintenance
+//                 };
 
-safety_io.on('connection', (client) => {
-    console.log('Client Connected');
-
-    client.on('disconnect', () => {
-        console.log('Client Disconnected');
-    });
-});
-
-let update_age = cron.schedule('* 0 * * *', () => {
-    medical_equipments_safety_model
-    .findAll()
-    .then(equipments_safety => {
-        equipments_safety.forEach(equipment_safety => {
-            let age = equipment_safety.equipment_age + 1;
-            let object = {
-                "equipment_age": age,
-                "last_maintenance_date": equipment_safety.last_maintenance_date,
-                "standard_maintenance": equipment_safety.standard_maintenance
-            };
-            let data = JSON.stringify(object);
-
-            this.update(equipment_safety.equipment_id, data);
-        });
-    })
-    .catch(error => console.log(error));
-})
+//                 module.exports.update(equipment_safety.equipment_id, data);
+//             });
+//         })
+//         .catch(error => console.log(error));
+// });
 
 module.exports = {
-    send_safety(equipment_id, safety_level) {
-        safety_io.emit('safety/' + equipment_id, safety_level);
+    start: (io) => {
+        safety_io = io.of('/equipment/safety/');
+
+        safety_io.on('connection', (client) => {
+            console.log('Client Connected');
+
+            client.on('disconnect', () => {
+                console.log('Client Disconnected');
+            });
+        });
+    },
+
+    send_safety(data) {
+        safety_io.emit('/' + data.hospital_id + '/safety/' + data.equipment_id, data.safety_level);
     },
 
     receive_mt(req,res) {
         if (req.body.last_maintenance_date) {
-            let object = {
-                "equipment_id": req.params.equipment_id,
-                "last_maintenance_date": req.body.last_maintenance_date
-            }
-            let data = JSON.stringify(object);
+            let data = {
+                'hospital_id': req.params.hospital_id,
+                'equipment_id': req.params.equipment_id,
+                'last_maintenance_date': req.body.last_maintenance_date
+            };
 
-            this.update(data.equipment_id, data);
+            module.exports.update(data);
 
-            return res.status(200).send(data);
+            let data_stringified = JSON.stringify(data);
+            return res.status(200).send(data_stringified);
         } else {
             return res.status(400).send({
                 msg: 'Maintenance date is not received'
-            })
+            });
         }
     },
 
     receive_report(req,res) {
         if (req.body.is_reported) {
-            let object = {
-                "equipment_id": req.params.equipment_id,
-                "is_reported": req.body.is_reported
-            }
-            let data = JSON.stringify(object);
+            let data = {
+                'hospital_id': req.params.hospital_id,
+                'equipment_id': req.params.equipment_id,
+                'is_reported': req.body.is_reported
+            };
 
-            this.update(data.equipment_id, data);
+            module.exports.update(data);
 
-            return res.status(200).send(data);
+            let data_stringified = JSON.stringify(data);
+            return res.status(200).send(data_stringified);
         } else {
             return res.status(400).send({
                 msg: 'Maintenance date is not received'
-            })
+            });
         }
     },
 
@@ -94,57 +97,62 @@ module.exports = {
 
     create(equipment_id, data) {
         medical_equipments_safety_model
-        .create({
-            equipment_id: equipment_id,
-            equipment_age: data.equipment_age,
-            last_maintenance_date: data.last_maintenance_date,
-            standard_maintenance: data.standard_maintenance,
-            is_reported: data.is_reported
-        })
-        .catch(error => console.log(error));
+            .create({
+                equipment_id: equipment_id,
+                equipment_age: data.equipment_age,
+                last_maintenance_date: data.last_maintenance_date,
+                standard_maintenance: data.standard_maintenance,
+                is_reported: data.is_reported
+            })
+            .catch(error => console.log(error));
     },
 
-    update(equipment_id, data) {
+    update(data) {
         medical_equipments_safety_model
-        .findOne({
-            where: {
-                equipment_id: equipment_id
-            }
-        })
-        .then(equipment_safety => {
-            equipment_safety
-            .update({
-                equipment_age: data.equipment_age || equipment_safety.equipment_age,
-                last_maintenance_date: data.last_maintenance_date || equipment_safety.last_maintenance_date,
-                standard_maintenance: data.standard_maintenance || equipment_safety.standard_maintenance,
-                is_reported: data.is_reported || equipment_safety.is_reported
-            })
-            .then(equipment_safety_new => {
-                let safety_level = this.calculate_safety(equipment_safety_new);
-
-                if (safety_level != -1) {
-                    this.update_safety(equipment_id, safety_level);
-                    this.send_safety(equipment_id, safety_level);
+            .findOne({
+                where: {
+                    equipment_id: data.equipment_id
                 }
             })
-            .catch((error) => console.log(error));
-        })
-        .catch(error => console.log(error));
+            .then(equipment_safety => {
+                equipment_safety
+                    .update({
+                        equipment_age: data.equipment_age || equipment_safety.equipment_age,
+                        last_maintenance_date: data.last_maintenance_date || equipment_safety.last_maintenance_date,
+                        standard_maintenance: data.standard_maintenance || equipment_safety.standard_maintenance,
+                        is_reported: data.is_reported || equipment_safety.is_reported
+                    })
+                    .then(equipment_safety_new => {
+                        let safety_level = module.exports.calculate_safety(equipment_safety_new);
+                        let result = {
+                            'hospital_id': data.hospital_id,
+                            'equipment_id': data.equipment_id,
+                            'safety_level': safety_level
+                        };
+
+                        if (safety_level != -1) {
+                            module.exports.update_safety(result);
+                            module.exports.send_safety(result);
+                        }
+                    })
+                    .catch((error) => console.log(error));
+            })
+            .catch(error => console.log(error));
     },
 
-    update_safety(equipment_id, safety_level) {
-        medical_equipments_model
-        .findById(equipment_id)
-        .then(medical_equipment => {
-            if (!medical_equipment) {
-                console.log("Medical Equipment Not Found");
-            }
-            medical_equipment
-            .update({
-                current_safety: safety_level
-            })
-            .catch((error) => console.log(error));
-        })
-        .catch(error => console.log(error));
+    update_safety(data) {
+        let payload = {
+            'current_safety': data.safety_level
+        };
+        const url = 'http://localhost:3002/' + data.hospital_id + '/' + data.equipment_id + '/equipment/';
+
+        request.put({
+            url: url,
+            json: payload
+        }, (error, response, body) => {
+            console.log('error:', error);
+            console.log('status_code:', response && response.statusCode);
+            console.log('body:', body);
+        });
     }
 };
