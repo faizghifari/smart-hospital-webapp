@@ -29,7 +29,6 @@ module.exports = {
                 equipments_name: req.body.equipments_name,
                 equipments_desc: req.body.equipments_desc,
                 equipments_sn: req.body.equipments_sn,
-                equipments_qrcode: req.body.equipments_qrcode,
                 equipments_lifetime: req.body.equipments_lifetime,
                 equipments_value: req.body.equipments_value,
                 production_date: req.body.production_date,
