@@ -9,16 +9,10 @@
 * **Method:**
 
   `POST`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
 
 * **Data Params**
 
-  `username`
+  `username`<br/>
   `password`
 
 * **Success Response:**
@@ -49,16 +43,10 @@
 * **Method:**
 
   `POST`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
 
 * **Data Params**
 
-  `username`
+  `username`<br/>
   `login_pin`
 
 * **Success Response:**
@@ -76,7 +64,7 @@
   * **Code:** 400 <br />
     **Content:** `Incorrect PIN!`
 
-    ----
+----
 
 **Logout**
 ----
@@ -89,22 +77,8 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
   * **Code:** 200 <br />
     **Content:** `logged out`
- 
-* **Error Response:**
-
-  * `-`
