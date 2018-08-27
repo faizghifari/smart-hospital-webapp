@@ -10,16 +10,6 @@
 
   `GET`
   
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 200 <br />
@@ -48,10 +38,6 @@
    **Required:**
  
    `hospital_id=[integer]`
-
-* **Data Params**
-
-  `-` 
 
 * **Success Response:**
 
@@ -140,10 +126,6 @@
  
    `hospital_id=[integer]`<br/>
    `equipments_sn=[string]`
-
-* **Data Params**
-
-  `-` 
 
 * **Success Response:**
 
@@ -238,10 +220,6 @@
    `hospital_id=[integer]`<br/>
    `equipments_sn=[string]`
 
-* **Data Params**
-
-  `-` 
-
 * **Success Response:**
 
   * **Code:** 200 <br />
@@ -276,10 +254,6 @@
  
    `hospital_id=[integer]`<br/>
    `equipments_id=[integer]`
-
-* **Data Params**
-
-  `-` 
 
 * **Success Response:**
 
@@ -379,10 +353,6 @@
    `hospital_id=[integer]`<br/>
    `equipments_id=[integer]`
 
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 204 <br />
@@ -417,10 +387,6 @@
  
    `hospital_id=[integer]`<br/>
    `equipments_id=[integer]`
-
-* **Data Params**
-
-  `-` 
 
 * **Success Response:**
 
