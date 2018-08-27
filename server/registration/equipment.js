@@ -49,9 +49,9 @@ module.exports = {
                 hospital_id: req.params.hospital_id,
                 dep_id: req.body.dep_id,
                 div_id: req.body.div_id,
-                main_photos: req.file,
-                additional_photos: null,
-                documents: null
+                main_photos: req.body.main_photos,
+                additional_photos: req.body.additional_photos,
+                documents: req.body.documents
             })
             .then(medical_equipment => {
                 productivity.create(medical_equipment.id, req.body.productivity);
@@ -190,26 +190,29 @@ module.exports = {
                         equipments_name: req.body.equipments_name || medical_equipment.equipments_name,
                         equipments_desc: req.body.equipments_desc || medical_equipment.equipments_desc,
                         equipments_sn: req.body.equipments_sn || medical_equipment.equipments_sn,
-                        equipments_qrcode: req.body.equipments_qrcode || medical_equipment.equipments_qrcode,
-                        equipments_lifetime: req.body.equipments_lifetime || medical_equipment.equipments_lifetime,
+                        equipments_life_expectancy: req.body.equipments_life_expectancy || medical_equipment.equipments_life_expectancy,
                         equipments_value: req.body.equipments_value || medical_equipment.equipments_value,
-                        production_date: req.body.production_date || medical_equipment.production_date,
-                        is_used: req.body.is_used || medical_equipment.is_used,
-                        is_active: req.body.is_active || medical_equipment.is_active,
+                        equipments_value_currency: req.body.equipments_value_currency || medical_equipment.equipments_value_currency,
+                        manufacturing_date: req.body.manufacturing_date || medical_equipment.manufacturing_date,
+                        warranty_start_date: req.body.warranty_start_date || medical_equipment.warranty_start_date,
+                        warranty_completion_date: req.body.warranty_completion_date || medical_equipment.warranty_completion_date,
                         is_on: req.body.is_on || medical_equipment.is_on,
+                        is_available: req.body.is_available || medical_equipment.is_available,
                         current_safety: req.body.current_safety || medical_equipment.current_safety,
                         current_security: req.body.current_security || medical_equipment.current_security,
                         current_productivity: req.body.current_productivity || medical_equipment.current_productivity,
                         equipments_type_id: type_id,
                         manufacturers_id: req.body.manufacturers_id || medical_equipment.manufacturers_id,
                         room_id: req.body.room_id || medical_equipment.room_id,
-                        pic_id: req.body.pic_id || medical_equipment.pic_id,
                         pic_mt_id: req.body.pic_mt_id || medical_equipment.pic_mt_id,
                         pic_usage_id: req.body.pic_usage_id || medical_equipment.pic_usage_id,
+                        device_id: req.body.device_id || medical_equipment.device_id,
+                        hospital_id: req.params.hospital_id || medical_equipment.hospital_id,
                         dep_id: req.body.dep_id || medical_equipment.dep_id,
                         div_id: req.body.div_id || medical_equipment.div_id,
-                        device_id: req.body.device_id || medical_equipment.device_id,
-                        hospital_id: req.params.hospital_id || medical_equipment.hospital_id
+                        main_photos: req.body.main_photos,
+                        additional_photos: req.body.additional_photos,
+                        documents: req.body.documents
                     })
                     .then(() => res.status(204).send(medical_equipment))
                     .catch((error) => res.status(400).send(error));
@@ -244,26 +247,29 @@ module.exports = {
                         equipments_name: req.body.equipments_name || medical_equipment.equipments_name,
                         equipments_desc: req.body.equipments_desc || medical_equipment.equipments_desc,
                         equipments_sn: req.body.equipments_sn || medical_equipment.equipments_sn,
-                        equipments_qrcode: req.body.equipments_qrcode || medical_equipment.equipments_qrcode,
-                        equipments_lifetime: req.body.equipments_lifetime || medical_equipment.equipments_lifetime,
+                        equipments_life_expectancy: req.body.equipments_life_expectancy || medical_equipment.equipments_life_expectancy,
                         equipments_value: req.body.equipments_value || medical_equipment.equipments_value,
-                        production_date: req.body.production_date || medical_equipment.production_date,
-                        is_used: req.body.is_used || medical_equipment.is_used,
-                        is_active: req.body.is_active || medical_equipment.is_active,
+                        equipments_value_currency: req.body.equipments_value_currency || medical_equipment.equipments_value_currency,
+                        manufacturing_date: req.body.manufacturing_date || medical_equipment.manufacturing_date,
+                        warranty_start_date: req.body.warranty_start_date || medical_equipment.warranty_start_date,
+                        warranty_completion_date: req.body.warranty_completion_date || medical_equipment.warranty_completion_date,
                         is_on: req.body.is_on || medical_equipment.is_on,
+                        is_available: req.body.is_available || medical_equipment.is_available,
                         current_safety: req.body.current_safety || medical_equipment.current_safety,
                         current_security: req.body.current_security || medical_equipment.current_security,
                         current_productivity: req.body.current_productivity || medical_equipment.current_productivity,
                         equipments_type_id: type_id,
                         manufacturers_id: req.body.manufacturers_id || medical_equipment.manufacturers_id,
                         room_id: req.body.room_id || medical_equipment.room_id,
-                        pic_id: req.body.pic_id || medical_equipment.pic_id,
                         pic_mt_id: req.body.pic_mt_id || medical_equipment.pic_mt_id,
                         pic_usage_id: req.body.pic_usage_id || medical_equipment.pic_usage_id,
+                        device_id: req.body.device_id || medical_equipment.device_id,
+                        hospital_id: req.params.hospital_id || medical_equipment.hospital_id,
                         dep_id: req.body.dep_id || medical_equipment.dep_id,
                         div_id: req.body.div_id || medical_equipment.div_id,
-                        device_id: req.body.device_id || medical_equipment.device_id,
-                        hospital_id: req.params.hospital_id || medical_equipment.hospital_id
+                        main_photos: req.body.main_photos,
+                        additional_photos: req.body.additional_photos,
+                        documents: req.body.documents
                     })
                     .then(() => res.status(204).send(medical_equipment))
                     .catch((error) => res.status(400).send(error));
