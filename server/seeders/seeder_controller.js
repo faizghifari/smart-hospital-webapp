@@ -2725,6 +2725,7 @@ module.exports = {
         medical_equipments
             .create({
                 equipments_name: 'Equipments 1',
+                equipments_model: 'M1',
                 equipments_desc: 'Desc equipments 1',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
@@ -2755,6 +2756,7 @@ module.exports = {
         medical_equipments
             .create({
                 equipments_name: 'Equipments 2',
+                equipments_model: 'M2',
                 equipments_desc: 'Desc equipments 2',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
@@ -2785,6 +2787,7 @@ module.exports = {
         medical_equipments
             .create({
                 equipments_name: 'Equipments 3',
+                equipments_model: 'M3',
                 equipments_desc: 'Desc equipments 3',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
@@ -2815,6 +2818,7 @@ module.exports = {
         medical_equipments
             .create({
                 equipments_name: 'Equipments 1',
+                equipments_model: 'M4',
                 equipments_desc: 'Desc equipments 1',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
@@ -2845,6 +2849,7 @@ module.exports = {
         medical_equipments
             .create({
                 equipments_name: 'Equipments 2',
+                equipments_model: 'M5',
                 equipments_desc: 'Desc equipments 2',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
@@ -2875,6 +2880,7 @@ module.exports = {
         medical_equipments
             .create({
                 equipments_name: 'Equipments 3',
+                equipments_model: 'M6',
                 equipments_desc: 'Desc equipments 3',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
@@ -2905,6 +2911,7 @@ module.exports = {
         medical_equipments
             .create({
                 equipments_name: 'Equipments 1',
+                equipments_model: 'M7',
                 equipments_desc: 'Desc equipments 1',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
@@ -2935,6 +2942,7 @@ module.exports = {
         medical_equipments
             .create({
                 equipments_name: 'Equipments 2',
+                equipments_model: 'M8',
                 equipments_desc: 'Desc equipments 2',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
@@ -2965,6 +2973,7 @@ module.exports = {
         medical_equipments
             .create({
                 equipments_name: 'Equipments 3',
+                equipments_model: 'M9',
                 equipments_desc: 'Desc equipments 3',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
