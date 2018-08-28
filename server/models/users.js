@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-  const users = sequelize.define('users', {
-    fullname: DataTypes.STRING,
-    username: DataTypes.STRING,
-    staffId: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password_hash: DataTypes.STRING,
-    login_pin: DataTypes.STRING
-  }, {});
+    const users = sequelize.define('users', {
+        fullname: DataTypes.STRING,
+        username: DataTypes.STRING,
+        staffId: DataTypes.STRING,
+        email: DataTypes.STRING,
+        password_hash: DataTypes.STRING,
+        login_pin: DataTypes.STRING
+    }, {});
   
     users.associate = (models) => {
         users.belongsTo(models.department, {

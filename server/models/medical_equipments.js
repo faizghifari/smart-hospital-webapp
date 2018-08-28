@@ -7,12 +7,16 @@ module.exports = (sequelize, DataTypes) => {
         equipments_value: DataTypes.INTEGER,
         equipments_value_currency: DataTypes.STRING,
         manufacturing_date: DataTypes.DATE,
+        warranty_start_date: DataTypes.DATEONLY,
+        warranty_completion_date: DataTypes.DATEONLY,
         is_on: DataTypes.BOOLEAN,
         is_available: DataTypes.BOOLEAN,
         current_safety: DataTypes.INTEGER,
         current_security: DataTypes.INTEGER,
         current_productivity: DataTypes.INTEGER,
-        file: DataTypes.BLOB('long')
+        main_photos: DataTypes.STRING,
+        additional_photos: DataTypes.ARRAY(DataTypes.STRING),
+        documents: DataTypes.ARRAY(DataTypes.STRING)
     }, {});
     medical_equipments.associate = (models) => {
         medical_equipments.belongsTo(models.hospitals, {
