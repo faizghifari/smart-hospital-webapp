@@ -17,10 +17,6 @@
    `hospital_id=[integer]`<br/>
    `equipments_id=[integer]`
 
-* **Data Params**
-
-  `-` 
-
 * **Success Response:**
 
   * **Code:** 204 <br />
@@ -94,9 +90,6 @@
 
   * **Code:** 200 <br />
     **Content:** `{ <sent data> }`
- 
-* **Error Response:**
-
 
 ----
 **Update Medical Equipment Position Data in Security by Hospital ID and Medical Equipment ID**
@@ -126,9 +119,6 @@
 
   * **Code:** 200 <br />
     **Content:** `{ <sent data> }`
- 
-* **Error Response:**
-
 
 ----
 **Update Medical Equipment Maintenance Data in Safety by Hospital ID and Medical Equipment ID**
