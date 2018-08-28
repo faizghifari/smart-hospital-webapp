@@ -1,4 +1,4 @@
-const users = require('../models').users
+const users = require('../models').users;
 const randomize = require('randomatic');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
@@ -10,18 +10,18 @@ module.exports = {
         let password = await bcrypt.hash(generated_password, 10);
 
         return users
-        .create({
-            fullname: data.fullname,
-            username: data.username,
-            staff_id: data.staff_id,
-            email: data.email,
-            role_id: data.role,
-            hospital_id: data.hospital_id,
-            dep_id: data.dep_id,
-            password_hash: password
-        })
-        .then(user => res.status(200))
-        .catch(error => console.log(error));
+            .create({
+                fullname: data.fullname,
+                username: data.username,
+                staff_id: data.staff_id,
+                email: data.email,
+                role_id: data.role,
+                hospital_id: data.hospital_id,
+                dep_id: data.dep_id,
+                password_hash: password
+            })
+            .then(user => res.status(200))
+            .catch(error => console.log(error));
         module.exports.verification_email(data.username, generated_password);
     },
 
@@ -45,7 +45,7 @@ module.exports = {
             text: 'Username: ' + username + '\n\nPassword: ' + password + '\n\nThankyou'
         };
          
-        transporter.sendMail(mailOptions, function(err, res) {
+        transporter.sendMail(mailOptions, function(err) {
             if(err) {
                 console.log('error');
             } else {
@@ -54,4 +54,4 @@ module.exports = {
         });  
     },
 
-}
+};
