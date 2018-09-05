@@ -1235,3 +1235,840 @@
 
   * **Code:** 404 <br />
     **Content:** `Spare Part Not Found`
+
+----
+**Update Spare Part Data by Hospital ID and Spare Part QR Code**
+----
+   
+
+* **URL**
+
+  /:hospital_id/spare_part/qrcode/:part_qrcode
+
+* **Method:**
+
+  `PUT`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hospital_id=[integer]`<br/>
+   `part_qrcode=[string]`
+
+* **Data Params**
+
+  `part_name=[string]`<br/>
+  `part_desc=[string]`<br/>
+  `part_sn=[string]`<br/>
+  `part_qrcode=[string]`<br/>
+  `part_qty=[integer]`<br/>
+  `part_type_id=[integer]`<br/>
+  `hospital_id=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <sent data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+  OR
+
+  * **Code:** 404 <br />
+    **Content:** `Spare Part Not Found`
+
+----
+**Add New Manufacturers Data**
+----
+   
+
+* **URL**
+
+  /manufacturer
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `-`
+
+* **Data Params**
+
+  `manufacturers_name=[string]`<br/>
+  `manufacturers_desc=[string]`<br/>
+  `manufacturers_sn=[string]`
+
+* **Success Response:**
+
+  * **Code:** 201 <br />
+    **Content:** `{ <sent data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All Manufacturers Data**
+----
+   
+
+* **URL**
+
+  /manufacturer
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `-`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all manufacturers data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All Manufacturers Name Data**
+----
+   
+
+* **URL**
+
+  /manufacturer/names
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `-`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all manufacturers name data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get Manufacturers Data by Manufacturers ID**
+----
+   
+
+* **URL**
+
+  /manufacturer/:manufacturer_id
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `manufacturer_id=[integer]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all manufacturers data where id = :manufacturer_id> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+  OR
+
+  * **Code:** 400 <br />
+    **Content:** `Manufacturer Not Found`
+
+----
+**Update Manufacturers Data by Manufacturers ID**
+----
+   
+
+* **URL**
+
+  /manufacturer/:manufacturer_id
+
+* **Method:**
+
+  `PUT`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `manufacturer_id=[integer]`
+
+* **Data Params**
+
+  `manufacturers_name=[string]`<br/>
+  `manufacturers_desc=[string]`<br/>
+  `manufacturers_sn=[string]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <sent data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+  OR
+
+  * **Code:** 400 <br />
+    **Content:** `Manufacturer Not Found`
+
+----
+**Delete Manufacturers Data by Manufacturers ID**
+----
+   
+
+* **URL**
+
+  /manufacturer/:manufacturer_id
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `manufacturer_id=[integer]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 204 <br />
+    **Content:** `{ <deleted data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+  OR
+
+  * **Code:** 400 <br />
+    **Content:** `Manufacturer Not Found`
+
+----
+**Add New QTY Task Data**
+----
+   
+
+* **URL**
+
+  /qty_task
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `-`
+
+* **Data Params**
+
+  `quantitative_tasks=[array of object]`<br/>
+  `apparatus_type_id=[integer]`<br/>
+  `equipment_type_id=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 201 <br />
+    **Content:** `{ <sent data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All QTY Task Data**
+----
+   
+
+* **URL**
+
+  /qty_task
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `-`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all qty task data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get QTY Task Data by QTY Task ID**
+----
+   
+
+* **URL**
+
+  /:qty_task_id/qty_task
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `qty_task_id=[integer]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all qty task data where id = :qty_task_id> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Update QTY Task Data by QTY Task ID**
+----
+   
+
+* **URL**
+
+  /:qty_task_id/qty_task
+
+* **Method:**
+
+  `PUT`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `qty_task_id=[integer]`
+
+* **Data Params**
+
+  `quantitative_tasks=[array of object]`<br/>
+  `apparatus_type_id=[integer]`<br/>
+  `equipment_type_id=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <sent data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Delete QTY Task Data by QTY Task ID**
+----
+   
+
+* **URL**
+
+  /:qty_task_id/qty_task
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `qty_task_id=[integer]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 204 <br />
+    **Content:** `{ <deleted data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All Device Data**
+----
+   
+
+* **URL**
+
+  /device
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `-`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all devices data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All Device SN Data**
+----
+   
+
+* **URL**
+
+  /device/sn
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `-`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all devices SN data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Add New Device Data by Hospital ID**
+----
+   
+
+* **URL**
+
+  /:hospital_id/device
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hospital_id=[integer]`
+
+* **Data Params**
+
+  `device_sn=[string]`<br/>
+  `device_sensors=[array of object]`<br/>
+  `hospital_id=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 201 <br />
+    **Content:** `{ <sent data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All Device Data by Hospital ID**
+----
+   
+
+* **URL**
+
+  /:hospital_id/device
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hospital_id=[integer]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all device data where hospital_id = :hospital_id> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All Device SN Data by Hospital ID**
+----
+   
+
+* **URL**
+
+  /:hospital_id/device/sn
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hospital_id=[integer]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all device SN data where hospital_id = :hospital_id> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All Device Data by Hospital ID and Device SN**
+----
+   
+
+* **URL**
+
+  /:hospital_id/device/:device_sn
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hospital_id=[integer]`<br/>
+   `device_sn=[string]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all device data where hospital_id = :hospital_id and device_sn = :device_sn> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All Device Data by Hospital ID and Device ID**
+----
+   
+
+* **URL**
+
+  /:hospital_id/:device_id/device
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hospital_id=[integer]`<br/>
+   `device_id=[integer]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all device data where hospital_id = :hospital_id and id = :device_id> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Update Device Data by Hospital ID and Device ID**
+----
+   
+
+* **URL**
+
+  /:hospital_id/:device_id/device
+
+* **Method:**
+
+  `PUT`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hospital_id=[integer]`<br/>
+   `device_id=[integer]`
+
+* **Data Params**
+
+  `device_sn=[string]`<br/>
+  `device_qrcode=[string]`<br/>
+  `device_sensors=[array of object]`<br/>
+  `hospital_id=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <sent data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Delete Device Data by Hospital ID and Device ID**
+----
+   
+
+* **URL**
+
+  /:hospital_id/:device_id/device
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hospital_id=[integer]`<br/>
+   `device_id=[integer]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 204 <br />
+    **Content:** `{ <deleted data> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All Room Data by Hospital ID**
+----
+   
+
+* **URL**
+
+  /:hospital_id/room
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hospital_id=[integer]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all room data where hospital_id = :hospital_id> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All Room Data by Hospital ID and Room SN**
+----
+   
+
+* **URL**
+
+  /:hospital_id/room/sn/:room_sn
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hospital_id=[integer]`<br/>
+   `room_sn=[string]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all room data where hospital_id = :hospital_id and room_sn = :room_sn> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
+
+----
+**Get All Engineer Username by Hospital ID**
+----
+   
+
+* **URL**
+
+  /:hospital_id/user/engineer
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hospital_id=[integer]`
+
+* **Data Params**
+
+  `-`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ <all username where role = engineer> }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 <br />
+    **Content:** `<error>`
