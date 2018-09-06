@@ -12,16 +12,6 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -45,16 +35,6 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -78,16 +58,6 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -111,16 +81,6 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -144,16 +104,6 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -177,16 +127,6 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -210,16 +150,6 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -243,16 +173,6 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -276,16 +196,6 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -309,16 +219,6 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -342,16 +242,6 @@
 * **Method:**
 
   `GET`
-  
-*  **URL Params**
-
-   **Required:**
- 
-   `-`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -430,10 +320,6 @@
  
    `hospital_id=[integer]`
 
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 200 <br />
@@ -462,10 +348,6 @@
    **Required:**
  
    `hospital_id=[integer]`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -496,10 +378,6 @@
  
    `hospital_id=[integer]`<br/>
    `ppm_sn=[integer]`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -578,10 +456,6 @@
    `hospital_id=[integer]`<br/>
    `ppm_id=[integer]`
 
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 204 <br />
@@ -659,10 +533,6 @@
  
    `hospital_id=[integer]`
 
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 200 <br />
@@ -691,10 +561,6 @@
    **Required:**
  
    `hospital_id=[integer]`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -725,10 +591,6 @@
  
    `hospital_id=[integer]`
 
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 200 <br />
@@ -757,10 +619,6 @@
    **Required:**
  
    `hospital_id=[integer]`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -791,10 +649,6 @@
  
    `hospital_id=[integer]`
 
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 200 <br />
@@ -824,10 +678,6 @@
  
    `hospital_id=[integer]`<br/>
    `cm_sn=[string]`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -908,10 +758,6 @@
    `hospital_id=[integer]`<br/>
    `cm_sn=[string]`
 
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 204 <br />
@@ -941,10 +787,6 @@
  
    `hospital_id=[integer]`<br/>
    `cm_id=[string]`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -1025,10 +867,6 @@
    `hospital_id=[integer]`<br/>
    `cm_id=[string]`
 
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 204 <br />
@@ -1100,10 +938,6 @@
  
    `hospital_id=[integer]`
 
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 200 <br />
@@ -1132,10 +966,6 @@
    **Required:**
  
    `hospital_id=[integer]`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -1166,10 +996,6 @@
  
    `hospital_id=[integer]`
 
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 200 <br />
@@ -1199,10 +1025,6 @@
  
    `hospital_id=[integer]`<br/>
    `wo_sn=[string]`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -1277,10 +1099,6 @@
    `hospital_id=[integer]`<br/>
    `wo_sn=[string]`
 
-* **Data Params**
-
-  `-`
-
 * **Success Response:**
 
   * **Code:** 204 <br />
@@ -1310,10 +1128,6 @@
  
    `hospital_id=[integer]`<br/>
    `wo_id=[string]`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
@@ -1387,10 +1201,6 @@
  
    `hospital_id=[integer]`<br/>
    `wo_id=[string]`
-
-* **Data Params**
-
-  `-`
 
 * **Success Response:**
 
