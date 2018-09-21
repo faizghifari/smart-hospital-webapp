@@ -1,8 +1,10 @@
 const moment = require('moment');
 
 const medical_equipments_booking_model = require('../models').medical_equipments_booking;
-const booking = require('./booking');
 const productivity = require('../monitoring/productivity');
+
+const booking = require('./booking');
+const util = require('./utils');
 
 module.exports = {
     async validate_usage(booking_id) {
@@ -29,6 +31,9 @@ module.exports = {
             let usage_update = await productivity.receive_usage(booking_data);
             let result = await booking.update_booking(data);
 
+            booking_data.is_available = false;
+            util.update_availability(booking_data);
+
             result.usage = usage_update;
             
             let result_stringified = JSON.stringify(result);
@@ -41,13 +46,17 @@ module.exports = {
     },
 
     async receive_closed_usage(req,res) {
+        let booking_data = module.exports.retrieve_booking(req.params.booking_id);
         let data = {
             'booking_id': req.params.booking_id,
             'is_usage': null
         };
 
-        let result = await booking.update_booking(data);
+        booking_data.is_available = true;
+        util.update_availability(booking_data);
 
+        let result = await booking.update_booking(data);
+        
         let result_stringified = JSON.stringify(result);
         return res.status(200).send(result_stringified);
     },

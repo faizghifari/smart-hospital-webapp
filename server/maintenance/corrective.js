@@ -12,7 +12,6 @@ module.exports = {
                 est_tasks: req.body.est_tasks,
                 notes: req.body.notes,
                 is_open: req.body.is_open,
-                is_ber: req.body.is_ber,
                 cm_sn: req.body.cm_sn,
                 cm_result: req.body.cm_result,
                 cm_next_date: req.body.cm_next_date,
@@ -54,28 +53,6 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
-    list_ber(req,res) {
-        return maintenance_cm_model
-            .findAll({
-                where: {
-                    is_ber: true
-                }
-            })
-            .then(cms => res.status(200).send(cms))
-            .catch(error => res.status(400).send(error));
-    },
-
-    list_not_ber(req,res) {
-        return maintenance_cm_model
-            .findAll({
-                where: {
-                    is_ber: false
-                }
-            })
-            .then(cms => res.status(200).send(cms))
-            .catch(error => res.status(400).send(error));
-    },
-
     list_hospital(req,res) {
         return maintenance_cm_model
             .findAll({
@@ -105,30 +82,6 @@ module.exports = {
                 where: {
                     hospital_id: req.params.hospital_id,
                     is_open: false
-                }
-            })
-            .then(cms => res.status(200).send(cms))
-            .catch(error => res.status(400).send(error));
-    },
-
-    list_hospital_ber(req,res) {
-        return maintenance_cm_model
-            .findAll({
-                where: {
-                    hospital_id: req.params.hospital_id,
-                    is_ber: true
-                }
-            })
-            .then(cms => res.status(200).send(cms))
-            .catch(error => res.status(400).send(error));
-    },
-
-    list_hospital_not_ber(req,res) {
-        return maintenance_cm_model
-            .findAll({
-                where: {
-                    hospital_id: req.params.hospital_id,
-                    is_ber: false
                 }
             })
             .then(cms => res.status(200).send(cms))
@@ -178,7 +131,6 @@ module.exports = {
                         est_tasks: req.body.est_tasks || cm.est_tasks,
                         notes: req.body.notes || cm.notes,
                         is_open: req.body.is_open || cm.is_open,
-                        is_ber: req.body.is_ber || cm.is_ber,
                         cm_sn: req.body.cm_sn || cm.cm_sn,
                         cm_result: req.body.cm_result || cm.cm_result,
                         cm_next_date: req.body.cm_next_date || cm.cm_next_date,
@@ -212,7 +164,6 @@ module.exports = {
                         est_tasks: req.body.est_tasks || cm.est_tasks,
                         notes: req.body.notes || cm.notes,
                         is_open: req.body.is_open || cm.is_open,
-                        is_ber: req.body.is_ber || cm.is_ber,
                         cm_sn: req.body.cm_sn || cm.cm_sn,
                         cm_result: req.body.cm_result || cm.cm_result,
                         cm_next_date: req.body.cm_next_date || cm.cm_next_date,
