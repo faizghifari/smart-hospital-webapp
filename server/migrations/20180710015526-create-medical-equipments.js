@@ -11,6 +11,9 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
+            equipments_model: {
+                type: Sequelize.STRING
+            },
             equipments_desc: {
                 type: Sequelize.STRING
             },
