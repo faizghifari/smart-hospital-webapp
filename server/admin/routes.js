@@ -33,8 +33,6 @@ module.exports = (app) => {
     app.delete( '/:hospital_id/:apparatus_id/apparatus',            apparatus.destroy);
     app.get(    '/:hospital_id/apparatus/sn/:apparatus_sn',         apparatus.retrieve_sn);
     app.put(    '/:hospital_id/apparatus/sn/:apparatus_sn',         apparatus.update_sn);
-    app.get(    '/:hospital_id/apparatus/qrcode/:apparatus_qrcode', apparatus.retrieve_qrcode);
-    app.put(    '/:hospital_id/apparatus/qrcode/:apparatus_qrcode', apparatus.update_qrcode);
 
     app.post(   '/spare_part_type',                 spare_part_type.create);
     app.get(    '/spare_part_type',                 spare_part_type.list);
@@ -49,9 +47,7 @@ module.exports = (app) => {
     app.put(    '/:hospital_id/:part_id/spare_part',            spare_part.update);
     app.delete( '/:hospital_id/:part_id/spare_part',            spare_part.destroy);
     app.get(    '/:hospital_id/spare_part/sn/:part_sn',         spare_part.retrieve_sn);
-    app.get(    '/:hospital_id/spare_part/qrcode/:part_qrcode', spare_part.retrieve_qrcode);
     app.put(    '/:hospital_id/spare_part/sn/:part_sn',         spare_part.update_sn);
-    app.put(    '/:hospital_id/spare_part/qrcode/:part_qrcode', spare_part.update_qrcode);
 
     app.post(   '/manufacturer',                    manufacturer.create);
     app.get(    '/manufacturer',                    manufacturer.list);
