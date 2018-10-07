@@ -1,7 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
     const department = sequelize.define('department', {
         dep_name: DataTypes.STRING,
-        dep_desc: DataTypes.STRING
+        dep_desc: DataTypes.STRING,
+        dep_code: DataTypes.INTEGER
     }, {});
     department.associate = function(models) {
         department.belongsTo(models.hospitals, {

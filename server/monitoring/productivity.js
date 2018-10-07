@@ -1,7 +1,5 @@
 const request = require('request');
-
 const medical_equipments_productivity_model = require('../models').medical_equipments_productivity;
-
 let productivity_io;
 
 module.exports = {

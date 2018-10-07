@@ -30,6 +30,12 @@ module.exports = {
                 type: Sequelize.DATE,
                 defaultValue: Sequelize.NOW
             },
+            warranty_start_date: {
+                type: Sequelize.DATEONLY
+            },
+            warranty_completion_date: {
+                type: Sequelize.DATEONLY
+            },
             is_on: {
                 type: Sequelize.BOOLEAN
             },
@@ -45,8 +51,14 @@ module.exports = {
             current_productivity: {
                 type: Sequelize.INTEGER
             },
-            file: {
-                type: Sequelize.BLOB('long')
+            main_photos: {
+                type: Sequelize.STRING
+            },
+            additional_photos: {
+                type: Sequelize.ARRAY(Sequelize.STRING)
+            },
+            documents: {
+                type: Sequelize.ARRAY(Sequelize.STRING)
             },
             equipments_type_id: {
                 type: Sequelize.INTEGER,
