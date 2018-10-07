@@ -22,8 +22,8 @@ module.exports = (app) => {
     app.delete('/:hospital_id/:booking_id/booking',    booking.destroy);
 
     app.get('/:hospital_id/:booking_id/open/booking/', open_booking.retrieve);
-    app.put('/:hospital_id/:booking_id/open/booking/', open_booking.update);
-    app.delete('/:hospital_id/:booking_id/open/booking/', open_booking.close);
+    app.put('/:hospital_id/:booking_id/open/booking/', open_booking.close);
+    app.delete('/:hospital_id/:booking_id/open/booking/', open_booking.destroy);
 
     app.get('/:hospital_id/booking/:equipment_id',     booking.retrieve_bookings);
 };
