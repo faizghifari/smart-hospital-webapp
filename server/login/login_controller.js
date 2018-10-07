@@ -1,4 +1,4 @@
-const users = require('../models').users
+const users = require('../models').users;
 const jwtLogin = require('jwt-login');
 const bcrypt = require('bcryptjs');
 const randomize = require('randomatic');
@@ -10,11 +10,11 @@ const schedule = require('node-schedule');
 
 module.exports = {
     get_client_ip() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             publicIp.v4().then(ip => {
                 resolve(ip);
-            })
-        })
+            });
+        });
     },
 
     async verify(req, res) {
@@ -25,21 +25,21 @@ module.exports = {
         const ip = (requestIp.getClientIp(req)).substr(7);
 
         users
-        .findOne({
-            where: {username: user}
-        })
-        .then(async result => {
-            if (!result) {
-                return res.status(400).send('User not found'); 
-            } else if(result) {
-                const matches = await bcrypt.compare(password, result.password_hash);
-                if (!matches) {
-                    return res.status(400).send('Auth failed. Wrong password.');   
-                } else {
-                    module.exports.update_send_pin(result.id, clientIp, ip); 
+            .findOne({
+                where: {username: user}
+            })
+            .then(async result => {
+                if (!result) {
+                    return res.status(400).send('User not found'); 
+                } else if(result) {
+                    const matches = await bcrypt.compare(password, result.password_hash);
+                    if (!matches) {
+                        return res.status(400).send('Auth failed. Wrong password.');   
+                    } else {
+                        module.exports.update_send_pin(result.id, clientIp, ip); 
+                    }
                 }
-            }
-        });
+            });
     },
 
     login(req, res) {
@@ -48,18 +48,18 @@ module.exports = {
         var pin = data.pin;
 
         users
-        .findOne({
-            where: {username: user}
-        })
-        .then(result => {
-            if(result.login_pin == pin){
-                jwtLogin.sign(req, res, user, "topsecret", 1, false);
-            } else if(result.login_pin == null) {
-                res.send('Session expired. Please login again.')
-            } else {
-                res.send('Incorrect PIN!')
-            }
-        });
+            .findOne({
+                where: {username: user}
+            })
+            .then(result => {
+                if(result.login_pin == pin){
+                    jwtLogin.sign(req, res, user, 'topsecret', 1, false);
+                } else if(result.login_pin == null) {
+                    res.send('Session expired. Please login again.');
+                } else {
+                    res.send('Incorrect PIN!');
+                }
+            });
     },
 
     async verification_email(result_id, result_email, result_username, clientIp, ip) {
@@ -89,7 +89,7 @@ module.exports = {
             '\nLongitude: ' + await module.exports.get_client_lng(clientIp)
         };
          
-        transporter.sendMail(mailOptions, function(err, res) {
+        transporter.sendMail(mailOptions, function(err) {
             if(err) {
                 console.log('error');
             } else {
@@ -100,21 +100,21 @@ module.exports = {
 
     async update_send_pin(user_id, clientIp, ip) {
         let generated_pin = randomize('0', 6);
-        var clientIp = await module.exports.get_client_ip();
+        var client_ip = await module.exports.get_client_ip();
         
         
         users
-        .findById(user_id)
-        .then(result => {
-            result
-            .update({
-                login_pin: generated_pin
+            .findById(user_id)
+            .then(result => {
+                result
+                    .update({
+                        login_pin: generated_pin
+                    })
+                    .catch((error) => console.log(error));
+                module.exports.verification_email(result.login_pin, result.email, result.username, client_ip, ip);
+                module.exports.login_pin_expiry(user_id);
             })
-            .catch((error) => console.log(error));
-            module.exports.verification_email(result.login_pin, result.email, result.username, clientIp, ip);
-            module.exports.login_pin_expiry(user_id);
-        })
-        .catch(error => console.log(error));
+            .catch(error => console.log(error));
     },
 
     login_pin_expiry(user_id) {
@@ -122,67 +122,67 @@ module.exports = {
         
         schedule.scheduleJob(expiryTime, function() {
             users
-            .findById(user_id)
-            .then(result => {
-                result
-                .update({
-                    login_pin: null
+                .findById(user_id)
+                .then(result => {
+                    result
+                        .update({
+                            login_pin: null
+                        })
+                        .catch((error) => console.log(error));
                 })
-                .catch((error) => console.log(error));
-            })
-            .catch(error => console.log(error));
-        })
+                .catch(error => console.log(error));
+        });
     },
 
     get_client_city(clientIp) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             where.is(clientIp, function(err, result) {
                 resolve(result.get('city'));
-            }) 
+            }); 
         });
     },
 
     get_client_region(clientIp) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             where.is(clientIp, function(err, result) {
                 resolve(result.get('region'));
-            }) 
+            }); 
         });
     },
 
     get_client_country(clientIp) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             where.is(clientIp, function(err, result) {
                 resolve(result.get('country'));
-            }) 
+            }); 
         });
     },
 
     get_client_zip(clientIp) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             where.is(clientIp, function(err, result) {
                 resolve(result.get('postalCode'));
-            }) 
+            }); 
         });
     },
 
     get_client_lat(clientIp) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             where.is(clientIp, function(err, result) {
                 resolve(result.get('lat'));
-            }) 
+            }); 
         });
     },
 
     get_client_lng(clientIp) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             where.is(clientIp, function(err, result) {
                 resolve(result.get('lng'));
-            }) 
+            }); 
         });
     },
 
     logout(req, res) {
         jwtLogin.signout(req, res, false);
     },
-}
+};

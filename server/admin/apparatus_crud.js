@@ -7,7 +7,6 @@ module.exports = {
                 apparatus_name: req.body.apparatus_name,
                 apparatus_desc: req.body.apparatus_desc,
                 apparatus_sn: req.body.apparatus_sn,
-                apparatus_qrcode: req.body.apparatus_qrcode,
                 apparatus_calibration_due_on: req.body.apparatus_calibration_due_on,
                 apparatus_type_id: req.body.apparatus_type_id,
                 hospital_id: req.params.hospital_id
