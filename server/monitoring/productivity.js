@@ -19,27 +19,27 @@ module.exports = {
         productivity_io.emit('/' + data.hospital_id + '/productivity/' + data.equipment_id, data.productivity_level);
     },
 
-    receive_usage(req,res) {
-        medical_equipments_productivity_model
-            .findOne({
-                where: {
-                    equipment_id: req.params.equipment_id
-                }
-            })
-            .then(equipment_productivity => {
-                let usage = equipment_productivity.count_usage + 1;
-                let data = {
-                    'hospital_id': req.params.hospital_id,
-                    'equipment_id': req.params.equipment_id,
-                    'count_usage': usage
-                };
+    receive_usage(payload) {
+        return new Promise((resolve,reject) => {
+            medical_equipments_productivity_model
+                .findOne({
+                    where: {
+                        equipment_id: payload.equipment_id
+                    }
+                })
+                .then(async equipment_productivity => {
+                    let usage = equipment_productivity.count_usage + 1;
+                    let data = {
+                        'hospital_id': payload.hospital_id,
+                        'equipment_id': payload.equipment_id,
+                        'count_usage': usage
+                    };
 
-                module.exports.update(data.equipment_id, data);
-
-                let data_stringified = JSON.stringify(data);
-                return res.status(200).send(data_stringified);
-            })
-            .catch(error => res.status(400).send(error));
+                    let result = await module.exports.update(data.equipment_id, data);
+                    resolve(result);
+                })
+                .catch(error => reject(error));
+        });
     },
 
     calculate_productivity(data) {
@@ -68,34 +68,38 @@ module.exports = {
     },
 
     update(equipment_id, data) {
-        medical_equipments_productivity_model
-            .findOne({
-                where: {
-                    equipment_id: equipment_id
-                }
-            })
-            .then(equipment_productivity => {
-                equipment_productivity
-                    .update({
-                        count_usage: data.count_usage,
-                        standard_usage: data.standard_usage
-                    })
-                    .then(equipment_productivity_new => {
-                        let productivity_level = module.exports.calculate_productivity(equipment_productivity_new);
-                        let result = {
-                            'hospital_id': data.hospital_id,
-                            'equipment_id': equipment_id,
-                            'productivity_level': productivity_level
-                        };
+        return new Promise((resolve,reject) => {
+            medical_equipments_productivity_model
+                .findOne({
+                    where: {
+                        equipment_id: equipment_id
+                    }
+                })
+                .then(equipment_productivity => {
+                    equipment_productivity
+                        .update({
+                            count_usage: data.count_usage,
+                            standard_usage: data.standard_usage
+                        })
+                        .then(equipment_productivity_new => {
+                            let productivity_level = module.exports.calculate_productivity(equipment_productivity_new);
+                            let result = {
+                                'hospital_id': data.hospital_id,
+                                'equipment_id': equipment_id,
+                                'productivity_level': productivity_level
+                            };
 
-                        if (productivity_level != -1) {
-                            module.exports.update_productivity(result);
-                            module.exports.send_productivity(result);
-                        }
-                    })
-                    .catch((error) => console.log(error));
-            })
-            .catch(error => console.log(error));
+                            if (productivity_level != -1) {
+                                module.exports.update_productivity(result);
+                                module.exports.send_productivity(result);
+                            }
+
+                            resolve(equipment_productivity_new);
+                        })
+                        .catch((error) => reject(error));
+                })
+                .catch(error => reject(error));
+        });
     },
 
     update_productivity(data) {

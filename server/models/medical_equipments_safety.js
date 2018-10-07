@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const medical_equipments_safety = sequelize.define('medical_equipments_safety', {
-        equipment_age: DataTypes.INTEGER,
+        equipments_age: DataTypes.INTEGER,
         last_maintenance_date: DataTypes.DATE,
         standard_maintenance: DataTypes.INTEGER,
         is_reported: DataTypes.BOOLEAN

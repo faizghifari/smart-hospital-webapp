@@ -32,6 +32,7 @@ module.exports = {
         "module": true,
         "models": true,
         "process": true,
+        "Op": true,
         "__filename": true,
         "__dirname": true
     }

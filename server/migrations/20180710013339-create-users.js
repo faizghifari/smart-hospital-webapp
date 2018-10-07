@@ -25,6 +25,14 @@ module.exports = {
                 allowNull: false,
                 // unique: true,
             },
+            password_hash: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            login_pin: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
             role_id: {
                 type: Sequelize.INTEGER,
                 onDelete: 'SET NULL',

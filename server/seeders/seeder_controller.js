@@ -107,8 +107,7 @@ module.exports = {
                 current_safety: 3,
                 current_security: 3,
                 current_productivity: 3,
-                state_id: 1,
-                dep_code: 1
+                state_id: 1
             }),
         hospitals
             .create({
@@ -118,8 +117,7 @@ module.exports = {
                 current_safety: 2,
                 current_security: 3,
                 current_productivity: 1,
-                state_id: 1,
-                dep_code: 2
+                state_id: 1
             }),
         hospitals
             .create({
@@ -129,8 +127,7 @@ module.exports = {
                 current_safety: 1,
                 current_security: 1,
                 current_productivity: 1,
-                state_id: 1,
-                dep_code: 3
+                state_id: 1
             }),
         hospitals
             .create({
@@ -140,8 +137,7 @@ module.exports = {
                 current_safety: 3,
                 current_security: 3,
                 current_productivity: 3,
-                state_id: 2,
-                dep_code: 1
+                state_id: 2
             }),
         hospitals
             .create({
@@ -151,8 +147,7 @@ module.exports = {
                 current_safety: 2,
                 current_security: 3,
                 current_productivity: 1,
-                state_id: 2,
-                dep_code: 2
+                state_id: 2
             }),
         hospitals
             .create({
@@ -162,8 +157,7 @@ module.exports = {
                 current_safety: 1,
                 current_security: 1,
                 current_productivity: 1,
-                state_id: 2,
-                dep_code: 3
+                state_id: 2
             }),
         hospitals
             .create({
@@ -173,8 +167,7 @@ module.exports = {
                 current_safety: 3,
                 current_security: 3,
                 current_productivity: 3,
-                state_id: 3,
-                dep_code: 1
+                state_id: 3
             }),
         hospitals
             .create({
@@ -184,8 +177,7 @@ module.exports = {
                 current_safety: 2,
                 current_security: 3,
                 current_productivity: 1,
-                state_id: 3,
-                dep_code: 2
+                state_id: 3
             }),
         hospitals
             .create({
@@ -195,8 +187,7 @@ module.exports = {
                 current_safety: 1,
                 current_security: 1,
                 current_productivity: 1,
-                state_id: 3,
-                dep_code: 3
+                state_id: 3
             }),
 
         hospitals_history
@@ -275,163 +266,190 @@ module.exports = {
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 1
+                hospital_id: 1,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 1
+                hospital_id: 1,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 1  
+                hospital_id: 1,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 2
+                hospital_id: 2,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 2
+                hospital_id: 2,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 2
+                hospital_id: 2,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 3
+                hospital_id: 3,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 3
+                hospital_id: 3,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 3
+                hospital_id: 3,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 4 
+                hospital_id: 4,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 4
+                hospital_id: 4,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 4  
+                hospital_id: 4,
+                dep_code: 3  
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 5
+                hospital_id: 5,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 5  
+                hospital_id: 5,
+                dep_code: 2  
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 5 
+                hospital_id: 5,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 6
+                hospital_id: 6,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 6
+                hospital_id: 6,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 6
+                hospital_id: 6,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 7
+                hospital_id: 7,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 7
+                hospital_id: 7,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 7 
+                hospital_id: 7,
+                dep_code: 3 
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 8
+                hospital_id: 8,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 8
+                hospital_id: 8,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 8
+                hospital_id: 8,
+                dep_code: 3
             }),
         department
             .create({
                 dep_name: 'Department 1',
                 dep_desc: 'Desc department 1',
-                hospital_id: 9
+                hospital_id: 9,
+                dep_code: 1
             }),
         department
             .create({
                 dep_name: 'Department 2',
                 dep_desc: 'Desc department 2',
-                hospital_id: 9
+                hospital_id: 9,
+                dep_code: 2
             }),
         department
             .create({
                 dep_name: 'Department 3',
                 dep_desc: 'Desc department 3',
-                hospital_id: 9
+                hospital_id: 9,
+                dep_code: 3
             }),
         division
             .create({
@@ -1032,6 +1050,8 @@ module.exports = {
                 username: 'adibarinanda',
                 staffId: '5115100111',
                 email: 'arinanda.adib@gmail.com',
+                password_hash: '$2y$12$Sbndi.tAnfnU5tJzGqUhGOvpXpvCrWfMcIRRCjsFYHj7GBEqvs4Wi',
+                login_pin: null,
                 role_id: 1,
                 hospital_id: 1,
                 dep_id: 1,
@@ -1043,6 +1063,8 @@ module.exports = {
                 username: 'rezkyalamsyah',
                 staffId: '5115100112',
                 email: 'rezkyal2@gmail.com',
+                password_hash: '$2y$12$bEDLuXFMNtVZZlJ8.Ei/8OopzqqADn8ErV1Bz2iJOQhIWeQYbNCsq',
+                login_pin: null,
                 role_id: 2,
                 hospital_id: 1,
                 dep_id: 1,
@@ -1054,6 +1076,8 @@ module.exports = {
                 username: 'zahrirusli',
                 staffId: '5115100113',
                 email: 'zahri.rusli@gmail.com',
+                password_hash: '$2y$12$18thQ6ORqZN9OQXbs32Nb.fJeMwha1yWOr1VINqyTiZWlrDuCrHBO',
+                login_pin: null,
                 role_id: 3,
                 hospital_id: 1,
                 dep_id: 1,
@@ -1065,6 +1089,8 @@ module.exports = {
                 username: 'nancysilvia',
                 staffId: '5115100114',
                 email: 'arinanda.adib@gmail.com',
+                password_hash: '$2y$12$w6naQP7hC63pNXv.bPJPDOTA.8fdbw0dTpRTebuLy0ojxhik2qYC6',
+                login_pin: null,
                 role_id: 4,
                 hospital_id: 1,
                 dep_id: 1,
@@ -1076,6 +1102,8 @@ module.exports = {
                 username: 'faizhaznitrama',
                 staffId: '5115100115',
                 email: 'rezkyal2@gmail.com',
+                password_hash: '$2y$12$4WoV9RkVC85j9zb46hTsWudjSja4BaEdN6RO1Kn96zfaBLBDYvHje',
+                login_pin: null,
                 role_id: 5,
                 hospital_id: 1,
                 dep_id: 1,
@@ -1087,6 +1115,8 @@ module.exports = {
                 username: 'rumandaengala',
                 staffId: '5115100116',
                 email: 'zahri.rusli@gmail.com',
+                password_hash: '$2y$12$FwcvFst/36XrF4lI8i203.DZRmSE1WGnMt32sTpw2izZoNzt1MlH6',
+                login_pin: null,
                 role_id: 6,
                 hospital_id: 1,
                 dep_id: 1,
@@ -2695,12 +2725,15 @@ module.exports = {
         medical_equipments
             .create({
                 equipments_name: 'Equipments 1',
+                equipments_model: 'M1',
                 equipments_desc: 'Desc equipments 1',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
                 equipments_value: 50,
                 equipments_value_currency: 'MYR',
                 manufacturing_date: '2018-08-09 07:42:28',
+                warranty_start_date: '2018-08-09',
+                warranty_completion_date: '2018-09-09',
                 is_on: true,
                 is_available: true,
                 current_safety: 3,
@@ -2716,17 +2749,22 @@ module.exports = {
                 hospital_id: 1,
                 dep_id: 1,
                 div_id: 1,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 2',
+                equipments_model: 'M2',
                 equipments_desc: 'Desc equipments 2',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
                 equipments_value: 50,
                 equipments_value_currency: 'MYR',
                 manufacturing_date: '2018-08-09 07:42:28',
+                warranty_start_date: '2018-08-09',
+                warranty_completion_date: '2018-09-09',
                 is_on: true,
                 is_available: true,
                 current_safety: 2,
@@ -2742,17 +2780,22 @@ module.exports = {
                 hospital_id: 1,
                 dep_id: 1,
                 div_id: 1,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 3',
+                equipments_model: 'M3',
                 equipments_desc: 'Desc equipments 3',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
                 equipments_value: 50,
                 equipments_value_currency: 'MYR',
                 manufacturing_date: '2018-08-09 07:42:28',
+                warranty_start_date: '2018-08-09',
+                warranty_completion_date: '2018-09-09',
                 is_on: true,
                 is_available: true,
                 current_safety: 1,
@@ -2768,17 +2811,22 @@ module.exports = {
                 hospital_id: 1,
                 dep_id: 1,
                 div_id: 1,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 1',
+                equipments_model: 'M4',
                 equipments_desc: 'Desc equipments 1',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
                 equipments_value: 50,
                 equipments_value_currency: 'MYR',
                 manufacturing_date: '2018-08-09 07:42:28',
+                warranty_start_date: '2018-08-09',
+                warranty_completion_date: '2018-09-09',
                 is_on: true,
                 is_available: true,
                 current_safety: 3,
@@ -2794,17 +2842,22 @@ module.exports = {
                 hospital_id: 2,
                 dep_id: 2,
                 div_id: 2,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 2',
+                equipments_model: 'M5',
                 equipments_desc: 'Desc equipments 2',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
                 equipments_value: 50,
                 equipments_value_currency: 'MYR',
                 manufacturing_date: '2018-08-09 07:42:28',
+                warranty_start_date: '2018-08-09',
+                warranty_completion_date: '2018-09-09',
                 is_on: true,
                 is_available: true,
                 current_safety: 2,
@@ -2820,17 +2873,22 @@ module.exports = {
                 hospital_id: 2,
                 dep_id: 2,
                 div_id: 2,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 3',
+                equipments_model: 'M6',
                 equipments_desc: 'Desc equipments 3',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
                 equipments_value: 50,
                 equipments_value_currency: 'MYR',
                 manufacturing_date: '2018-08-09 07:42:28',
+                warranty_start_date: '2018-08-09',
+                warranty_completion_date: '2018-09-09',
                 is_on: true,
                 is_available: true,
                 current_safety: 1,
@@ -2846,17 +2904,22 @@ module.exports = {
                 hospital_id: 2,
                 dep_id: 2,
                 div_id: 2,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 1',
+                equipments_model: 'M7',
                 equipments_desc: 'Desc equipments 1',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
                 equipments_value: 50,
                 equipments_value_currency: 'MYR',
                 manufacturing_date: '2018-08-09 07:42:28',
+                warranty_start_date: '2018-08-09',
+                warranty_completion_date: '2018-09-09',
                 is_on: true,
                 is_available: true,
                 current_safety: 3,
@@ -2872,17 +2935,22 @@ module.exports = {
                 hospital_id: 3,
                 dep_id: 3,
                 div_id: 3,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 2',
+                equipments_model: 'M8',
                 equipments_desc: 'Desc equipments 2',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
                 equipments_value: 50,
                 equipments_value_currency: 'MYR',
                 manufacturing_date: '2018-08-09 07:42:28',
+                warranty_start_date: '2018-08-09',
+                warranty_completion_date: '2018-09-09',
                 is_on: true,
                 is_available: true,
                 current_safety: 2,
@@ -2898,17 +2966,22 @@ module.exports = {
                 hospital_id: 3,
                 dep_id: 3,
                 div_id: 3,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
         medical_equipments
             .create({
                 equipments_name: 'Equipments 3',
+                equipments_model: 'M9',
                 equipments_desc: 'Desc equipments 3',
                 equipments_sn: '',
                 equipments_life_expectancy: 100,
                 equipments_value: 50,
                 equipments_value_currency: 'MYR',
                 manufacturing_date: '2018-08-09 07:42:28',
+                warranty_start_date: '2018-08-09',
+                warranty_completion_date: '2018-09-09',
                 is_on: true,
                 is_available: true,
                 current_safety: 1,
@@ -2924,7 +2997,9 @@ module.exports = {
                 hospital_id: 3,
                 dep_id: 3,
                 div_id: 3,
-                file: null
+                main_photos: null,
+                additional_photos: null,
+                documents: null
             }),
 
         medical_equipments_history
