@@ -65,20 +65,23 @@ module.exports = {
     async verification_email(result_id, result_email, result_username, clientIp, ip) {
 
         var transporter = nodemailer.createTransport({
-            service: 'gmail',
+          host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
             auth: {
-                type: 'OAuth2',
-                user: 'elife.shams@gmail.com',
-                clientId: '574528498093-tnoa0isa32bp25h5fa54oim1suif2p3n.apps.googleusercontent.com',
-                clientSecret: 'LwzLbhk772wOCf4bbomyGloT',
-                refreshToken: '1/StRPKZcDYp4aLkF5mVD84IrdxFIV8eWu-JnoTF7QP0o',
-                accessToken: 'ya29.GlsHBu6nK4kkLMcDkmbh7ePXRNqpozn6gY3dL3jUb0CbUPf9r4hV6Gy16ktzdO2nBo5WE8EAFJtPGUW3xFdBh9pDuPUdBUxEokFHTEyf0KZ93uF84-fD4wT_foyE'        
-            },
-        });
+         type: "OAuth2",
+         user: "elife.shams@gmail.com",         
+         clientId: "903749275611-l50qis20ojb98tm8ncr7699cn1imbsvs.apps.googleusercontent.com",
+         clientSecret: "ecHuNn6qsR1ZfWP5ZD6M7Az8",
+         refreshToken: "1/KP03SolKr91juQ_AHwHQuMBG88-oHRjrBOFLQb4NAn4",
+         accessToken: "ya29.GltMBkf2mE6kleuBYtoWDgu6PUrPnbENZjP0j7J2sszoxdu_DAO9nrJCnfeBzjMiOkro9T77HBjWb3kNCnuEeCQAJGPwYnKxKKbjKPAEoLGkVW6oYxdYtAKCzk-K"
+    }
+          });
+          
 
         var mailOptions = {
-            from: 'Smart Healthcare <elife.shams@gmail.com>',
-            to: 'arinanda.adib@gmail.com',
+            from: 'elife.shams@gmail.com',
+            to: result_email,
             subject: 'Verify it\'s you!',
             text: 
             'Hey ' + result_username + '!\n\nPlease verify that it’s you.\n\nUse the following code to confirm your identity:\n\n' + 
