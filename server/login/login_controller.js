@@ -65,16 +65,12 @@ module.exports = {
     async verification_email(result_id, result_email, result_username, clientIp, ip) {
 
         var transporter = nodemailer.createTransport({
-          host: 'smtp.gmail.com',
+    host: 'in-v3.mailjet.com',
     port: 587,
     secure: false,
             auth: {
-         type: "OAuth2",
-         user: "elife.shams@gmail.com",         
-         clientId: "903749275611-l50qis20ojb98tm8ncr7699cn1imbsvs.apps.googleusercontent.com",
-         clientSecret: "ecHuNn6qsR1ZfWP5ZD6M7Az8",
-         refreshToken: "1/KP03SolKr91juQ_AHwHQuMBG88-oHRjrBOFLQb4NAn4",
-         accessToken: "ya29.GltMBkf2mE6kleuBYtoWDgu6PUrPnbENZjP0j7J2sszoxdu_DAO9nrJCnfeBzjMiOkro9T77HBjWb3kNCnuEeCQAJGPwYnKxKKbjKPAEoLGkVW6oYxdYtAKCzk-K"
+         user: "d8967c60925b07852935b3df09c0bb8c",         
+         pass: "9f34ca1d65f925713b61728310acdf26"
     }
           });
           
@@ -84,12 +80,8 @@ module.exports = {
             to: result_email,
             subject: 'Verify it\'s you!',
             text: 
-            'Hey ' + result_username + '!\n\nPlease verify that it’s you.\n\nUse the following code to confirm your identity:\n\n' + 
-            result_id + '\n\n' + 'Here are the details of the sign-in attempt:\n' + new Date() + '\nAccount: ' + result_email + 
-            '\nLocation: ' + await module.exports.get_client_city(clientIp) + ', ' + await module.exports.get_client_region(clientIp) + ', ' + await module.exports.get_client_country(clientIp) + ' ' +  await module.exports.get_client_zip(clientIp) +
-            '\nIP Address: ' + clientIp + ' / ' + ip +
-            '\nLatitude: ' + await module.exports.get_client_lat(clientIp) +
-            '\nLongitude: ' + await module.exports.get_client_lng(clientIp)
+           'Hey ' + result_username + '!\n\nPlease verify that it’s you.\n\nUse the following code to confirm your identity:\n\n' + 
+            result_id + '\n\n' + 'Here are the details of the sign-in attempt:\n' + new Date() + '\nAccount: ' + result_email 
         };
          
         transporter.sendMail(mailOptions, function(err) {
