@@ -28,13 +28,13 @@ module.exports = {
 
     async verification_email(username, password,email) {
         var transporter = nodemailer.createTransport({
-            host: 'in-v3.mailjet.com',
+            host: 'smtp.gmail.com',
             port: 587,
             secure: false,
-            auth: {
-                user: "d8967c60925b07852935b3df09c0bb8c",         
-                pass: "9f34ca1d65f925713b61728310acdf26"
-            },
+                        auth: {
+                            user: 'elife.shams@gmail.com',
+                            pass: 'els12345'
+                    },
         });
 
         var mailOptions = {
