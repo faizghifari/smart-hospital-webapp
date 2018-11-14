@@ -2,7 +2,7 @@ const equipment = require('./equipment');
 const role_controller = require('../role/role_controller');
 
 module.exports = (app) => {
-    app.get(    '/equipment', role_controller.valid_login, role_controller.role_check, equipment.list);
+    app.get(    '/equipment', equipment.list);
 
     app.get(    '/:hospital_id/equipment', role_controller.valid_login, role_controller.role_check, equipment.list_hospital);
 

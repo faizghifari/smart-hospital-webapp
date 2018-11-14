@@ -21,6 +21,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "eslint": "^5.2.0",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
@@ -36,9 +37,9 @@
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "pg-promise": "^8.4.5",
-    "request": "^2.88.0",
     "public-ip": "^2.4.0",
     "randomatic": "^3.1.0",
+    "request": "^2.88.0",
     "request-ip": "^2.1.1",
     "sequelize": "^4.38.0",
     "sequelize-cli": "^4.0.0",

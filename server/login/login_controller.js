@@ -7,6 +7,7 @@ const requestIp = require('request-ip');
 const publicIp = require('public-ip');
 const where = require('node-where');
 const schedule = require('node-schedule');
+const cors = require('cors');
 
 module.exports = {
     get_client_ip() {
@@ -22,21 +23,28 @@ module.exports = {
         var user = data.username;
         var password = data.password;
         var clientIp = await module.exports.get_client_ip();        
-        const ip = (requestIp.getClientIp(req)).substr(7);
-
-        users
-            .findOne({
-                where: {username: user}
-            })
-            .then(async result => {
+      //  const ip = (requestIp.getClientIp(req)).substr(7);
+        users.findOne({
+                where: { username: user }
+            }).then(async result => {
                 if (!result) {
-                    return res.status(400).send('User not found'); 
-                } else if(result) {
+                    return res.send({
+                    	code:"400",
+                    	msg:'User not found'
+                    }); 
+                } else {
                     const matches = await bcrypt.compare(password, result.password_hash);
                     if (!matches) {
-                        return res.status(400).send('Auth failed. Wrong password.');   
+                        return res.send({
+		                    	code:"400",
+		                    	msg:'Auth failed. Wrong password.'
+		                    });   
                     } else {
-                        module.exports.update_send_pin(result.id, clientIp, ip); 
+                        module.exports.update_send_pin(result.id); 
+                        return res.send({
+		                    	code:"200",
+		                    	msg:'Email containing login pint sent.'
+		                    }); 
                     }
                 }
             });
@@ -54,41 +62,51 @@ module.exports = {
             .then(result => {
                 if(result.login_pin == pin){
                     jwtLogin.sign(req, res, user, 'topsecret', 1, false);
+                    return res.send({
+                    	code:'200',
+                    	msg:'Welcome!'
+                    });
                 } else if(result.login_pin == null) {
-                    res.send('Session expired. Please login again.');
+                  return res.send({
+                    	code:'400',
+                    	msg:'Session expired. Please login again.'
+                    });
                 } else {
-                    res.send('Incorrect PIN!');
+                	return res.send({
+                    	code:'400',
+                    	msg:'Incorrect PIN!'
+                    });
                 }
             });
     },
 
-    async verification_email(result_id, result_email, result_username) {
+    async verification_email(result_id, result_email, result_username, clientIp, ip) {
 
         var transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-                auth: {
-                    user: 'elife.shams@gmail.com',
-                    pass: 'els12345'
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: 'elife.shams@gmail.com',
+                pass: 'els12345'
             },
-          });
-          
+        });
 
         var mailOptions = {
             from: 'elife.shams@gmail.com',
             to: result_email,
             subject: 'Verify it\'s you!',
             text: 
-           'Hey ' + result_username + '!\n\nPlease verify that it’s you.\n\nUse the following code to confirm your identity:\n\n' + 
+            'Hey ' + result_username + '!\n\nPlease verify that it’s you.\n\nUse the following code to confirm your identity:\n\n' + 
             result_id + '\n\n' + 'Here are the details of the sign-in attempt:\n' + new Date() + '\nAccount: ' + result_email 
+          
         };
          
         transporter.sendMail(mailOptions, function(err) {
             if(err) {
                 console.log('error');
             } else {
-                console.log('email sent!');
+                console.log('ok');
             }
         });  
     },
