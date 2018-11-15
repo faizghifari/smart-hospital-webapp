@@ -1,8 +1,16 @@
 const disposal_request = require('./disposal_request');
 const disposal_report = require('./disposal_report');
 const disposal_equipment = require('./disposal_equipment');
-
+const cors = require('cors');
 module.exports = (app) => {
+
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+      });
+      
+
     app.get(    '/disposal/request',                                        disposal_request.list);
     app.get(    '/disposal/request/approved',                               disposal_request.list_approved);
     app.get(    '/disposal/request/rejected',                               disposal_request.list_rejected);
