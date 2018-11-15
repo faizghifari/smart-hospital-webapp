@@ -4,12 +4,13 @@ const cors = require('cors');
 
 
 module.exports = (app) => {
+    
     app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         next();
       });
-      
+
     app.get(    '/equipment', equipment.list);
 
     app.get(    '/:hospital_id/equipment', role_controller.valid_login, role_controller.role_check, equipment.list_hospital);
