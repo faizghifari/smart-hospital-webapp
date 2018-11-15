@@ -8,8 +8,16 @@ const user = require('./user_crud');
 const device = require('./device_crud');
 const qty_task = require('./qty_task_crud');
 const room = require('./room_crud');
+const cors = require('cors');
 
 module.exports = (app) => {
+    
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+      });
+
     app.post(   '/equipment_type',                          equipment_type.create);
     app.get(    '/equipment_type',                          equipment_type.list);
     app.get(    '/equipment_type/names',                    equipment_type.list_name);
